@@ -1,0 +1,975 @@
+<!doctype html>
+<html lang="en" data-wj-register="operator" data-wj-density="comfortable">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wash Junkie · Brand Guide</title>
+
+<link rel="stylesheet" href="../tokens/dist/wj-tokens.css">
+<link rel="stylesheet" href="../css/wj-material.css">
+<link rel="stylesheet" href="../css/wj-components.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* Page chrome only. Nothing here is part of the system. */
+  body { margin: 0; }
+  .doc { max-width: 1100px; margin-inline: auto; padding: var(--wj-space-12) var(--wj-space-8) var(--wj-space-15); }
+  section { scroll-margin-top: 92px; padding-block: var(--wj-space-12); border-top: 1px solid var(--wj-border-subtle); }
+  h2 { font-family: var(--wj-font-display); font-size: var(--wj-text-2xl); letter-spacing: -.02em; margin: 0 0 var(--wj-space-3); }
+  h3 { font-family: var(--wj-font-display); font-size: var(--wj-text-lg); margin: var(--wj-space-9) 0 var(--wj-space-5); }
+  .lede { color: var(--wj-fg-muted); max-width: 68ch; margin: 0 0 var(--wj-space-8); font-size: var(--wj-text-lg); line-height: 1.55; }
+  .note { color: var(--wj-fg-muted); font-size: var(--wj-text-caption); max-width: 74ch; line-height: 1.6; }
+  .demo { padding: var(--wj-space-7); border: 1px dashed var(--wj-border-default); border-radius: var(--wj-radius-lg); background: var(--wj-surface-sunken); }
+  .cols { display: grid; gap: var(--wj-space-6); grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+  code { font-family: var(--wj-font-mono); font-size: .86em; background: var(--wj-surface-inset); padding: 1px 5px; border-radius: 4px; }
+  .toc { display: flex; flex-wrap: wrap; gap: var(--wj-space-3); }
+  .toc a { text-decoration: none; }
+  .scroller { overflow-x: auto; }
+
+  .stage {
+    position: relative; border-radius: var(--wj-radius-xl); overflow: hidden;
+    padding: var(--wj-space-11) var(--wj-space-8); min-height: 200px;
+    display: flex; align-items: center; justify-content: center; gap: var(--wj-space-6);
+    background:
+      radial-gradient(60% 80% at 12% 18%, #2cbec5 0%, transparent 60%),
+      radial-gradient(50% 70% at 82% 22%, #7b5cff 0%, transparent 62%),
+      radial-gradient(70% 90% at 68% 88%, #ff9f43 0%, transparent 58%),
+      #0d1b2a;
+  }
+
+  /* --- the contrast matrix --- */
+  .mx { border-collapse: separate; border-spacing: var(--wj-space-3); width: 100%; }
+  .mx th { font-size: var(--wj-text-2xs); text-transform: uppercase; letter-spacing: .08em; color: var(--wj-fg-subtle); font-weight: 600; text-align: center; padding-bottom: 0; }
+  .mx th.row { text-align: left; width: 130px; color: var(--wj-fg-default); text-transform: none; letter-spacing: 0; font-size: var(--wj-text-caption); }
+  .mx th.row span { display: block; font-family: var(--wj-font-mono); font-size: 10px; color: var(--wj-fg-subtle); font-weight: 400; }
+  .mx td { text-align: center; vertical-align: top; }
+  .mx-field { height: 62px; border-radius: var(--wj-radius-md); display: grid; place-items: center; border: 1px solid rgba(0,0,0,.10); margin-bottom: 6px; }
+  .mx-field svg { height: 15px; width: auto; }
+  .mx-r { font-family: var(--wj-font-mono); font-size: var(--wj-text-caption); font-weight: 500; display: block; }
+  .mx-v { font-size: 10px; display: block; margin-top: 1px; }
+  .pass .mx-v { color: var(--wj-success-fg); }
+  .graphics .mx-v { color: var(--wj-warning-fg); }
+  .fail .mx-v { color: var(--wj-danger-fg); font-weight: 700; }
+  .fail .mx-field { outline: 2px solid var(--wj-danger-solid); outline-offset: 2px; }
+
+  /* --- scale ruler --- */
+  .ruler { display: flex; align-items: flex-end; gap: var(--wj-space-6); flex-wrap: wrap; }
+  .ruler figure { margin: 0; text-align: center; }
+  .ruler .cell { display: grid; place-items: center; min-height: 32mm; }
+  .ruler svg { color: var(--wj-fg-default); display: block; }
+  .ruler figcaption { font-size: 10px; color: var(--wj-fg-subtle); margin-top: 6px; line-height: 1.4; }
+  .ruler figcaption b { display: block; color: var(--wj-fg-default); font-size: var(--wj-text-2xs); font-weight: 600; }
+
+  /* --- clear space --- */
+  .clearbox { position: relative; display: inline-block; padding: var(--_cs); outline: 1px dashed var(--wj-accent-border); background: var(--wj-accent-subtle); }
+  .clearbox svg { display: block; color: var(--wj-brand-mark); }
+  .dimline { font-family: var(--wj-font-mono); font-size: 10px; color: var(--wj-accent-fg); }
+
+  /* --- greyscale sim --- */
+  .sim-grey { filter: grayscale(1); }
+  .sim-1bit { filter: grayscale(1) contrast(2000%); }
+  .chips { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px,1fr)); gap: var(--wj-space-3); }
+  .chip-sw { height: 58px; border-radius: var(--wj-radius-md); display: grid; place-items: end center; padding-bottom: 5px; font-size: 9px; font-family: var(--wj-font-mono); }
+
+  /* --- receipt --- */
+  .receipt {
+    width: 58mm; background: #fff; color: #000; padding: 4mm 3mm;
+    font-family: var(--wj-font-mono); font-size: 7pt; line-height: 1.45;
+    box-shadow: var(--wj-shadow-md); border-radius: 1px;
+    /* Thermal is 1-bit: no greys exist, so the mock must not use any. */
+    filter: grayscale(1) contrast(2000%);
+  }
+  .receipt .r-mark { display: grid; place-items: center; margin-bottom: 2mm; }
+  .receipt .r-mark svg { height: 5.5mm; width: auto; color: #000; }
+  .receipt hr { border: none; border-top: 1px dashed #000; margin: 2mm 0; }
+  .receipt .r-row { display: flex; justify-content: space-between; gap: 2mm; }
+  .receipt .r-total { font-weight: 500; font-size: 9pt; }
+  .receipt .r-ref { font-size: 12pt; letter-spacing: .06em; text-align: center; margin: 1mm 0; }
+  .receipt .r-foot { text-align: center; font-size: 6pt; margin-top: 2mm; }
+  .r-tear { height: 6px; background: repeating-linear-gradient(90deg,#fff 0 4px,transparent 4px 8px); }
+
+  /* --- van --- */
+  .van { display: grid; gap: var(--wj-space-4); }
+  .van-panel { border: 1px solid var(--wj-border-default); border-radius: var(--wj-radius-md); padding: var(--wj-space-5); display: grid; grid-template-columns: 92px 1fr; gap: var(--wj-space-5); align-items: center; }
+  .van-panel .pnl { font-weight: 600; font-size: var(--wj-text-label); }
+  .van-swatch { height: 40px; border-radius: var(--wj-radius-sm); display: grid; place-items: center; border: 1px solid rgba(0,0,0,.1); }
+  .van-swatch svg { height: 12px; width: auto; }
+
+  /* --- do / don't --- */
+  .dd { display: grid; grid-template-columns: 1fr 1fr; gap: var(--wj-space-5); }
+  .dd > div { border-radius: var(--wj-radius-md); padding: var(--wj-space-5) var(--wj-space-6); font-size: var(--wj-text-label); }
+  .dd .no { background: var(--wj-danger-subtle); color: var(--wj-danger-fg); }
+  .dd .yes { background: var(--wj-success-subtle); color: var(--wj-success-fg); }
+  .dd b { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 4px; opacity: .75; }
+  @media (max-width: 640px) { .dd { grid-template-columns: 1fr; } }
+
+  .gate { display: grid; gap: 2px; }
+  .gate div { padding: var(--wj-space-4) var(--wj-space-5); background: var(--wj-surface-inset); font-size: var(--wj-text-label); display: flex; gap: var(--wj-space-5); }
+  .gate div span { font-family: var(--wj-font-mono); color: var(--wj-fg-subtle); font-size: var(--wj-text-caption); }
+</style>
+</head>
+
+<body class="wj-root">
+
+<div class="wj-glass" data-tier="pane" data-sticky="true" style="border-radius:0;padding:var(--wj-space-5) var(--wj-space-8);">
+  <div style="max-width:1100px;margin-inline:auto;display:flex;align-items:center;gap:var(--wj-space-6);flex-wrap:wrap;">
+    <span id="brandmark" style="display:inline-flex;color:var(--wj-brand-mark)"></span>
+    <strong class="wj-label" style="font-family:var(--wj-font-display)">Brand Guide</strong>
+    <span class="wj-badge">identity layer</span>
+    <span class="wj-spacer"></span>
+    <a class="wj-btn" data-variant="ghost" data-size="sm" href="index.html">← Design system</a>
+    <a class="wj-btn" data-variant="secondary" data-size="sm" href="../pdf/dist/wash-junkie-brand-guide.pdf">Download PDF</a>
+    <div class="wj-segmented" role="tablist" aria-label="Theme">
+      <button class="wj-segmented__item" data-theme-set="light">Light</button>
+      <button class="wj-segmented__item" data-theme-set="dark">Dark</button>
+      <button class="wj-segmented__item" data-theme-set="system" data-selected="true">Auto</button>
+    </div>
+  </div>
+</div>
+
+<main class="doc">
+
+  <section id="top" style="padding-top:var(--wj-space-9);border:none">
+    <p class="wj-eyebrow">Wash Junkie · brand guide</p>
+    <h1 class="wj-display" style="margin:var(--wj-space-4) 0 var(--wj-space-6)">The brand is a set of<br>measured constraints.</h1>
+    <p class="lede">
+      Not a mood board. Every rule below is a number somebody can check, and the numbers are what let this brand
+      survive a van at 20 metres, a laundry bag after fifty washes, and a thermal receipt that has no greys.
+      Where a specification needs a supplier match nobody has made yet, it says <strong>TO SPECIFY</strong> and gives
+      the method instead of inventing a figure.
+    </p>
+    <nav class="toc">
+      <a class="wj-chip" href="#fields">Mark on field</a>
+      <a class="wj-chip" href="#geometry">Clear space</a>
+      <a class="wj-chip" href="#floors">Minimum sizes</a>
+      <a class="wj-chip" href="#icons">App icons</a>
+      <a class="wj-chip" href="#distance">Viewing distance</a>
+      <a class="wj-chip" href="#van">The van</a>
+      <a class="wj-chip" href="#colour">Production colour</a>
+      <a class="wj-chip" href="#greyscale">1-bit</a>
+      <a class="wj-chip" href="#receipt">Receipt</a>
+      <a class="wj-chip" href="#voice">Voice</a>
+      <a class="wj-chip" href="#representation">Representation</a>
+      <a class="wj-chip" href="#merch">Merchandise</a>
+      <a class="wj-chip" href="#isnot">What we're not</a>
+      <a class="wj-chip" href="#gaps">Open gaps</a>
+    </nav>
+  </section>
+
+  <!-- ================= 1 · Mark on field ================= -->
+  <section id="fields">
+    <h2>Which mark on which field</h2>
+    <p class="lede">
+      The single most consequential table in the guide — every physical application is derived from it.
+      <strong>3:1 is the floor for a non-text graphic; 4.5:1 is the floor for type.</strong>
+      Contrast below is computed live from the token source, not typed in.
+    </p>
+
+    <div class="scroller"><table class="mx" id="matrix"></table></div>
+
+    <div class="wj-alert" data-tone="danger" role="alert" style="margin-top:var(--wj-space-7)">
+      <div>
+        <div class="wj-alert__title">A white mark on brand teal is not legible</div>
+        <div class="wj-alert__body">
+          It is the combination everyone reaches for first, and a brand-teal van with a white wordmark washes out at
+          distance and disappears in direct sun. The line that survives being passed on by phone:
+          <strong>ink on the bright teal, white on the deep teal, never white on the bright teal.</strong>
+        </div>
+      </div>
+    </div>
+
+    <h3>The four approved renderings</h3>
+    <div class="cols" id="approved"></div>
+  </section>
+
+  <!-- ================= 2 · Geometry ================= -->
+  <section id="geometry">
+    <h2>Clear space &amp; geometry</h2>
+    <p class="lede">
+      Clear space is <strong>0.45 × height</strong> on all four sides — the height of the splash mark's own droplet,
+      so the space around the artwork is set by a shape inside it. Nothing enters that box: not a rule, not a partner
+      logo, not a fold, not a seam.
+    </p>
+
+    <div class="demo" style="display:flex;gap:var(--wj-space-12);flex-wrap:wrap;align-items:center">
+      <div>
+        <div class="clearbox" id="cs-lockup" style="--_cs:18px"></div>
+        <p class="dimline" style="margin-top:8px">Lock-up · keep-clear box 6.704H × 1.9H</p>
+      </div>
+      <div>
+        <div class="clearbox" id="cs-mark" style="--_cs:18px"></div>
+        <p class="dimline" style="margin-top:8px">Mark · keep-clear box 2.920H × 1.9H</p>
+      </div>
+    </div>
+
+    <p class="note" style="margin-top:var(--wj-space-5)">
+      A lock-up 40mm tall is 232mm wide, carries 18mm of clear space, and needs a panel of at least
+      <strong>268 × 76mm</strong> with nothing else in it. Size by height, never width.
+    </p>
+
+    <h3>The two ratios that govern every reproduction floor</h3>
+    <div class="scroller"><table class="wj-table" style="background:var(--wj-surface-raised);border:1px solid var(--wj-border-subtle);border-radius:var(--wj-radius-lg)">
+      <thead><tr><th>Artwork</th><th>Ratio</th><th>Thinnest sustained stroke</th><th>Tightest true separation</th></tr></thead>
+      <tbody>
+        <tr><td>Lock-up</td><td class="wj-mono">325.06 : 56.01 → 5.804 × H</td><td class="wj-mono">0.082 × height</td><td class="wj-mono">0.044 × height</td></tr>
+        <tr><td>Mark</td><td class="wj-mono">100.78 : 49.9 → 2.020 × H</td><td class="wj-mono">0.135 × height</td><td class="wj-mono">0.046 × height</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note" style="margin-top:var(--wj-space-5)">
+      At both sizes the <strong>separation</strong> limit, not the stroke limit, sets the floor. At 18px the lock-up's
+      tightest meaningful separation measures 0.8 device pixels — which is exactly why the counters fill in below it.
+    </p>
+  </section>
+
+  <!-- ================= 3 · Reproduction floors ================= -->
+  <section id="floors">
+    <h2>Minimum size by reproduction process</h2>
+    <p class="lede">
+      Each floor is <code>max(minimum positive feature ÷ ink ratio, minimum separation ÷ gap ratio)</code>, rounded up.
+      Shown below at true physical scale for a 96dpi display — hold a ruler to your screen if you want to check.
+    </p>
+
+    <div class="demo scroller"><div class="ruler" id="ruler"></div></div>
+
+    <div class="scroller" style="margin-top:var(--wj-space-7)"><table class="wj-table" style="background:var(--wj-surface-raised);border:1px solid var(--wj-border-subtle);border-radius:var(--wj-radius-lg)">
+      <thead><tr><th>Process</th><th>Feature / separation</th><th data-align="end">Lock-up</th><th data-align="end">Mark</th><th>Note</th></tr></thead>
+      <tbody id="floors-rows"></tbody>
+    </table></div>
+
+    <div class="wj-alert" data-tone="warning" style="margin-top:var(--wj-space-6)">
+      <div>
+        <div class="wj-alert__title">The lock-up is not embroiderable at chest-badge size</div>
+        <div class="wj-alert__body">
+          A 70mm-wide lock-up is 12mm tall and its thinnest stroke 0.98mm — under the satin floor.
+          <strong>Below 23mm, embroider the mark.</strong> Below 23mm, do not cut vinyl — print and cut.
+        </div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:var(--wj-space-5)">
+      Reproduction fidelity is not legibility. Below about 5mm a lock-up is holdable detail but unreadable at arm's
+      length whatever the press can do. The feature figures are typical working values, not specifications —
+      <strong>TO SPECIFY</strong> with each supplier.
+    </p>
+  </section>
+
+  <!-- ================= 4 · App icons ================= -->
+  <section id="icons">
+    <h2>App icon &amp; favicon — one number for three masks</h2>
+    <p class="lede">
+      Always the mark, never the lock-up: every icon slot is square or round, and 5.804 : 1 does not fit in one.
+      <strong>Mark height = 0.25 × the icon side, centred.</strong> At 2.020 : 1 that is 0.505 × the side wide and
+      0.564 across the diagonal — clearing Android's 0.61 guaranteed circle. The geometric ceiling is 0.27.
+    </p>
+    <div class="cols" id="masks"></div>
+    <div class="wj-alert" data-tone="danger" style="margin-top:var(--wj-space-6)">
+      <div>
+        <div class="wj-alert__title">The instinctive app icon is the one that fails</div>
+        <div class="wj-alert__body">
+          A brand-teal square with a white mark is the 2.26:1 case, at exactly the size where it gets one glance.
+          Use an ink mark on paper, or a white mark on ink or accent teal. Note also that
+          <code>currentColor</code> does not resolve in a favicon — there is no inheriting context, so the raw
+          asset's own fill renders, and the tab strip is light or dark by OS theme, not by anything you control.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 5 · Viewing distance ================= -->
+  <section id="distance">
+    <h2>Height by viewing distance</h2>
+    <p class="lede">
+      "Make it big" is not a spec. The eye resolves about one arcminute, so a feature of width <code>w</code> is at
+      threshold at <code>w = D / 3438</code>. The signwriter's margin of <code>cap = D / 120</code> puts a working
+      stroke at <code>D / 800</code> — <strong>4.3 × threshold</strong>, which is the allowance for movement, glare,
+      and a reader who is not staring.
+    </p>
+
+    <div class="scroller"><table class="wj-table" style="background:var(--wj-surface-raised);border:1px solid var(--wj-border-subtle);border-radius:var(--wj-radius-lg)">
+      <thead><tr><th>Artwork</th><th>Height rule</th><th data-align="end">10m</th><th data-align="end">20m</th><th data-align="end">30m</th><th data-align="end">50m</th></tr></thead>
+      <tbody>
+        <tr><td>Lock-up</td><td class="wj-mono">H = D / 66</td><td data-numeric="true">150mm</td><td data-numeric="true">305mm</td><td data-numeric="true">455mm</td><td data-numeric="true">760mm</td></tr>
+        <tr><td class="wj-muted">— its width</td><td class="wj-mono">5.804 × H</td><td data-numeric="true">870mm</td><td data-numeric="true">1,770mm</td><td data-numeric="true"><strong>2,640mm</strong></td><td data-numeric="true">4,410mm</td></tr>
+        <tr><td>Mark</td><td class="wj-mono">H = D / 108</td><td data-numeric="true">95mm</td><td data-numeric="true">185mm</td><td data-numeric="true">280mm</td><td data-numeric="true">465mm</td></tr>
+        <tr><td>Set type (Inter)</td><td class="wj-mono">cap = D / 120</td><td data-numeric="true">85mm</td><td data-numeric="true">165mm</td><td data-numeric="true">250mm</td><td data-numeric="true">415mm</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="wj-alert" data-tone="warning" style="margin-top:var(--wj-space-6)">
+      <div>
+        <div class="wj-alert__title">Read the width row — it is where the argument ends</div>
+        <div class="wj-alert__body">
+          A lock-up legible at 30m is <strong>2.64m wide</strong>, longer than the flat side of most panel vans.
+          <strong>15–20m is the working design distance for a vehicle side. 50m is unreachable</strong> — stop trying
+          to buy it and spend the panel on one legible thing.
+        </div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:var(--wj-space-5)">
+      A starting point for a site test, not a specification: the wordmark is drawn artwork with irregular strokes and
+      tapered terminals, so a rule calibrated on set type is optimistic for it.
+    </p>
+  </section>
+
+  <!-- ================= 6 · Van ================= -->
+  <section id="van">
+    <h2>The van, panel by panel</h2>
+    <p class="lede">
+      A van is the brand's largest surface and its least controlled one: seen moving, from behind, at an angle,
+      in sun and at night, parked against anything.
+    </p>
+    <div class="van" id="van-panels"></div>
+
+    <h3>A wrap is not a print</h3>
+    <ul class="wj-body" style="max-width:74ch;color:var(--wj-fg-muted)">
+      <li>Curves, swage lines and wheel arches stretch the film locally — <strong>the mark needs a flat panel</strong>, with its clear space inside the largest flat rectangle.</li>
+      <li>Rivets and recesses are heat-formed; artwork crossing them dimples and shifts colour where the film thins.</li>
+      <li><strong>Never cross a shut-line.</strong> A split mark misregisters every time the door opens, and permanently once a panel is replaced after a knock.</li>
+      <li><strong>Cast, not calendered.</strong> Factory-coloured film beats printed film for the teal, and matte beats gloss on anything that must be read — the reflection kills legibility before the colour does.</li>
+    </ul>
+
+    <blockquote class="wj-alert" data-tone="info" style="margin-top:var(--wj-space-6)">
+      <div><div class="wj-alert__title">Proposal — needs sign-off</div>
+      <div class="wj-alert__body">The scheme above is derived from the contrast constraint. The constraint is fact;
+      the scheme is not yet a decision. Rear conspicuity marking is a legal requirement in many markets and belongs to
+      that market's regulator — confirm it before the wrap is designed, because it claims a fixed band of the rear panel.
+      <br><br>
+      The <a href="#representation">driver decision</a> does <strong>not</strong> settle this: a vehicle is an object,
+      and a provider's van is the artefact question. But note the cab-door pair sits at 2–5m at the kerb, beside an
+      unmarked driver — it is the same claim in a larger size, and that should be decided knowing so.</div></div>
+    </blockquote>
+  </section>
+
+  <!-- ================= 7 · Production colour ================= -->
+  <section id="colour">
+    <h2>Production colour</h2>
+    <div class="wj-alert" data-tone="warning" style="margin-bottom:var(--wj-space-7)">
+      <div><div class="wj-alert__title">CMYK below is the naive algebraic conversion</div>
+      <div class="wj-alert__body">It knows nothing about ink, paper, dot gain, or GCR. It is a starting point for a
+      conversation with a printer, never a specification. Match a spot colour against a physical book under D50, and
+      get a wet proof on the actual substrate.</div></div>
+    </div>
+
+    <div class="scroller"><table class="wj-table" style="background:var(--wj-surface-raised);border:1px solid var(--wj-border-subtle);border-radius:var(--wj-radius-lg)">
+      <thead><tr><th>Colour</th><th>Hex</th><th>CMYK (naive)</th><th data-align="end">TAC</th><th>Print risk</th><th>1-bit</th></tr></thead>
+      <tbody id="prod-rows"></tbody>
+    </table></div>
+
+    <div class="wj-alert" data-tone="danger" style="margin-top:var(--wj-space-6)">
+      <div><div class="wj-alert__title">The brand teal is in the hardest region for process ink</div>
+      <div class="wj-alert__body">Saturated cyan-green above 60% lightness is the largest part of sRGB that offset
+      CMYK cannot reach. It will flatten toward grey-green. <strong>Anything where the teal is the hero needs a spot
+      colour.</strong></div></div>
+    </div>
+
+    <h3>The same teal, seven different colours</h3>
+    <div class="scroller"><table class="wj-table" style="background:var(--wj-surface-raised);border:1px solid var(--wj-border-subtle);border-radius:var(--wj-radius-lg)">
+      <thead><tr><th>Substrate</th><th>What it does to the teal</th><th>What to do</th></tr></thead>
+      <tbody>
+        <tr><td>Coated — gloss or silk art</td><td>The reference. Ink sits on the surface, closest to the chip.</td><td>Nothing. Specify from the coated book</td></tr>
+        <tr><td>Uncoated</td><td>Ink soaks in, dot gain rises. Lighter, duller, greyer.</td><td>Never ship the coated build on uncoated stock</td></tr>
+        <tr><td>Kraft / recycled board</td><td>A brown ground under a translucent ink. The teal goes warm and dead.</td><td>Print ink, not teal. If the teal must read it needs a white underprint — an extra pass, so budget for it</td></tr>
+        <tr><td>Matte vinyl</td><td>Scatters light. Reads lighter, less saturated.</td><td>Right for vehicles, where glare is the enemy</td></tr>
+        <tr><td>Gloss vinyl</td><td>Reads deeper and more saturated, and reflects the sky.</td><td>The reflection, not the colour, is what kills legibility on a van roofline</td></tr>
+        <tr><td>Cotton canvas</td><td>Absorbent, off-white, and the weave breaks fine detail.</td><td>Mark alone above the tested minimum; set the wordmark in ink, not teal</td></tr>
+        <tr><td>Polyester</td><td>Dyed polyester can migrate its own dye into the ink under heat and shift a light print.</td><td>Specify a blocker or low-cure ink — or embroider, which sidesteps it. <strong>This is why uniforms are embroidered.</strong></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- ================= 8 · 1-bit ================= -->
+  <section id="greyscale">
+    <h2>Five colours, one grey</h2>
+    <p class="lede">
+      Five of the eight brand colours sit inside a <strong>0.031 luminance band</strong>. Moss against ember is
+      1.16:1; moss against sun is 1.08:1. In greyscale they are one grey; in 1-bit they are all black.
+    </p>
+
+    <div class="wj-row" style="margin-bottom:var(--wj-space-6)">
+      <div class="wj-segmented" role="tablist" aria-label="Simulation">
+        <button class="wj-segmented__item" data-sim="" data-selected="true">Colour</button>
+        <button class="wj-segmented__item" data-sim="sim-grey">Greyscale</button>
+        <button class="wj-segmented__item" data-sim="sim-1bit">1-bit</button>
+      </div>
+      <span class="wj-caption">Photocopier · thermal printer · single-colour screen print</span>
+    </div>
+
+    <div class="demo"><div class="chips" id="chips"></div></div>
+
+    <div class="wj-alert" data-tone="danger" style="margin-top:var(--wj-space-6)">
+      <div><div class="wj-alert__title">This is why status is never colour alone</div>
+      <div class="wj-alert__body">Any artefact relying on telling two colours apart — a rack tag, a route label, a
+      status sticker — must carry a <strong>word or a shape</strong> too, or it stops working the moment it is
+      photocopied. The same rule the product enforces with colour + dot + word, hitting paper.</div></div>
+    </div>
+  </section>
+
+  <!-- ================= 9 · Receipt ================= -->
+  <section id="receipt">
+    <h2>The thermal receipt, at size</h2>
+    <p class="lede">
+      58mm roll, 203dpi, 1-bit. A dot is 0.125mm and a 58mm roll is commonly 384 dots ≈ 48mm of print width.
+      There are no greys to fall back on — the mock below is rendered through a real 1-bit filter, not drawn to look
+      like one.
+    </p>
+
+    <div class="demo" style="display:flex;gap:var(--wj-space-9);flex-wrap:wrap;align-items:flex-start">
+      <div>
+        <div class="r-tear"></div>
+        <div class="receipt" id="receipt-mock"></div>
+        <div class="r-tear"></div>
+      </div>
+      <ul class="wj-body" style="max-width:46ch;color:var(--wj-fg-muted);margin:0">
+        <li><strong>3mm cap height minimum</strong> for anything a customer reads. Reading distance ≈ 350mm, so <code>cap = D / 120</code> gives 2.9mm. At 3mm the stroke is 0.45mm ≈ 3.6 dots, comfortably over the 2-dot survival floor.</li>
+        <li><strong>2mm is the absolute floor</strong>, secondary lines only. At 2mm the stroke is 2.4 dots — one dot of head bleed and it closes.</li>
+        <li>Thermal floors: mark <strong>5.5mm</strong> (44 × 89 dots), lock-up <strong>6mm</strong> (48 × 278 dots).</li>
+        <li><strong>The reference is the largest thing after the total.</strong> Seven-character Crockford base32 — digits plus A–Z with <code>I</code>, <code>L</code>, <code>O</code>, <code>U</code> removed. Crockford keeps <code>5</code>/<code>S</code> and <code>2</code>/<code>Z</code>, so the face does the rest — set it in JetBrains Mono.</li>
+        <li>Money uses the ISO code (<code>NGN 1,200</code>), not the symbol — the ₦ glyph is missing from the fonts that ship with most receipt and PDF pipelines.</li>
+        <li>Artwork ships as a <strong>1-bit bitmap at the device's own resolution</strong>, never a scaled greyscale.</li>
+        <li>Thermal paper fades. It is a receipt, not a record.</li>
+        <li><strong>No platform mark on this document — the business leads.</strong> Not deference: at the thermal
+          mark's 5.5mm floor its keep-clear box is <strong>16.1 × 10.5mm</strong>, a third of a 58mm roll's 48mm print
+          width, competing with the order reference — and the reference outranks the mark. Wash Junkie appears as
+          <em>one line of type in the footer</em>, which is also the only form the shipping code should ever render.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= 10 · Voice ================= -->
+  <section id="voice">
+    <h2>Voice — one situation, four surfaces</h2>
+    <p class="lede">
+      Rows are situations, columns are audiences, and the cells are actual sentences — because "be empathetic" is not
+      a specification. Empty cells carry their reason: <em>not applicable</em> is information, a blank is an oversight.
+    </p>
+
+    <div class="scroller"><table class="wj-table" style="background:var(--wj-surface-raised);border:1px solid var(--wj-border-subtle);border-radius:var(--wj-radius-lg);min-width:820px">
+      <thead><tr>
+        <th style="width:118px">Situation</th>
+        <th>Console <span class="wj-badge" style="margin-left:4px">operator</span></th>
+        <th>Customer <span class="wj-badge" data-tone="accent" style="margin-left:4px">consumer</span></th>
+        <th>Driver <span class="wj-badge" data-tone="accent" style="margin-left:4px">consumer</span></th>
+      </tr></thead>
+      <tbody id="tone-rows"></tbody>
+    </table></div>
+
+    <h3>Writing rules</h3>
+    <div class="wj-stack" id="rules"></div>
+  </section>
+
+  <!-- ================= 11 · Representation ================= -->
+  <section id="representation">
+    <h2>Who may act as Wash Junkie</h2>
+    <p class="lede">
+      Chapter 8 governs who may use the <em>marks</em>. This governs who may act as the <em>company</em> — which for a
+      platform whose field agents walk into a stranger's business and ask for control of their account is the
+      higher-stakes question.
+    </p>
+
+    <div class="scroller"><table class="wj-table" style="background:var(--wj-surface-raised);border:1px solid var(--wj-border-subtle);border-radius:var(--wj-radius-lg)">
+      <thead><tr><th style="width:130px">Person</th><th>Represents</th><th>May say</th><th>Never says</th></tr></thead>
+      <tbody id="rep-rows"></tbody>
+    </table></div>
+
+    <div class="wj-alert" data-tone="danger" role="alert" style="margin-top:var(--wj-space-7)">
+      <div>
+        <div class="wj-alert__title">Three asks mean it is not us</div>
+        <div class="wj-alert__body">
+          A Wash Junkie representative <strong>never asks for a password</strong>, <strong>never asks for a sign-in
+          code out of your inbox</strong>, and <strong>never takes money</strong>. One sentence a provider can carry
+          without training — and it costs nothing, because sign-in is Google or an emailed link, the owner claims the
+          account in their own inbox, and funding is owner-only.
+          <br><br>
+          It runs back into the product as a hard constraint: <strong>no flow may ever ask an agent to type a code
+          that arrived in the owner's inbox.</strong> The day one does, the sentence stops being true and every
+          provider who learned it has been taught to trust the next impostor.
+        </div>
+      </div>
+    </div>
+
+    <h3>The identification test</h3>
+    <p class="note" style="margin-bottom:var(--wj-space-5)">
+      <strong>Can the provider verify the agent using something the agent did not give them?</strong>
+      If the only proof is on the agent's body or in the agent's hand, it is not proof.
+    </p>
+    <div class="cols" id="ident"></div>
+
+    <h3>The driver question — decided</h3>
+    <p class="note" style="margin-bottom:var(--wj-space-5)">
+      A driver is the most visible person in the service and the surface a brand most wants — and it is not ours to
+      take. <code>Driver</code> is a record under a <code>Business</code>; the platform does not engage, pay or vet the
+      person. A mark in our livery at a door says <em>Wash Junkie collected your clothes</em>, the one sentence the
+      guide bans outright. And one person may hold driver records at two providers and work both in a day.
+    </p>
+    <div class="cols" id="driver-opts"></div>
+
+    <div class="wj-alert" data-tone="success" style="margin-top:var(--wj-space-6)">
+      <div>
+        <div class="wj-alert__title">Decided — option A. Platform-supplied kit carries no platform mark on a driver.</div>
+        <div class="wj-alert__body">
+          The derivation is <strong>standing</strong>, not surface: an endorsement may sit on any surface
+          <em>whose owner can stand behind what it says</em>, and a provider's driver cannot — the garment would name a
+          party that neither did the work nor answers for it. There is no general rule that endorsement cannot go on a
+          person; it goes on a field agent.
+          <br><br>
+          <strong>Scope:</strong> kit we specify, supply or catalogue. A provider printing our name in plain text on
+          their own driver's shirt is their existing grant.
+          <strong>Reversal:</strong> reopens — as a fresh derivation across A, B and C, not as C — the moment Wash
+          Junkie engages, pays, vets, schedules or disciplines a driver directly, or contracts a fleet serving more
+          than one provider. Not time-boxed, and not tied to the Customer App.
+        </div>
+      </div>
+    </div>
+
+    <div class="wj-alert" data-tone="warning" style="margin-top:var(--wj-space-5)">
+      <div>
+        <div class="wj-alert__title">The debt it takes on, stated honestly</div>
+        <div class="wj-alert__body">
+          A customer should be able to tell that the person at the door is the one they were told to expect — and today
+          nothing tells them. The only customer-facing notice is the per-business order-status SMS, which names the
+          business and the reference and nothing about who is coming. It is <strong>partly dischargeable now</strong>
+          (that service already resolves a first name), and <strong>nobody owns it</strong>. Until someone does, this
+          is a debt, not a plan.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 12 · Merchandise ================= -->
+  <section id="merch">
+    <h2>Merchandise</h2>
+    <p class="lede">
+      <strong>An item earns the mark by having a job in the service.</strong> If you cannot name the moment in an
+      order's life when someone uses it, it is not merchandise — it is landfill with our name on it.
+    </p>
+
+    <h3>The refusal people argue with</h3>
+    <p class="note" style="margin-bottom:var(--wj-space-5)">
+      The item that only takes white printing and only comes in brand teal is <strong>2.26:1 by construction</strong>.
+      Wanting it does not change the number.
+    </p>
+    <div class="demo" style="display:flex;gap:var(--wj-space-8);flex-wrap:wrap;align-items:center">
+      <div style="text-align:center">
+        <div style="width:150px;height:96px;border-radius:var(--wj-radius-md);background:#2cbec5;color:#fff;display:grid;place-items:center;outline:2px solid var(--wj-danger-solid);outline-offset:2px" id="merch-bad"></div>
+        <p class="wj-caption" style="margin-top:8px;color:var(--wj-danger-fg)">✗ white on brand teal · 2.26:1</p>
+      </div>
+      <div style="text-align:center">
+        <div style="width:150px;height:96px;border-radius:var(--wj-radius-md);background:#2cbec5;color:#1d2022;display:grid;place-items:center" id="merch-ok1"></div>
+        <p class="wj-caption" style="margin-top:8px;color:var(--wj-success-fg)">✓ ink on brand teal · 7.24:1</p>
+      </div>
+      <div style="text-align:center">
+        <div style="width:150px;height:96px;border-radius:var(--wj-radius-md);background:#007e84;color:#fff;display:grid;place-items:center" id="merch-ok2"></div>
+        <p class="wj-caption" style="margin-top:8px;color:var(--wj-success-fg)">✓ white on accent teal · 4.86:1</p>
+      </div>
+    </div>
+
+    <h3>The floor is not the panel</h3>
+    <p class="lede" style="font-size:var(--wj-text-body)">
+      A process floor tells you how small the mark may be. It does not tell you whether the item can hold it — the mark
+      needs its <strong>keep-clear box</strong> too, on <em>flat, unseamed</em> material. Box dimensions below are
+      derived: <code>(ratio + 0.9) × H</code> wide by <code>1.9 × H</code> tall, from the 0.45 × height clear space.
+    </p>
+    <div class="scroller"><table class="wj-table" style="background:var(--wj-surface-raised);border:1px solid var(--wj-border-subtle);border-radius:var(--wj-radius-lg)">
+      <thead><tr><th>Process</th><th>Mark needs</th><th>Lock-up needs</th></tr></thead>
+      <tbody id="panel-rows"></tbody>
+    </table></div>
+
+    <p class="note" style="margin-top:var(--wj-space-5)">Shown at true physical scale — hold the embroidery box against a cap side panel:</p>
+    <div class="demo scroller" id="panel-vis"></div>
+
+    <h3>What gets refused</h3>
+    <div class="wj-stack" id="refuse"></div>
+  </section>
+
+  <!-- ================= 13 · What we're not ================= -->
+  <section id="isnot">
+    <h2>What Wash Junkie is not</h2>
+    <p class="lede">
+      The load-bearing frame of the whole brand: <strong>Wash Junkie does not wash anything.</strong>
+      We promise the record, never the result — and a damaged garment is between the customer and the provider,
+      which the brand must never have implied otherwise.
+    </p>
+    <div class="scroller"><table class="wj-table" style="background:var(--wj-surface-raised);border:1px solid var(--wj-border-subtle);border-radius:var(--wj-radius-lg)">
+      <thead><tr><th style="width:150px">We are not</th><th>Because</th><th>So we never</th></tr></thead>
+      <tbody id="isnot-rows"></tbody>
+    </table></div>
+    <blockquote class="wj-alert" data-tone="warning" style="margin-top:var(--wj-space-6)">
+      <div><div class="wj-alert__title">Needs a decision</div>
+      <div class="wj-alert__body">Where liability actually sits between platform, provider and customer is a legal
+      question, not a brand one.</div></div>
+    </blockquote>
+  </section>
+
+  <!-- ================= 12 · Gaps ================= -->
+  <section id="gaps">
+    <h2>The honest state board</h2>
+    <p class="lede">
+      What is measured, what is proposed, and what nobody has specified yet. A brand guide that hides its gaps
+      gets them filled in by whoever is closest to the print deadline.
+    </p>
+
+    <div class="cols" style="margin-bottom:var(--wj-space-8)">
+      <div class="wj-card"><div class="wj-card__body">
+        <div class="wj-stat"><span class="wj-stat__label">Measured &amp; enforced</span><span class="wj-stat__value" id="n-measured">—</span></div>
+        <p class="wj-caption" style="margin:6px 0 0">Contrast, ratios, floors — recomputed on every build.</p>
+      </div></div>
+      <div class="wj-card"><div class="wj-card__body">
+        <div class="wj-stat"><span class="wj-stat__label">Awaiting sign-off</span><span class="wj-stat__value">9</span></div>
+        <p class="wj-caption" style="margin:6px 0 0">Positioning, personality, taglines, brand architecture.</p>
+      </div></div>
+      <div class="wj-card"><div class="wj-card__body">
+        <div class="wj-stat"><span class="wj-stat__label">TO SPECIFY</span><span class="wj-stat__value">84</span></div>
+        <p class="wj-caption" style="margin:6px 0 0">Supplier matches nobody has made. Each carries its method.</p>
+      </div></div>
+    </div>
+
+    <h3>The two decisions that block physical production</h3>
+    <div class="wj-stack">
+      <div class="wj-alert" data-tone="warning"><div>
+        <div class="wj-alert__title">Brand architecture for the multi-vertical roadmap</div>
+        <div class="wj-alert__body">The name says "wash". Home cleaning does not wash. Masterbrand stretch,
+        endorsed sub-brands, or a category-neutral parent — and it changes the name, the app icon, livery, and
+        app-store listings. <strong>Decide before the first physical asset is produced.</strong></div>
+      </div></div>
+      <div class="wj-alert" data-tone="warning"><div>
+        <div class="wj-alert__title">The customer-facing noun for a Business</div>
+        <div class="wj-alert__body">"Provider" is internal domain language and no customer says it. This changes
+        every line of customer copy.</div>
+      </div></div>
+    </div>
+
+    <h3>Before any physical order ships</h3>
+    <div class="gate" id="gate"></div>
+  </section>
+
+  <footer style="padding-top:var(--wj-space-12);border-top:1px solid var(--wj-border-subtle);margin-top:var(--wj-space-12)">
+    <p class="wj-caption">
+      Every contrast figure on this page is computed at render time from <code>tokens/palette.mjs</code> — nothing here
+      is typed in. Full guide: <code>docs/00-brand-guide/</code> ·
+      <a href="../pdf/dist/wash-junkie-brand-guide.pdf">PDF</a> ·
+      <a href="index.html">Design system</a>
+    </p>
+  </footer>
+</main>
+
+<script>
+const $ = (s, r = document) => r.querySelector(s);
+const root = document.documentElement;
+
+/* -- theme -- */
+document.querySelectorAll('[data-theme-set]').forEach((b) => b.addEventListener('click', () => {
+  document.querySelectorAll('[data-theme-set]').forEach((x) => x.removeAttribute('data-selected'));
+  b.setAttribute('data-selected', 'true');
+  const v = b.getAttribute('data-theme-set');
+  v === 'system' ? root.removeAttribute('data-wj-theme') : root.setAttribute('data-wj-theme', v);
+}));
+
+/* -- brand artwork, currentColor so one asset serves every field -- */
+const MARK_VB = '0 0 100.78 49.9';
+const MARK_D = ["M17.62,13.67a3.24,3.24,0,0,1-1.24.11,13.74,13.74,0,0,1-3.71-.63A28,28,0,0,1,3.25,8.69,10.36,10.36,0,0,1,.69,6,4,4,0,0,1,1.22.88,3.14,3.14,0,0,1,4.39.16a17.63,17.63,0,0,1,7.1,4.17,28.94,28.94,0,0,1,6,6.87,6.12,6.12,0,0,1,.66,1.42c.18.62,0,.86-.57,1.05","M17.5,21.08a13.24,13.24,0,0,1-7.12,2,8.12,8.12,0,0,1-2.3-.25,3.39,3.39,0,0,1-2.54-4.07A3.6,3.6,0,0,1,6,17.71a4.15,4.15,0,0,1,2.86-1.5,11.18,11.18,0,0,1,6.64,1,7.36,7.36,0,0,1,2.29,1.53,1.35,1.35,0,0,1-.27,2.37","M100.63,12.17A32,32,0,0,1,99.25,18a52.06,52.06,0,0,1-3.08,7.46,75.22,75.22,0,0,1-3.91,6.8c-.53.81-1,1.61-1.62,2.39a55.75,55.75,0,0,1-8.15,9.08,10.67,10.67,0,0,0-1.89,1.25A8.65,8.65,0,0,1,74,46.2a9.06,9.06,0,0,1-5.14-3.12c-.6-.75-1.17-1.53-1.7-2.33-.94-1.49-1.72-3.1-2.63-4.62a7.15,7.15,0,0,0-1.74-2.2,3,3,0,0,0-4.24,0l-.17.19a9.19,9.19,0,0,0-1.74,2.36c-.77,1.48-1.54,3-2.24,4.46a25.31,25.31,0,0,1-3.2,5.27,9.5,9.5,0,0,1-3.53,2.91,6.42,6.42,0,0,1-6.92-.57,24.49,24.49,0,0,1-4.07-3.81l-.19-.27c-1.82-2.23-3.64-4.45-5.25-6.84Q27.64,32.35,24,27.06l-.11-.15-.14-.21-.69-1-.1-.15c-1-1.69-2.24-4.38-1-6.09,1.87-2.63,7.28-2.26,10.75-.85l.33.14c.61.31,1.22.58,1.86.84a15,15,0,0,0,7.76.94,4.36,4.36,0,0,0,2.66-1.33,3.11,3.11,0,0,0,.93-.67,13.36,13.36,0,0,0,2.83-4.33,44.41,44.41,0,0,1,3.06-5.79,8.72,8.72,0,0,1,5.51-3.93,5.65,5.65,0,0,1,5.2.92,8.57,8.57,0,0,1,1.8,2,43,43,0,0,1,2.81,5A26.8,26.8,0,0,0,69,15.19,20.91,20.91,0,0,0,70.62,18a9.33,9.33,0,0,0,1.69,1.75A3.44,3.44,0,0,0,76.2,20a8.87,8.87,0,0,0,2.28-2.08C80.39,15.55,82,13,83.7,10.52a32.94,32.94,0,0,1,5.07-6.15,9.12,9.12,0,0,1,3.23-2,5.31,5.31,0,0,1,3.22-.27c.73.18,1.35.51,2,.73a7.27,7.27,0,0,1,2.48,2.6,11,11,0,0,1,.89,6.78","M18.79,21c.16.11.32.22.48.35a1.85,1.85,0,0,1-.48-.35","M23.92,26.91c-.15-.22-.47-.66-.83-1.25l.83,1.25"];
+const mark = (h, unit = 'px') => `<svg height="${h}${unit}" width="${(h * 100.78 / 49.9).toFixed(2)}${unit}" viewBox="${MARK_VB}" fill="currentColor" aria-hidden="true">${MARK_D.map((d) => `<path d="${d}"/>`).join('')}</svg>`;
+const word = (h, unit = 'px') => `<img src="../assets/wj-wordmark.svg" alt="Wash Junkie" style="height:${h}${unit};display:block">`;
+
+$('#brandmark').innerHTML = mark(18);
+
+/* -- contrast, the same formula the token build audits with -- */
+const lin = (c) => (c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
+const rgb = (hex) => { const n = parseInt(hex.slice(1), 16); return [(n >> 16 & 255) / 255, (n >> 8 & 255) / 255, (n & 255) / 255]; };
+const lum = (hex) => { const [r, g, b] = rgb(hex).map(lin); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+const contrast = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
+
+const C = {
+  brand: '#2cbec5', accent: '#007e84', ink: '#1d2022', paper: '#fcfcfd', white: '#ffffff',
+  moss: '#00844a', sun: '#976200', ember: '#bf3631', tide: '#2d6cc7',
+};
+
+/* -- 1 · the matrix -- */
+const FIELDS = [['Brand teal', C.brand], ['Accent teal', C.accent], ['Ink', C.ink], ['Paper', C.paper]];
+const MARKS = [['White', C.white], ['Ink', C.ink], ['Brand teal', C.brand]];
+$('#matrix').innerHTML =
+  `<thead><tr><th class="row"></th>${MARKS.map(([n]) => `<th>${n} mark</th>`).join('')}</tr></thead><tbody>` +
+  FIELDS.map(([fn, f]) => `<tr><th class="row">${fn}<span>${f}</span></th>` + MARKS.map(([mn, m]) => {
+    const r = contrast(m, f);
+    const cls = r >= 4.5 ? 'pass' : r >= 3 ? 'graphics' : 'fail';
+    const v = r >= 4.5 ? 'type + graphics' : r >= 3 ? 'graphics only' : 'fails 3:1';
+    return `<td class="${cls}"><div class="mx-field" style="background:${f};color:${m}">${mark(15)}</div>
+      <span class="mx-r">${r.toFixed(2)}:1</span><span class="mx-v">${v}</span></td>`;
+  }).join('') + '</tr>').join('') + '</tbody>';
+
+/* -- approved renderings -- */
+$('#approved').innerHTML = [
+  ['White or light paper', C.paper, C.ink, 'Then spot teal, if the piece is teal-led'],
+  ['Brand-teal field', C.brand, C.ink, 'Ink. Never white'],
+  ['Accent-teal field', C.accent, C.white, 'White'],
+  ['Kraft, board, dark fabric', C.ink, C.white, 'White'],
+].map(([label, field, ma, note]) => `
+  <div class="wj-card"><div style="background:${field};color:${ma};height:96px;display:grid;place-items:center;border-radius:var(--wj-radius-lg) var(--wj-radius-lg) 0 0">${mark(20)}</div>
+  <div class="wj-card__body"><p class="wj-label" style="margin:0 0 3px">${label}</p>
+  <p class="wj-caption" style="margin:0">${note} · <span class="wj-mono">${contrast(ma, field).toFixed(2)}:1</span></p></div></div>`).join('');
+
+/* -- 2 · clear space. 0.45 x height, so the padding is derived, not chosen. -- */
+(() => {
+  const h = 34;
+  $('#cs-lockup').style.setProperty('--_cs', Math.round(h * 0.45) + 'px');
+  $('#cs-lockup').innerHTML = word(h);
+  const mh = 26;
+  $('#cs-mark').style.setProperty('--_cs', Math.round(mh * 0.45) + 'px');
+  $('#cs-mark').innerHTML = mark(mh);
+})();
+
+/* -- 3 · reproduction floors, at true physical scale via mm units -- */
+const FLOORS = [
+  ['Offset litho', '0.10 / 0.15mm', 5, 4.5, 'Applied floor — the screen floors at 96dpi, rounded up'],
+  ['Digital print ≥600dpi', '0.08 / 0.12mm', 5, 4.5, 'Toner or inkjet'],
+  ['Thermal receipt 203dpi', '0.25 / 0.25mm', 6, 5.5, '48 × 278 dots · 44 × 89 dots'],
+  ['Laser engraving', '0.20 / 0.30mm', 7, 6.5, ''],
+  ['Screen print, textile', '0.30 / 0.50mm', 12, 11, ''],
+  ['Embroidery, 40wt poly', '1.20 / 1.00mm', 23, 22, 'Below 23mm, embroider the mark'],
+  ['Vinyl cut, hand-weeded', '1.00 / 1.00mm', 23, 22, 'Below 23mm, print and cut'],
+  ['Deboss / blind emboss', '1.00 / 1.20mm', 28, 27, 'Deboss the mark, not the lock-up'],
+];
+$('#floors-rows').innerHTML = FLOORS.map(([p, f, l, m, n]) =>
+  `<tr><td>${p}</td><td class="wj-mono" style="font-size:11px">${f}</td><td data-numeric="true">${l}mm</td><td data-numeric="true">${m}mm</td><td class="wj-caption">${n}</td></tr>`).join('');
+
+$('#ruler').innerHTML = FLOORS.map(([p, , , m]) =>
+  `<figure><div class="cell">${mark(m, 'mm')}</div><figcaption><b>${m}mm</b>${p}</figcaption></figure>`).join('');
+
+/* -- 4 · icon masks. One mark height clears all three. -- */
+$('#masks').innerHTML = [
+  ['iOS', 'superellipse, corner radius ≈ ⅕ of the side', '22%', 'Artwork inside the central 80% square. Full-bleed sRGB, no alpha, no pre-rounded corners.'],
+  ['Android adaptive', '108dp canvas, 72dp guaranteed, OEM masks may crop to a 66dp circle', '50%', 'The guaranteed-visible circle is 0.61 × the side.'],
+  ['PWA maskable', 'a centred circle of 0.8 × the side', '50%', 'Anything outside it can be cropped by the installer.'],
+].map(([n, sub, radius, note]) => `
+  <div class="wj-card"><div class="wj-card__body">
+    <div style="position:relative;width:112px;height:112px;margin:0 auto var(--wj-space-5);background:${C.paper};border-radius:${radius};display:grid;place-items:center;border:1px solid var(--wj-border-default);color:${C.ink}">
+      <div style="position:absolute;inset:0;border-radius:${radius};outline:1px dashed var(--wj-accent-border);outline-offset:-11px"></div>
+      ${mark(28)}
+    </div>
+    <p class="wj-label" style="margin:0 0 3px">${n}</p>
+    <p class="wj-caption" style="margin:0 0 6px">${sub}</p>
+    <p class="wj-caption" style="margin:0;color:var(--wj-fg-subtle)">${note}</p>
+  </div></div>`).join('');
+
+/* -- 6 · van -- */
+$('#van-panels').innerHTML = [
+  ['Sides', C.accent, C.white, 'The primary identity — one lock-up, sized for 15–20m. Or a light body with an ink lock-up and brand teal as a supporting band. <strong>Brand teal is the field only with an ink mark.</strong>'],
+  ['Rear', C.ink, C.white, 'Contact — one phone number, one URL, the mark alone. Read longest of any panel: the driver behind looks at it for minutes at 5–15m.'],
+  ['Cab doors', C.accent, C.white, 'The outlet block, and the co-brand pair where the van is a provider’s. Seen at 2–5m at eye level.'],
+  ['Bonnet', C.paper, C.ink, 'Mark alone, small — or nothing. <strong>Never mirrored:</strong> reversed lettering is an emergency-vehicle convention, and mirroring an asymmetric mark reverses the direction the water is thrown.'],
+  ['Glass', C.ink, C.white, 'Small cut vinyl in ink or white. Never the primary mark — perforated film is roughly half holes, so the field is unknown.'],
+  ['Roof', 'transparent', C.ink, 'Nothing. Never seen, and gloss film up there throws glare into first-floor windows.'],
+].map(([p, field, ma, note]) => `
+  <div class="van-panel">
+    <div><div class="pnl">${p}</div>
+      <div class="van-swatch" style="background:${field};color:${ma}">${field === 'transparent' ? '<span class="wj-caption">—</span>' : mark(12)}</div></div>
+    <p class="wj-caption" style="margin:0;line-height:1.55">${note}</p>
+  </div>`).join('');
+
+/* -- 7 · production colour, computed -- */
+const toCMYK = (hex) => { const [r, g, b] = rgb(hex); const k = 1 - Math.max(r, g, b); if (k === 1) return { c: 0, m: 0, y: 0, k: 100 }; const f = (v) => Math.round(((1 - v - k) / (1 - k)) * 100); return { c: f(r), m: f(g), y: f(b), k: Math.round(k * 100) }; };
+/* Real OKLCH, ported verbatim from tokens/color.mjs.
+   A first version of this page classified print risk from an RGB max-minus-min
+   "chroma" proxy and reported accent teal as MEDIUM where `tokens/print.mjs`
+   reports LOW. Two answers to the same question, on a page whose entire argument
+   is that the numbers are computed and therefore agree. Use the real transform. */
+const toOklch = (hex) => {
+  const [r, g, b] = rgb(hex).map(lin);
+  const l_ = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
+  const m_ = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
+  const s_ = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
+  const L = 0.2104542553 * l_ + 0.793617785 * m_ - 0.0040720468 * s_;
+  const A = 1.9779984951 * l_ - 2.428592205 * m_ + 0.4505937099 * s_;
+  const B = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.808675766 * s_;
+  let h = (Math.atan2(B, A) * 180) / Math.PI;
+  if (h < 0) h += 360;
+  return { l: L * 100, c: Math.hypot(A, B), h };
+};
+
+/* Same thresholds as printRisk() in tokens/print.mjs. */
+const risk = (hex) => {
+  const { l, c, h } = toOklch(hex);
+  if (h >= 150 && h <= 250 && c >= 0.09 && l >= 60) return ['high', 'var(--wj-danger-fg)'];
+  if (c >= 0.09 && l >= 60) return ['medium', 'var(--wj-warning-fg)'];
+  if (c >= 0.14) return ['medium', 'var(--wj-warning-fg)'];
+  return ['low', 'var(--wj-fg-muted)'];
+};
+
+const PROD = [['Brand mark', C.brand], ['Accent teal', C.accent], ['Ink', C.ink], ['Paper', C.paper],
+  ['Success', C.moss], ['Warning', C.sun], ['Danger', C.ember], ['Info', C.tide]];
+$('#prod-rows').innerHTML = PROD.map(([n, hex]) => {
+  const c = toCMYK(hex), t = c.c + c.m + c.y + c.k, [lv, col] = risk(hex);
+  return `<tr><td><span style="display:inline-block;width:13px;height:13px;border-radius:3px;background:${hex};vertical-align:-2px;margin-right:7px;border:1px solid rgba(0,0,0,.12)"></span>${n}</td>
+    <td class="wj-mono" style="font-size:11px">${hex}</td>
+    <td class="wj-mono" style="font-size:11px">C${c.c} M${c.m} Y${c.y} K${c.k}</td>
+    <td data-numeric="true">${t}%</td>
+    <td style="color:${col};font-weight:${lv === 'low' ? 400 : 600}">${lv}</td>
+    <td class="wj-mono" style="font-size:11px">${lum(hex) >= 0.5 ? 'white' : 'black'}</td></tr>`;
+}).join('');
+
+/* -- 8 · 1-bit -- */
+const SEM = [['Brand', C.brand], ['Accent', C.accent], ['Success', C.moss], ['Warning', C.sun], ['Danger', C.ember], ['Info', C.tide], ['Ink', C.ink], ['Paper', C.paper]];
+$('#chips').innerHTML = SEM.map(([n, hex]) =>
+  `<div class="chip-sw" style="background:${hex};color:${lum(hex) >= 0.5 ? '#1d2022' : '#fff'}">${n} ${lum(hex).toFixed(3)}</div>`).join('');
+document.querySelectorAll('[data-sim]').forEach((b) => b.addEventListener('click', () => {
+  document.querySelectorAll('[data-sim]').forEach((x) => x.removeAttribute('data-selected'));
+  b.setAttribute('data-selected', 'true');
+  $('#chips').className = 'chips ' + b.getAttribute('data-sim');
+}));
+
+/* -- 9 · receipt -- */
+$('#receipt-mock').innerHTML = `
+  <div style="text-align:center;font-size:10pt;font-weight:500;letter-spacing:.02em">SUNSHINE LAUNDRY</div>
+  <div style="text-align:center;font-size:6pt">Ikeja · 0801 234 5678</div>
+  <hr>
+  <div class="r-row"><span>Wash &amp; fold</span><span>3.2kg</span></div>
+  <div class="r-row"><span></span><span>NGN 4,800</span></div>
+  <div class="r-row"><span>Dry clean · 2 items</span><span>NGN 3,600</span></div>
+  <div class="r-row"><span>Delivery</span><span>NGN 1,000</span></div>
+  <hr>
+  <div class="r-row r-total"><span>TOTAL</span><span>NGN 9,400</span></div>
+  <div class="r-row"><span>Paid · transfer</span><span>NGN 9,400</span></div>
+  <hr>
+  <div style="text-align:center;font-size:6pt">ORDER</div>
+  <div class="r-ref">X86WE8T</div>
+  <div style="text-align:center;font-size:6pt">Collected 30 Jul · ready 1 Aug</div>
+  <div class="r-foot">Powered by Wash Junkie</div>`;
+
+/* -- 10 · voice -- */
+const TONE = [
+  ['Routine', 'Order #4KP7T2M moved to Washing.', "Your laundry's in the wash.", 'Picked up. Next: 14 Adeola Odeku.'],
+  ['Money', '₦8,400 recorded against order #4KP7T2M. Nothing left to pay.', '₦8,400 paid to Fresh Fold. Your receipt is on the order.', '₦3,200 earned today.'],
+  ['Our error', "We couldn't save that status change. It's queued and goes through when we're back — nothing you typed is lost.", "That didn't go through on our side. Your order is saved and you weren't charged. Try again in a minute.", "That didn't send. It's saved on your phone and goes when you have signal."],
+  ['Their error', 'Order #4KP7T2M already has a delivery driver. Unassign Tunde first, then pick someone else.', "We couldn't find that address. Choose your city and we'll narrow it down.", 'Add the bag count before you mark this picked up.'],
+  ['Outage', 'Wash Junkie is hard to reach right now. The console is working from your last synced data; new work queues and sends itself.', "We're having trouble reaching Wash Junkie. Your order is safe — it'll show as soon as we're back.", 'No signal. Everything you do is saved and sends itself later.'],
+  ['Delay', "Pickup for order #4KP7T2M moved to 2pm. The customer hasn't been told yet.", 'Pickup moved to between 3 and 5. Same driver, same day.', "You're 20 minutes behind. The outlet and the customer have been told."],
+  ['Low Wash Credit', 'Wash Credit is at 2,100 — about three days at this week’s rate. Online order intake pauses at zero.', '<em>Never.</em> A customer must never hold or be shown Wash Credit — it is held per business and is never transferable.', '<em>—</em> Drivers are paid in naira, never in credit.'],
+];
+$('#tone-rows').innerHTML = TONE.map(([s, a, b, c]) =>
+  `<tr><td class="wj-label" style="vertical-align:top">${s}</td>
+   <td class="wj-caption" style="line-height:1.5">${a}</td>
+   <td class="wj-caption" style="line-height:1.5">${b}</td>
+   <td class="wj-caption" style="line-height:1.5">${c}</td></tr>`).join('');
+
+$('#rules').innerHTML = [
+  ['Numbers', 'You currently have a total of 38 orders in the washing stage.', '38 orders in wash.', 'Round in prose, exact in tables.'],
+  ['Zero', '0 orders', 'No orders yet — create the first one from Intake.', 'Zero is an empty state, not a number.'],
+  ['Currency', '`₦${amount}`', 'formatMoney(amount)', 'Never hard-code ₦, never assume decimals or a grouping separator.'],
+  ['Wash Credit', 'Wash Credit · ₦20,000', 'Wash Credit · 20,000', 'It is a count, not an amount. The 1 WC = ₦1 peg is accounting, and is not shown.'],
+  ['Times', 'Scheduled: 07/08/2026 14:00 UTC', 'Pickup tomorrow, 2pm.', 'A numeric date is banned outright — 07/08 is 7 August in Lagos and 8 July elsewhere.'],
+].map(([label, no, yes, why]) => `
+  <div>
+    <p class="wj-label" style="margin:0 0 6px">${label}</p>
+    <div class="dd">
+      <div class="no"><b>✗ never</b>${no}</div>
+      <div class="yes"><b>✓ instead</b>${yes}</div>
+    </div>
+    <p class="wj-caption" style="margin:6px 0 0">${why}</p>
+  </div>`).join('');
+
+/* -- 11 · representation -- */
+$('#rep-rows').innerHTML = [
+  ['Field agent', 'Wash Junkie', 'That they are from Wash Junkie, and what the platform does', 'A price, a turnaround, or a roadmap date'],
+  ['Driver', 'The <strong>provider</strong> — a record under a Business', 'That they are collecting for that business', 'That they are from Wash Junkie. They are not'],
+  ['Provider staff', 'The <strong>provider</strong>', 'That the shop runs on Wash Junkie — the name in plain text is theirs to use', 'That Wash Junkie washed, collected, priced or lost anything'],
+  ['Provider owner', '<strong>Themselves.</strong> Our customer, not our representative', 'Their own experience of the product', 'Anything on our behalf — enthusiasm is not authority'],
+].map(([who, reps, may, never]) => `<tr>
+  <td class="wj-label" style="vertical-align:top">${who}</td>
+  <td class="wj-caption">${reps}</td>
+  <td class="wj-caption">${may}</td>
+  <td class="wj-caption" style="color:var(--wj-danger-fg)">${never}</td></tr>`).join('');
+
+$('#ident').innerHTML = [
+  ['Embroidered polo, lanyard, badge', 'Whoever paid the embroiderer', 'Nothing', false, 'Recognition only — worth having, not evidence'],
+  ['A card with a number or QR code', 'The agent', 'Nothing', false, 'A link on a card is a link chosen by whoever printed the card. This is the one people mistake for proof'],
+  ['Email naming the agent, in the owner’s own inbox', 'Us', 'Yes', true, 'The same channel the account is claimed in anyway'],
+  ['A number the owner finds on our site and dials', 'Us', 'Yes', true, 'The only one that works for an owner who was not expecting a visit'],
+].map(([what, ctrl, proves, ok, why]) => `
+  <div class="wj-card"><div class="wj-card__body">
+    <p class="wj-label" style="margin:0 0 6px">${what}</p>
+    <p class="wj-caption" style="margin:0 0 8px">Controlled by <strong>${ctrl}</strong></p>
+    <span class="wj-badge" data-tone="${ok ? 'success' : 'danger'}"><span class="wj-badge__dot"></span>Proves ${proves}</span>
+    <p class="wj-caption" style="margin:8px 0 0">${why}</p>
+  </div></div>`).join('');
+
+$('#driver-opts').innerHTML = [
+  ['A · Provider only — adopted', 'The provider collected — which is what happened', 'A small secondary mark read at close range. The driver still hands over a platform-marked laundry bag at first pickup', 'success'],
+  ['B · Provider leads, we endorse', 'The provider collected, using us', 'An endorsement is a claim its owner backs. On the person taking custody it says we are part of the collection — a smaller mark just makes a quieter false claim', 'warning'],
+  ['C · Platform livery', 'Wash Junkie collected your clothes', 'Contradicts the model, and breaks when one driver serves two providers', 'danger'],
+].map(([opt, reads, cost, tone]) => `
+  <div class="wj-card"><div class="wj-card__body">
+    <div class="wj-row" style="margin-bottom:8px"><span class="wj-badge" data-tone="${tone}"><span class="wj-badge__dot"></span>${opt}</span></div>
+    <p class="wj-caption" style="margin:0 0 6px"><strong>Reads at the door as:</strong> ${reads}</p>
+    <p class="wj-caption" style="margin:0"><strong>Costs:</strong> ${cost}</p>
+  </div></div>`).join('');
+
+/* -- 12 · merchandise -- */
+$('#merch-bad').innerHTML = mark(22);
+$('#merch-ok1').innerHTML = mark(22);
+$('#merch-ok2').innerHTML = mark(22);
+
+/* Keep-clear box = artwork + 0.45 x H each side.
+   Mark 2.020:1 -> (2.020 + 0.9)H wide, 1.9H tall. Lock-up 5.804:1 -> 6.704H x 1.9H.
+   Derived here rather than transcribed, so the page cannot disagree with chapter 10. */
+const boxFor = (H, ratio) => [Math.round((ratio + 0.9) * H), Math.round(1.9 * H)];
+const PANEL = [
+  ['Embroidery, 40wt poly', 22, 23],
+  ['Vinyl cut, hand-weeded', 22, 23],
+  ['Screen print, textile', 11, 12],
+  ['Laser engraving', 6.5, 7],
+  ['Offset / digital print', 4.5, 5],
+];
+$('#panel-rows').innerHTML = PANEL.map(([p, mH, lH]) => {
+  const [mw, mh] = boxFor(mH, 2.020), [lw, lh] = boxFor(lH, 5.804);
+  return `<tr><td>${p}</td>
+    <td data-numeric="true">${mw} × ${mh}mm <span class="wj-caption">(mark ${mH}mm)</span></td>
+    <td data-numeric="true">${lw} × ${lh}mm <span class="wj-caption">(lock-up ${lH}mm)</span></td></tr>`;
+}).join('');
+
+$('#panel-vis').innerHTML = `<div style="display:flex;gap:var(--wj-space-9);align-items:flex-end;flex-wrap:wrap">` +
+  PANEL.slice(0, 3).map(([p, mH]) => {
+    const [w, h] = boxFor(mH, 2.020);
+    return `<figure style="margin:0;text-align:center">
+      <div style="width:${w}mm;height:${h}mm;outline:1px dashed var(--wj-accent-border);background:var(--wj-accent-subtle);display:grid;place-items:center;color:var(--wj-fg-default)">${mark(mH, 'mm')}</div>
+      <figcaption class="wj-caption" style="margin-top:6px">${w} × ${h}mm<br><span style="color:var(--wj-fg-subtle)">${p}</span></figcaption>
+    </figure>`;
+  }).join('') + `</div>`;
+
+$('#refuse').innerHTML = [
+  ['It is disposable', 'A branded pen argues that we treat objects as disposable, in the exact medium we are asking to be trusted with.'],
+  ['Its surface forces a failing pairing', 'Typically an item that only takes white printing and only comes in brand teal. That is 2.26:1 by construction.'],
+  ['It cannot hold the mark’s process floor', 'A 15mm-wide item cannot carry a 22mm embroidered mark, and shrinking it anyway produces a smudge on four thousand units.'],
+  ['We cannot control its quality', 'A cheap item in someone’s hand is a physical argument about how carefully we would handle their clothes.'],
+].map(([g, why]) => `<div class="wj-alert" data-tone="warning"><div>
+  <div class="wj-alert__title">${g}</div><div class="wj-alert__body">${why}</div></div></div>`).join('');
+
+/* -- 13 · what we're not -- */
+$('#isnot-rows').innerHTML = [
+  ['A laundry', 'We own no machine, no water bill, no ruined shirt', 'Say “we washed”, “our Wash House”, “our team collected”. The provider did'],
+  ['A delivery company', 'Drivers move orders; movement is one leg of a job, not the job', 'Sell speed as the headline. Turnaround is the provider’s promise to make'],
+  ['A directory', 'Providers run their whole operation here, not just their listing', 'Frame the console as “your profile”. It is where the shop is run'],
+  ['A retail POS', 'The unit of work is a job passing through stages over days, not a basket at a till', 'Borrow retail vocabulary — baskets, checkouts, SKUs — into operator surfaces'],
+].map(([a, b, c]) => `<tr><td class="wj-label">${a}</td><td class="wj-caption">${b}</td><td class="wj-caption" style="color:var(--wj-danger-fg)">${c}</td></tr>`).join('');
+
+/* -- 12 · gate + counts -- */
+$('#gate').innerHTML = [
+  'Vector artwork, not a raster pulled from a deck',
+  'Colour specified for the actual process — spot, film, thread or ink',
+  'Proof on the real substrate, viewed under D50',
+  'Minimum size checked against the process floor',
+  '1-bit check: does it survive being thresholded?',
+  'Contrast check: mark against its field, ≥3:1',
+  'Clear space: 0.45 × height, nothing inside it',
+  'Flat panel confirmed — no shut-lines, rivets or seams crossed',
+  'Legibility confirmed at the real distance, in the real light',
+  'Every TO SPECIFY on this piece closed and recorded',
+  'Named sign-off before the run',
+].map((s, i) => `<div><span>${String(i + 1).padStart(2, '0')}</span>${s}</div>`).join('');
+
+/* The measured count is the number of live contrast computations on this page —
+   asserting a round number here would be the exact sin the guide warns about. */
+$('#n-measured').textContent = document.querySelectorAll('.mx-r').length + FIELDS.length + PROD.length + SEM.length;
+</script>
+</body>
+</html>

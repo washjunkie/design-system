@@ -1,0 +1,1816 @@
+{
+  "$comment": "Import with a Figma Variables plugin (e.g. Tokens Studio / Variables Import). Collections map 1:1 to the CSS layers.",
+  "collections": [
+    {
+      "name": "WJ Colour",
+      "modes": [
+        "Light",
+        "Dark"
+      ],
+      "variables": [
+        {
+          "name": "brand/mark",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#2cbec5",
+            "Dark": "#2cbec5"
+          }
+        },
+        {
+          "name": "palette/aqua/1",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#f7fefe",
+            "Dark": "#070e0e"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/aqua/2",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#eefafa",
+            "Dark": "#091617"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/aqua/3",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#def4f5",
+            "Dark": "#052122"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/aqua/4",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#cfeef0",
+            "Dark": "#002a2c"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/aqua/5",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#bee7e9",
+            "Dark": "#003234"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/aqua/6",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#abdee1",
+            "Dark": "#003e41"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/aqua/7",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#8ed2d5",
+            "Dark": "#004f53"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/aqua/8",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#5cbec3",
+            "Dark": "#006b70"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/aqua/9",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#007e84",
+            "Dark": "#007e84"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/aqua/10",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#007075",
+            "Dark": "#009096"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/aqua/11",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#005f63",
+            "Dark": "#67c2c7"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/aqua/12",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#002527",
+            "Dark": "#cff1f3"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/tide/1",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#fafcff",
+            "Dark": "#080c13"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/tide/2",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#f2f8ff",
+            "Dark": "#0c141e"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/tide/3",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#e6f0ff",
+            "Dark": "#0f1c30"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/tide/4",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#d9e9ff",
+            "Dark": "#102340"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/tide/5",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#cae0ff",
+            "Dark": "#122a4e"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/tide/6",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#b8d5ff",
+            "Dark": "#163561"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/tide/7",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#a0c6ff",
+            "Dark": "#1d447c"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/tide/8",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#7baef8",
+            "Dark": "#295ca5"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/tide/9",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#2d6cc7",
+            "Dark": "#2d6cc7"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/tide/10",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#205fb7",
+            "Dark": "#407dd7"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/tide/11",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#1c509a",
+            "Dark": "#83b3fa"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/tide/12",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#091f3d",
+            "Dark": "#ddebff"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/sun/1",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#fffbf7",
+            "Dark": "#100b06"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/sun/2",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#fff6eb",
+            "Dark": "#1a1107"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/sun/3",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#fdecd9",
+            "Dark": "#281803"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/sun/4",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#fae3c8",
+            "Dark": "#341e00"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/sun/5",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#f6d9b6",
+            "Dark": "#3d2500"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/sun/6",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#f0cca1",
+            "Dark": "#4b2e00"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/sun/7",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#e9bb82",
+            "Dark": "#603c00"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/sun/8",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#db9f4e",
+            "Dark": "#815200"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/sun/9",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#976200",
+            "Dark": "#976200"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/sun/10",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#865600",
+            "Dark": "#ad7000"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/sun/11",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#724800",
+            "Dark": "#dea559"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/sun/12",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#2e1a00",
+            "Dark": "#fee5c8"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/moss/1",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#f8fefa",
+            "Dark": "#080e0a"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/moss/2",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#f0faf3",
+            "Dark": "#0b160f"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/moss/3",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#e2f5e7",
+            "Dark": "#0c2114"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/moss/4",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#d4efdc",
+            "Dark": "#0b2b18"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/moss/5",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#c6e8d0",
+            "Dark": "#0a341d"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/moss/6",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#b4dfc2",
+            "Dark": "#084023"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/moss/7",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#9cd4ae",
+            "Dark": "#09532e"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/moss/8",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#73c08f",
+            "Dark": "#0f7040"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/moss/9",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#00844a",
+            "Dark": "#00844a"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/moss/10",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#007541",
+            "Dark": "#27955b"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/moss/11",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#006336",
+            "Dark": "#7bc495"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/moss/12",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#022713",
+            "Dark": "#d5f2de"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/ember/1",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#fffbfa",
+            "Dark": "#130908"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/ember/2",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#fff4f3",
+            "Dark": "#1e0e0c"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/ember/3",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffe9e6",
+            "Dark": "#2f120f"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/ember/4",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffdfda",
+            "Dark": "#3e1411"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/ember/5",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffd2cc",
+            "Dark": "#4b1713"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/ember/6",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffc1ba",
+            "Dark": "#5e1b18"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/ember/7",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffaba1",
+            "Dark": "#78231f"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/ember/8",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#f7887d",
+            "Dark": "#a0322c"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/ember/9",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#bf3631",
+            "Dark": "#bf3631"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/ember/10",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#af2724",
+            "Dark": "#d14b43"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/ember/11",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#94221f",
+            "Dark": "#f88f84"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/ember/12",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#3b0d0a",
+            "Dark": "#ffe2de"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/slate/1",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#fcfcfd",
+            "Dark": "#0c0c0d"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/slate/2",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#f6f7f8",
+            "Dark": "#121314"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/slate/3",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#edeff1",
+            "Dark": "#1a1c1e"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/slate/4",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#e5e7ea",
+            "Dark": "#212426"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/slate/5",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#dbdee2",
+            "Dark": "#282b2e"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/slate/6",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#cfd3d8",
+            "Dark": "#32363a"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/slate/7",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#c0c5ca",
+            "Dark": "#41464b"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/slate/8",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#a7adb4",
+            "Dark": "#585e65"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/slate/9",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#687078",
+            "Dark": "#687078"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/slate/10",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#5b636b",
+            "Dark": "#788088"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/slate/11",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#4d535a",
+            "Dark": "#acb2b8"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/slate/12",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#1d2022",
+            "Dark": "#e7eaed"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "semantic/bg/canvas",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#fcfcfd",
+            "Dark": "#0c0c0d"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/bg/subtle",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#f6f7f8",
+            "Dark": "#121314"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/surface/default",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffffff",
+            "Dark": "#121314"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/surface/raised",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffffff",
+            "Dark": "#1a1c1e"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/surface/sunken",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#f6f7f8",
+            "Dark": "#0c0c0d"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/surface/inset",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#edeff1",
+            "Dark": "#1a1c1e"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/surface/hover",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#edeff1",
+            "Dark": "#212426"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/surface/active",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#e5e7ea",
+            "Dark": "#282b2e"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/surface/selected",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#def4f5",
+            "Dark": "#002a2c"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/border/subtle",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#dbdee2",
+            "Dark": "#282b2e"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/border/default",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#cfd3d8",
+            "Dark": "#32363a"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/border/strong",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#c0c5ca",
+            "Dark": "#41464b"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/border/inverse",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#4d535a",
+            "Dark": "#acb2b8"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/fg/default",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#1d2022",
+            "Dark": "#e7eaed"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/fg/muted",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#4d535a",
+            "Dark": "#acb2b8"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/fg/subtle",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#687078",
+            "Dark": "#687078"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/fg/disabled",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#a7adb4",
+            "Dark": "#585e65"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/fg/on/solid",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffffff",
+            "Dark": "#ffffff"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/fg/inverse",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffffff",
+            "Dark": "#0c0c0d"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/accent/subtle",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#def4f5",
+            "Dark": "#052122"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/accent/muted",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#bee7e9",
+            "Dark": "#003234"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/accent/border",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#8ed2d5",
+            "Dark": "#004f53"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/accent/solid",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#007e84",
+            "Dark": "#007e84"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/accent/solid/hover",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#007075",
+            "Dark": "#009096"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/accent/fg",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#005f63",
+            "Dark": "#67c2c7"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/accent/on/solid",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffffff",
+            "Dark": "#ffffff"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/success/subtle",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#e2f5e7",
+            "Dark": "#0c2114"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/success/border",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#9cd4ae",
+            "Dark": "#09532e"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/success/solid",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#00844a",
+            "Dark": "#00844a"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/success/fg",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#006336",
+            "Dark": "#7bc495"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/warning/subtle",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#fdecd9",
+            "Dark": "#281803"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/warning/border",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#e9bb82",
+            "Dark": "#603c00"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/warning/solid",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#976200",
+            "Dark": "#976200"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/warning/fg",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#724800",
+            "Dark": "#dea559"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/danger/subtle",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffe9e6",
+            "Dark": "#2f120f"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/danger/border",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffaba1",
+            "Dark": "#78231f"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/danger/solid",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#bf3631",
+            "Dark": "#bf3631"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/danger/fg",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#94221f",
+            "Dark": "#f88f84"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/info/subtle",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#e6f0ff",
+            "Dark": "#0f1c30"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/info/border",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#a0c6ff",
+            "Dark": "#1d447c"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/info/solid",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#2d6cc7",
+            "Dark": "#2d6cc7"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/info/fg",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#1c509a",
+            "Dark": "#83b3fa"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/glass/tint",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffffff",
+            "Dark": "#212426"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/glass/floor",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffffff",
+            "Dark": "#121314"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/glass/edge",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "rgba(255, 255, 255, 0.90)",
+            "Dark": "rgba(255, 255, 255, 0.22)"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/glass/edge/low",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "rgba(255, 255, 255, 0.45)",
+            "Dark": "rgba(255, 255, 255, 0.08)"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/glass/hairline",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "rgba(9, 12, 16, 0.10)",
+            "Dark": "rgba(255, 255, 255, 0.07)"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/glass/sheen",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "rgba(255, 255, 255, 0.35)",
+            "Dark": "rgba(255, 255, 255, 0.06)"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/scrim/ink",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#0b1013",
+            "Dark": "#000000"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/focus/ring",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#007e84",
+            "Dark": "#009096"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        }
+      ]
+    },
+    {
+      "name": "WJ Dimension",
+      "modes": [
+        "Value"
+      ],
+      "variables": [
+        {
+          "name": "space/0",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 0
+          }
+        },
+        {
+          "name": "space/1",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 2
+          }
+        },
+        {
+          "name": "space/2",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 4
+          }
+        },
+        {
+          "name": "space/3",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 6
+          }
+        },
+        {
+          "name": "space/4",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 8
+          }
+        },
+        {
+          "name": "space/5",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 12
+          }
+        },
+        {
+          "name": "space/6",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 16
+          }
+        },
+        {
+          "name": "space/7",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 20
+          }
+        },
+        {
+          "name": "space/8",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 24
+          }
+        },
+        {
+          "name": "space/9",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 32
+          }
+        },
+        {
+          "name": "space/10",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 40
+          }
+        },
+        {
+          "name": "space/11",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 48
+          }
+        },
+        {
+          "name": "space/12",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 64
+          }
+        },
+        {
+          "name": "space/13",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 80
+          }
+        },
+        {
+          "name": "space/14",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 96
+          }
+        },
+        {
+          "name": "space/15",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 128
+          }
+        },
+        {
+          "name": "text/3xs",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 10
+          }
+        },
+        {
+          "name": "text/2xs",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 11
+          }
+        },
+        {
+          "name": "text/xs",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 12
+          }
+        },
+        {
+          "name": "text/sm",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 13
+          }
+        },
+        {
+          "name": "text/md",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 15
+          }
+        },
+        {
+          "name": "text/lg",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 17
+          }
+        },
+        {
+          "name": "text/xl",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 20
+          }
+        },
+        {
+          "name": "text/2xl",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 24
+          }
+        },
+        {
+          "name": "text/3xl",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 30
+          }
+        },
+        {
+          "name": "text/4xl",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 38
+          }
+        },
+        {
+          "name": "text/5xl",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 48
+          }
+        },
+        {
+          "name": "text/6xl",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 60
+          }
+        },
+        {
+          "name": "text/7xl",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 76
+          }
+        },
+        {
+          "name": "icon/xs",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 14
+          }
+        },
+        {
+          "name": "icon/sm",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 16
+          }
+        },
+        {
+          "name": "icon/md",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 18
+          }
+        },
+        {
+          "name": "icon/lg",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 20
+          }
+        },
+        {
+          "name": "icon/xl",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 24
+          }
+        },
+        {
+          "name": "icon/2xl",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 32
+          }
+        },
+        {
+          "name": "control/sm",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 28
+          }
+        },
+        {
+          "name": "control/md",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 34
+          }
+        },
+        {
+          "name": "control/lg",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 40
+          }
+        },
+        {
+          "name": "control/xl",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Value": 48
+          }
+        }
+      ]
+    },
+    {
+      "name": "WJ Register",
+      "modes": [
+        "Operator",
+        "Consumer"
+      ],
+      "variables": [
+        {
+          "name": "radius/xs",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Operator": 4,
+            "Consumer": 6
+          }
+        },
+        {
+          "name": "radius/sm",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Operator": 6,
+            "Consumer": 10
+          }
+        },
+        {
+          "name": "radius/md",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Operator": 8,
+            "Consumer": 14
+          }
+        },
+        {
+          "name": "radius/lg",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Operator": 12,
+            "Consumer": 18
+          }
+        },
+        {
+          "name": "radius/xl",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Operator": 16,
+            "Consumer": 24
+          }
+        },
+        {
+          "name": "radius/2xl",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Operator": 20,
+            "Consumer": 32
+          }
+        },
+        {
+          "name": "radius/3xl",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Operator": 28,
+            "Consumer": 44
+          }
+        },
+        {
+          "name": "layout/text-body",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Operator": 15,
+            "Consumer": 17
+          }
+        },
+        {
+          "name": "layout/text-label",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Operator": 13,
+            "Consumer": 15
+          }
+        },
+        {
+          "name": "layout/text-caption",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Operator": 12,
+            "Consumer": 13
+          }
+        },
+        {
+          "name": "layout/text-title",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Operator": 20,
+            "Consumer": 24
+          }
+        },
+        {
+          "name": "layout/row-height",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Operator": 38,
+            "Consumer": 56
+          }
+        },
+        {
+          "name": "layout/gutter",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Operator": 16,
+            "Consumer": 20
+          }
+        },
+        {
+          "name": "layout/card-padding",
+          "type": "FLOAT",
+          "valuesByMode": {
+            "Operator": 16,
+            "Consumer": 24
+          }
+        }
+      ]
+    }
+  ]
+}

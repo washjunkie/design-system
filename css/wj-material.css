@@ -1,0 +1,439 @@
+/* ==========================================================================
+   Wash Junkie · Liquid Glass material
+   Requires tokens/dist/wj-tokens.css to be loaded first.
+
+   This file implements exactly one idea: glass is a MATERIAL, with optical
+   properties, that surfaces can be made of. It is not a decoration you add to
+   a card to make it look modern.
+
+   A surface made of this material has four optical properties, and all four
+   have to be present or the illusion collapses into "translucent div":
+
+     1. REFRACTION   the backdrop is blurred — the further the surface floats,
+                     the wider the blur
+     2. SATURATION   glass concentrates colour; the backdrop comes through
+                     more saturated, not just blurrier
+     3. SPECULARITY  light catches the rim, brightest where it faces the light
+                     source and falling off around the curve
+     4. DEPTH        it casts a shadow onto what it floats above
+
+   Note what is NOT on that list: transparency. See tokens/source.mjs.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   The material
+   -------------------------------------------------------------------------- */
+
+.wj-glass {
+  /* Tier defaults to Pane; `data-tier` overrides. */
+  --_blur: var(--wj-glass-pane-blur);
+  --_sat: var(--wj-glass-pane-saturate);
+  --_alpha: var(--wj-glass-pane-alpha);
+  --_edge: var(--wj-glass-pane-edge);
+  --_floor: var(--wj-glass-floor);
+
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--wj-radius-lg);
+  color: var(--wj-fg-default);
+
+  /* The opaque part of the material. `color-mix` toward `transparent` is how
+     an alpha gets applied to a token that is itself a variable. */
+  background-color: color-mix(in srgb, var(--_floor) calc(var(--_alpha) * 100%), transparent);
+
+  /* 1 + 2. Saturation is deliberately applied *with* the blur rather than
+     after: blurring first and boosting second is what stops the backdrop
+     turning to grey mush at wide radii. */
+  -webkit-backdrop-filter: blur(var(--_blur)) saturate(var(--_sat));
+  backdrop-filter: blur(var(--_blur)) saturate(var(--_sat));
+
+  /* 4. Depth. Glass shadows are wider and softer than solid ones — the gap
+        they describe is bigger. */
+  box-shadow: var(--wj-shadow-glass-md);
+}
+
+/* 3. Specularity — a 1px rim drawn as a masked gradient border, brightest at
+      the top edge and falling away, so the surface reads as something with a
+      lit edge rather than something with a stroke. On dark themes this rim is
+      doing almost all the work of separating one layer from the next. */
+.wj-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    var(--wj-glass-light-angle, 175deg),
+    color-mix(in srgb, var(--wj-glass-edge) calc(var(--_edge) * 100%), transparent),
+    color-mix(in srgb, var(--wj-glass-edge-low) calc(var(--_edge) * 100%), transparent) 34%,
+    transparent 62%,
+    color-mix(in srgb, var(--wj-glass-edge-low) calc(var(--_edge) * 60%), transparent)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* The sheen. A single soft highlight where the light source is, sized as a
+   percentage so it scales with the surface instead of pooling in a corner. */
+.wj-glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 80% at var(--wj-glass-light-x, 22%) var(--wj-glass-light-y, -12%),
+    var(--wj-glass-sheen),
+    transparent 62%
+  );
+  opacity: var(--_edge);
+}
+
+.wj-glass > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   Tiers
+   -------------------------------------------------------------------------- */
+
+.wj-glass[data-tier='veil'] {
+  --_blur: var(--wj-glass-veil-blur);
+  --_sat: var(--wj-glass-veil-saturate);
+  --_alpha: var(--wj-glass-veil-alpha);
+  --_edge: var(--wj-glass-veil-edge);
+  box-shadow: var(--wj-shadow-glass-sm);
+}
+
+.wj-glass[data-tier='pane'] {
+  --_blur: var(--wj-glass-pane-blur);
+  --_sat: var(--wj-glass-pane-saturate);
+  --_alpha: var(--wj-glass-pane-alpha);
+  --_edge: var(--wj-glass-pane-edge);
+  box-shadow: var(--wj-shadow-glass-md);
+}
+
+.wj-glass[data-tier='shell'] {
+  --_blur: var(--wj-glass-shell-blur);
+  --_sat: var(--wj-glass-shell-saturate);
+  --_alpha: var(--wj-glass-shell-alpha);
+  --_edge: var(--wj-glass-shell-edge);
+  box-shadow: var(--wj-shadow-glass-lg);
+}
+
+/* Tier 0. Present so a component can drop to solid without changing element:
+   data tables, forms, and long-form text take this and keep their shape. */
+.wj-glass[data-tier='solid'] {
+  --_alpha: 1;
+  --_blur: 0px;
+  --_sat: 100%;
+  --_edge: 0;
+  background-color: var(--wj-surface-raised);
+  border: 1px solid var(--wj-border-subtle);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: var(--wj-shadow-sm);
+}
+.wj-glass[data-tier='solid']::before,
+.wj-glass[data-tier='solid']::after {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Tints
+
+   Glass takes a tint the way real glass does — the colour is *in* the pane, so
+   it shifts the floor rather than sitting on top as a coloured film. Keep tints
+   quiet: a tinted surface is a signal (this is selected / this is a warning),
+   and a product where every pane is tinted has no signal left.
+   -------------------------------------------------------------------------- */
+
+.wj-glass[data-tint='brand']   { --_floor: color-mix(in oklab, var(--wj-brand-mark)     14%, var(--wj-glass-floor)); }
+.wj-glass[data-tint='accent']  { --_floor: color-mix(in oklab, var(--wj-accent-solid)   12%, var(--wj-glass-floor)); }
+.wj-glass[data-tint='success'] { --_floor: color-mix(in oklab, var(--wj-success-solid)  12%, var(--wj-glass-floor)); }
+.wj-glass[data-tint='warning'] { --_floor: color-mix(in oklab, var(--wj-warning-solid)  12%, var(--wj-glass-floor)); }
+.wj-glass[data-tint='danger']  { --_floor: color-mix(in oklab, var(--wj-danger-solid)   12%, var(--wj-glass-floor)); }
+.wj-glass[data-tint='info']    { --_floor: color-mix(in oklab, var(--wj-info-solid)     12%, var(--wj-glass-floor)); }
+
+/* Over photography or video the backdrop is chromatically loud and the tier's
+   own saturation lift makes it louder. This calms it. Legibility does not
+   depend on it — the tier alphas already clear AA over pure black and pure
+   white — but a nav bar over a hero image looks unresolved without it. */
+.wj-glass[data-over='media'] {
+  --_sat: 120%;
+}
+.wj-glass[data-over='media']::after {
+  background:
+    linear-gradient(var(--wj-glass-light-angle, 175deg), var(--wj-glass-underlay), transparent 70%),
+    radial-gradient(
+      120% 80% at var(--wj-glass-light-x, 22%) var(--wj-glass-light-y, -12%),
+      var(--wj-glass-sheen),
+      transparent 62%
+    );
+  opacity: 1;
+}
+
+:root,
+[data-wj-theme='light'] {
+  --wj-glass-underlay: rgba(255, 255, 255, 0.28);
+}
+[data-wj-theme='dark'] {
+  --wj-glass-underlay: rgba(0, 0, 0, 0.34);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-wj-theme='light']) {
+    --wj-glass-underlay: rgba(0, 0, 0, 0.34);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Fluidity
+
+   The other half of the language. Glass moves like something with mass in a
+   viscous medium: it leaves quickly, glides, and stops dead. It does not
+   bounce, and it does not fade in place — a layer that fades is a picture of a
+   layer, a layer that grows out of the control that summoned it is an object.
+   -------------------------------------------------------------------------- */
+
+.wj-fluid {
+  transition-property: transform, opacity, backdrop-filter, background-color, box-shadow, border-radius;
+  transition-duration: calc(var(--wj-dur-slow) * var(--wj-motion-scale, 1));
+  transition-timing-function: var(--wj-ease-glass);
+}
+
+.wj-fluid-fast {
+  transition-property: transform, opacity, background-color, border-color, box-shadow, color;
+  transition-duration: calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1));
+  transition-timing-function: var(--wj-ease-out);
+}
+
+/* A glass surface that can be pressed reacts in the material, not just the
+   fill: it lifts and its rim brightens on hover, and it compresses on press. */
+.wj-glass-interactive {
+  cursor: pointer;
+  transition:
+    transform calc(var(--wj-dur-base) * var(--wj-motion-scale, 1)) var(--wj-ease-glass),
+    box-shadow calc(var(--wj-dur-base) * var(--wj-motion-scale, 1)) var(--wj-ease-glass),
+    --_edge calc(var(--wj-dur-base) * var(--wj-motion-scale, 1)) var(--wj-ease-glass);
+}
+.wj-glass-interactive:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--wj-shadow-glass-lg);
+  --_edge: 1;
+}
+.wj-glass-interactive:active {
+  transform: translateY(0) scale(0.994);
+  box-shadow: var(--wj-shadow-glass-sm);
+  transition-duration: calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1));
+}
+
+/* Named keyframes. Every layer in the system enters with one of these. */
+@keyframes wj-shell-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes wj-shell-out {
+  from { opacity: 1; transform: none; }
+  to   { opacity: 0; transform: translateY(4px) scale(0.985); }
+}
+@keyframes wj-sheet-in  { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes wj-sheet-out { from { transform: none; } to { transform: translateY(100%); } }
+@keyframes wj-scrim-in  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes wj-scrim-out { from { opacity: 1; } to { opacity: 0; } }
+
+/* The material settling into place. Uses the sampled spring, so it overshoots
+   ~4% and comes back — the one place in the system where anything overshoots. */
+@keyframes wj-settle {
+  from { transform: scale(0.94); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.wj-enter-shell {
+  animation: wj-shell-in calc(var(--wj-dur-slow) * var(--wj-motion-scale, 1)) var(--wj-ease-glass) both;
+}
+.wj-exit-shell {
+  animation: wj-shell-out calc(var(--wj-dur-base) * var(--wj-motion-scale, 1)) var(--wj-ease-in) both;
+}
+.wj-enter-sheet {
+  animation: wj-sheet-in calc(var(--wj-dur-slower) * var(--wj-motion-scale, 1)) var(--wj-ease-glass) both;
+}
+.wj-enter-settle {
+  animation: wj-settle calc(var(--wj-dur-slower) * var(--wj-motion-scale, 1)) var(--wj-ease-fluid) both;
+}
+
+/* --------------------------------------------------------------------------
+   The scrim
+   -------------------------------------------------------------------------- */
+
+.wj-scrim,
+/* Native <dialog> draws its own backdrop in the top layer. Styling
+   `::backdrop` rather than rendering a sibling div is what keeps the scrim
+   correct for free: it cannot be scrolled past, cannot be out-stacked by a
+   z-index elsewhere, and disappears with the dialog. Every Modal, Sheet, and
+   CommandPalette in the kit relies on this rule existing. */
+dialog.wj-glass::backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--wj-z-scrim);
+  background-color: color-mix(
+    in srgb,
+    var(--wj-scrim-ink) calc(var(--wj-glass-scrim-alpha) * 100%),
+    transparent
+  );
+  -webkit-backdrop-filter: blur(var(--wj-glass-scrim-blur));
+  backdrop-filter: blur(var(--wj-glass-scrim-blur));
+  animation: wj-scrim-in calc(var(--wj-dur-base) * var(--wj-motion-scale, 1)) var(--wj-ease-out) both;
+}
+
+/* `::backdrop` sits outside the document tree, so it inherits from the root
+   rather than from the dialog — the theme variables have to be reachable at
+   :root for the rule above to resolve. They are; this comment exists so nobody
+   "tidies" the scrim tokens into a scoped block and silently breaks it. */
+
+/* UA styles give <dialog> a border, padding, and a max-width/height that fight
+   our own sizing. `:where()` contributes no specificity, so this reset sits
+   BELOW every component class — .wj-modal's padding and max-height still win
+   without needing !important or a more specific selector. */
+dialog:where(.wj-glass) {
+  border: none;
+  padding: 0;
+  max-width: none;
+  max-height: none;
+  color: var(--wj-fg-default);
+  overflow: visible;
+}
+
+/* --------------------------------------------------------------------------
+   Focus
+
+   One ring, everywhere, drawn OUTSIDE the element so it never gets clipped by
+   a glass surface's own rounding, and doubled with a contrasting inner line so
+   it stays visible against both a light pane and a dark one.
+   -------------------------------------------------------------------------- */
+
+.wj-focusable:focus-visible,
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--wj-focus-ring);
+  outline-offset: 2px;
+  border-radius: inherit;
+}
+
+.wj-glass:focus-visible {
+  outline: 2px solid var(--wj-focus-ring);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Degrading gracefully
+
+   Three separate reasons the material has to be able to switch itself off, and
+   all three end in the same place: an opaque surface that still has the right
+   colour, spacing, rounding, and hierarchy. Nothing about the layout may move.
+   -------------------------------------------------------------------------- */
+
+/* 1. The browser cannot do it. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .wj-glass {
+    background-color: var(--wj-glass-floor);
+    border: 1px solid var(--wj-border-subtle);
+  }
+  .wj-glass::after { display: none; }
+  .wj-scrim {
+    background-color: color-mix(in srgb, var(--wj-scrim-ink) 55%, transparent);
+  }
+}
+
+/* 2. The person asked for less. `prefers-reduced-transparency` is a real
+      accessibility need — vestibular and low-vision users lose text against a
+      moving backdrop — not a nice-to-have. Blur goes entirely; the specular
+      edge stays, because it is what still communicates layering. */
+@media (prefers-reduced-transparency: reduce) {
+  .wj-glass {
+    --_alpha: 1;
+    --_blur: 0px;
+    --_sat: 100%;
+    background-color: var(--wj-glass-floor);
+    border: 1px solid var(--wj-border-default);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .wj-glass::after { display: none; }
+  .wj-scrim {
+    background-color: color-mix(in srgb, var(--wj-scrim-ink) 62%, transparent);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* 3. The person asked for stillness. Motion collapses to a short opacity
+      change rather than to nothing: an instant swap loses the causal link
+      between the control pressed and the layer that appeared. */
+@media (prefers-reduced-motion: reduce) {
+  .wj-fluid,
+  .wj-fluid-fast,
+  .wj-glass-interactive {
+    transition-duration: 1ms;
+  }
+  .wj-glass-interactive:hover,
+  .wj-glass-interactive:active {
+    transform: none;
+  }
+  .wj-enter-shell,
+  .wj-exit-shell,
+  .wj-enter-sheet,
+  .wj-enter-settle,
+  .wj-scrim {
+    animation-duration: 90ms;
+    animation-timing-function: linear;
+  }
+  .wj-enter-shell,
+  .wj-enter-sheet,
+  .wj-enter-settle {
+    animation-name: wj-scrim-in;
+  }
+}
+
+/* 4. High contrast. Windows HCM strips backgrounds; make the layering survive
+      it with real borders rather than relying on colour that will be replaced. */
+@media (forced-colors: active) {
+  .wj-glass {
+    border: 1px solid CanvasText;
+    background-color: Canvas;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .wj-glass::before,
+  .wj-glass::after { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   Performance
+
+   `backdrop-filter` is the most expensive thing in this system: the compositor
+   has to re-read and re-blur everything behind the element on every frame the
+   backdrop changes. The rules that keep it cheap:
+
+     · Cap it. Two glass layers on screen at once, three in a modal stack.
+     · Never animate `blur()` itself — animate transform/opacity of the layer.
+     · Give a scrolling glass header `contain: paint` so the compositor knows
+       the blur cannot leak outside it.
+     · Do not put `will-change: backdrop-filter` on anything permanent; it
+       pins a texture for the life of the element.
+   -------------------------------------------------------------------------- */
+
+.wj-glass[data-sticky='true'] {
+  position: sticky;
+  top: 0;
+  z-index: var(--wj-z-sticky);
+  contain: paint;
+}

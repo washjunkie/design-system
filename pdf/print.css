@@ -1,0 +1,458 @@
+/* ==========================================================================
+   Print stylesheet for the combined brand guide.
+
+   Loaded AFTER wj-tokens.css, and it only overrides. The document is typeset
+   with the design system's own tokens because a brand guide set in something
+   other than the brand's typography is evidence against itself.
+
+   Everything here exists because paper is not a screen:
+     · no scrollbar, so a table that overflows is simply lost — they all wrap
+     · no hover, so every link must carry its meaning in the text
+     · pages break, so anything with a header needs `break-inside: avoid`
+     · ink is expensive and glass does not print — the material degrades to the
+       same opaque surface `prefers-reduced-transparency` gets
+   ========================================================================== */
+
+@page {
+  size: A4;
+  margin: 18mm 16mm 20mm;
+}
+
+/* The chapter dividers and the cover want the whole sheet. */
+@page :first {
+  margin: 0;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  margin: 0;
+  font-family: var(--wj-font-sans);
+  font-size: 9.6pt;
+  line-height: 1.55;
+  color: var(--wj-fg-default);
+  background: #fff;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --------------------------------------------------------------------------
+   Running head
+   -------------------------------------------------------------------------- */
+
+.running-head {
+  position: fixed;
+  top: 6mm;
+  left: 16mm;
+  right: 16mm;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 7pt;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wj-fg-subtle);
+  border-bottom: 0.4pt solid var(--wj-border-subtle);
+  padding-bottom: 2mm;
+}
+.running-head svg { height: 8px; width: auto; display: block; color: var(--wj-brand-mark); }
+.rh-mark { display: inline-flex; }
+
+/* The cover and contents supply their own furniture. */
+.cover ~ .running-head { display: none; }
+
+/* --------------------------------------------------------------------------
+   Cover
+   -------------------------------------------------------------------------- */
+
+.cover {
+  break-after: page;
+  min-height: 297mm;
+  padding: 30mm 22mm 20mm;
+  display: flex;
+  flex-direction: column;
+  /* The cover is the one place the brand teal is the field, so the type on it
+     is ink — the 2.26:1 finding applied to this document itself. */
+  background:
+    radial-gradient(80% 60% at 12% 8%, color-mix(in oklab, var(--wj-brand-mark) 34%, #fff) 0%, transparent 62%),
+    radial-gradient(70% 50% at 92% 96%, color-mix(in oklab, var(--wj-aqua-4) 60%, #fff) 0%, transparent 60%),
+    #fff;
+}
+.cover-mark { color: var(--wj-brand-mark); margin-bottom: 16mm; }
+.cover-mark svg { height: 34px; width: auto; }
+.cover-eyebrow {
+  margin: 0 0 4mm;
+  font-size: 8pt;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--wj-accent-fg);
+  font-weight: 600;
+}
+.cover-title {
+  font-family: var(--wj-font-display);
+  font-size: 54pt;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  margin: 0 0 8mm;
+  color: var(--wj-fg-default);
+}
+.cover-sub {
+  font-size: 12pt;
+  line-height: 1.5;
+  max-width: 105mm;
+  color: var(--wj-fg-muted);
+  margin: 0 0 auto;
+}
+.cover-meta {
+  display: flex;
+  gap: 14mm;
+  padding: 6mm 0;
+  border-top: 0.6pt solid var(--wj-border-default);
+  border-bottom: 0.6pt solid var(--wj-border-default);
+  margin-bottom: 6mm;
+}
+.cover-meta span {
+  display: block;
+  font-size: 7pt;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--wj-fg-subtle);
+  margin-bottom: 1mm;
+}
+.cover-meta strong { font-family: var(--wj-font-display); font-size: 12pt; }
+.cover-foot { font-size: 8pt; line-height: 1.5; color: var(--wj-fg-muted); max-width: 130mm; margin: 0; }
+
+/* --------------------------------------------------------------------------
+   Contents
+   -------------------------------------------------------------------------- */
+
+.contents { break-after: page; padding-top: 4mm; }
+.contents h1 {
+  font-family: var(--wj-font-display);
+  font-size: 26pt;
+  letter-spacing: -0.02em;
+  margin: 0 0 8mm;
+}
+.toc { list-style: none; margin: 0 0 12mm; padding: 0; }
+.toc li { border-bottom: 0.4pt solid var(--wj-border-subtle); }
+.toc a {
+  display: flex;
+  gap: 8mm;
+  align-items: baseline;
+  padding: 3.5mm 0;
+  text-decoration: none;
+  color: inherit;
+}
+.toc-n {
+  font-family: var(--wj-font-display);
+  font-size: 13pt;
+  font-weight: 600;
+  color: var(--wj-accent-fg);
+  min-width: 8mm;
+}
+.toc-t strong { display: block; font-size: 11pt; font-family: var(--wj-font-display); font-weight: 600; }
+.toc-t em { display: block; font-style: normal; font-size: 8.4pt; color: var(--wj-fg-muted); margin-top: 0.6mm; }
+
+.callout-set { break-inside: avoid; }
+.callout-set h2 {
+  font-family: var(--wj-font-display);
+  font-size: 13pt;
+  margin: 0 0 5mm;
+  padding-top: 5mm;
+  border-top: 1.2pt solid var(--wj-fg-default);
+}
+.callout {
+  display: flex;
+  gap: 5mm;
+  padding: 4mm 5mm;
+  margin-bottom: 3mm;
+  background: var(--wj-accent-subtle);
+  border-radius: 3mm;
+  break-inside: avoid;
+  font-size: 9pt;
+  line-height: 1.5;
+}
+.callout-n {
+  font-family: var(--wj-font-display);
+  font-size: 15pt;
+  font-weight: 700;
+  color: var(--wj-accent-solid);
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Chapters
+   -------------------------------------------------------------------------- */
+
+.chapter { break-before: page; }
+
+.chapter-divider {
+  break-inside: avoid;
+  break-after: avoid;
+  padding: 6mm 0 7mm;
+  border-bottom: 1.4pt solid var(--wj-fg-default);
+  margin-bottom: 7mm;
+}
+.ch-num {
+  display: block;
+  font-size: 7.5pt;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--wj-accent-fg);
+  font-weight: 600;
+  margin-bottom: 2.5mm;
+}
+.chapter-divider h1 {
+  font-family: var(--wj-font-display);
+  font-size: 30pt;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  margin: 0;
+}
+.ch-blurb {
+  font-size: 9.5pt;
+  color: var(--wj-fg-muted);
+  margin: 3mm 0 0;
+  max-width: 120mm;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   Body typography
+   -------------------------------------------------------------------------- */
+
+h2 {
+  font-family: var(--wj-font-display);
+  font-size: 15pt;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  margin: 9mm 0 3mm;
+  padding-top: 2mm;
+  border-top: 0.6pt solid var(--wj-border-default);
+  /* A heading orphaned at the foot of a page is the most common print defect
+     in a document this long. */
+  break-after: avoid;
+  break-inside: avoid;
+}
+h3 {
+  font-family: var(--wj-font-display);
+  font-size: 11.5pt;
+  font-weight: 600;
+  margin: 6mm 0 2mm;
+  break-after: avoid;
+}
+h4 {
+  font-size: 9.6pt;
+  font-weight: 600;
+  margin: 4mm 0 1.5mm;
+  break-after: avoid;
+}
+
+p { margin: 0 0 2.6mm; orphans: 3; widows: 3; }
+strong { font-weight: 600; }
+
+ul, ol { margin: 0 0 3mm; padding-left: 5mm; }
+li { margin-bottom: 1.2mm; orphans: 2; widows: 2; }
+li > ul, li > ol { margin-top: 1.2mm; }
+
+hr {
+  border: none;
+  border-top: 0.6pt solid var(--wj-border-subtle);
+  margin: 6mm 0;
+}
+
+blockquote {
+  margin: 3.5mm 0;
+  padding: 3.5mm 5mm;
+  background: var(--wj-warning-subtle);
+  border-left: 1.6pt solid var(--wj-warning-solid);
+  border-radius: 0 2mm 2mm 0;
+  break-inside: avoid;
+  font-size: 9pt;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+code {
+  font-family: var(--wj-font-mono);
+  font-size: 0.88em;
+  background: var(--wj-surface-inset);
+  padding: 0.3mm 1mm;
+  border-radius: 1mm;
+  /* Long tokens and hex strings must be allowed to break or they push the
+     column wider than the page. */
+  word-break: break-word;
+}
+pre {
+  background: var(--wj-surface-inset);
+  border: 0.4pt solid var(--wj-border-subtle);
+  border-radius: 2mm;
+  padding: 3mm 4mm;
+  font-size: 8pt;
+  line-height: 1.45;
+  overflow: visible;
+  white-space: pre-wrap;
+  break-inside: avoid;
+  margin: 0 0 3mm;
+}
+pre code { background: none; padding: 0; font-size: inherit; }
+
+a { color: var(--wj-accent-fg); text-decoration: none; }
+.xref { font-weight: 500; }
+.xref::after { content: ' ›'; color: var(--wj-fg-subtle); }
+/* A link out of this document is dead on paper; keep the words, drop the
+   affordance so nobody taps a page. */
+.xref-ext { color: inherit; text-decoration: underline; text-decoration-color: var(--wj-border-strong); text-underline-offset: 2px; }
+
+/* --------------------------------------------------------------------------
+   Tables — the reason this document needs a print stylesheet at all
+   -------------------------------------------------------------------------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 4mm;
+  font-size: 8.4pt;
+  line-height: 1.45;
+  /* Long tables must be allowed to break across pages, but no single row may. */
+  break-inside: auto;
+}
+thead { display: table-header-group; }
+tr { break-inside: avoid; }
+th {
+  text-align: left;
+  font-size: 7.2pt;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--wj-fg-subtle);
+  font-weight: 600;
+  border-bottom: 0.8pt solid var(--wj-border-strong);
+  padding: 1.8mm 2.5mm 1.8mm 0;
+  vertical-align: bottom;
+}
+td {
+  padding: 2mm 2.5mm 2mm 0;
+  border-bottom: 0.4pt solid var(--wj-border-subtle);
+  vertical-align: top;
+}
+td:last-child, th:last-child { padding-right: 0; }
+table code { font-size: 0.84em; }
+
+/* --------------------------------------------------------------------------
+   Generated colour appendix
+   -------------------------------------------------------------------------- */
+
+.appendix .ap-ramps { break-inside: avoid; }
+.ap-ramp { margin-bottom: 4mm; break-inside: avoid; }
+.ap-ramp h4 { margin: 0 0 1.5mm; font-family: var(--wj-font-display); font-size: 10pt; }
+.ap-ramp h4 small { font-weight: 400; color: var(--wj-fg-subtle); font-size: 7.5pt; letter-spacing: 0.04em; }
+.ap-row { display: grid; grid-template-columns: repeat(12, 1fr); gap: 0.6mm; }
+.ap-sw {
+  aspect-ratio: 1 / 1.7;
+  border-radius: 0.8mm;
+  padding: 1mm 0.5mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 5pt;
+  font-family: var(--wj-font-mono);
+}
+.ap-sw span { font-weight: 600; font-size: 6pt; }
+.ap-sw em { font-style: normal; opacity: 0.72; font-size: 4.4pt; letter-spacing: -0.02em; }
+
+.ap-chip {
+  display: inline-block;
+  width: 3.2mm;
+  height: 3.2mm;
+  border-radius: 0.8mm;
+  vertical-align: -0.5mm;
+  margin-right: 1.2mm;
+  border: 0.3pt solid rgba(0, 0, 0, 0.14);
+}
+.ap-table td.mono, .mono { font-family: var(--wj-font-mono); font-size: 0.9em; }
+.risk-high { color: var(--wj-danger-fg); font-weight: 600; }
+.risk-medium { color: var(--wj-warning-fg); font-weight: 600; }
+.risk-low { color: var(--wj-fg-muted); }
+
+.warn-block {
+  background: var(--wj-warning-subtle);
+  border-left: 1.6pt solid var(--wj-warning-solid);
+  padding: 3mm 4mm;
+  border-radius: 0 2mm 2mm 0;
+  font-size: 8.6pt;
+  break-inside: avoid;
+}
+
+.ap-matrix { table-layout: fixed; }
+.ap-matrix th[scope='row'] {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 8.4pt;
+  color: var(--wj-fg-default);
+  vertical-align: middle;
+  width: 26mm;
+}
+.ap-matrix th[scope='row'] span { font-size: 7pt; color: var(--wj-fg-subtle); font-weight: 400; }
+td.mx { text-align: center; padding: 2mm 1.5mm; }
+.mx-swatch {
+  height: 11mm;
+  border-radius: 1.2mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2mm;
+  border: 0.3pt solid rgba(0, 0, 0, 0.12);
+}
+.mx-swatch span { font-family: var(--wj-font-display); font-size: 8pt; font-weight: 600; }
+td.mx strong { display: block; font-family: var(--wj-font-mono); font-size: 8.4pt; }
+td.mx em { display: block; font-style: normal; font-size: 6.6pt; margin-top: 0.4mm; }
+td.mx.pass em { color: var(--wj-success-fg); }
+td.mx.graphics em { color: var(--wj-warning-fg); }
+td.mx.fail em { color: var(--wj-danger-fg); font-weight: 600; }
+
+/* --------------------------------------------------------------------------
+   Colophon
+   -------------------------------------------------------------------------- */
+
+.colophon {
+  break-before: page;
+  padding-top: 60mm;
+  max-width: 120mm;
+}
+.colophon-mark { color: var(--wj-brand-mark); margin-bottom: 6mm; }
+.colophon-mark svg { height: 18px; width: auto; }
+.colophon h2 {
+  border: none;
+  padding: 0;
+  font-size: 13pt;
+  margin: 0 0 3mm;
+}
+.colophon p { font-size: 8.6pt; color: var(--wj-fg-muted); line-height: 1.55; }
+
+/* --------------------------------------------------------------------------
+   Screen preview of the same file
+   -------------------------------------------------------------------------- */
+
+@media screen {
+  body {
+    background: var(--wj-bg-canvas);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .cover, .contents, .chapter, .colophon {
+    max-width: 210mm;
+    margin: 0 auto 8mm;
+    background: #fff;
+    padding: 18mm 16mm;
+    box-shadow: var(--wj-shadow-md);
+    border-radius: 2mm;
+  }
+  .running-head { display: none; }
+}

@@ -1,0 +1,928 @@
+/* ==========================================================================
+   Wash Junkie · UI kit
+   Load after wj-tokens.css and wj-material.css.
+
+   Every component here is authored in plain CSS against semantic tokens, with
+   no framework dependency, for one reason: the platform has five surfaces and
+   they will not all be React. A Driver app in Kotlin and a marketing page in
+   plain HTML have to be able to reach for the same button.
+
+   The React package in packages/react wraps these classes; it adds behaviour
+   and types, never appearance.
+
+   Naming: `wj-<block>` + `wj-<block>__<part>`, variants as data-attributes.
+   Data-attributes rather than modifier classes because a variant is a value of
+   a property ("this button's tone is danger"), and because they are trivial to
+   drive from a prop without joining strings.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+/* Every component in this file sizes itself with padding — a button's height
+   token IS its height, a card's width IS its width. Under the default
+   `content-box` that stops being true and every value in the system becomes a
+   lie by however much padding it carries.
+   Scoped rather than a global `*` reset: this stylesheet is a guest in five
+   different apps and must not quietly re-lay-out DOM it does not own. */
+.wj-root,
+.wj-root *,
+.wj-root *::before,
+.wj-root *::after,
+[class*='wj-'],
+[class*='wj-']::before,
+[class*='wj-']::after {
+  box-sizing: border-box;
+}
+
+.wj-root {
+  font-family: var(--wj-font-sans);
+  font-size: var(--wj-text-body);
+  line-height: var(--wj-leading-body);
+  color: var(--wj-fg-default);
+  background-color: var(--wj-bg-canvas);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Every figure in the product is a figure in a column of figures somewhere.
+     Proportional digits make those columns jitter. */
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   Type roles
+
+   Roles, not sizes. `wj-title` means "this is the title of the thing"; the
+   register decides how big that is. A component that hard-codes 24px has
+   quietly opted out of the consumer surface.
+   -------------------------------------------------------------------------- */
+
+.wj-display {
+  font-family: var(--wj-font-display);
+  font-size: var(--wj-text-display);
+  line-height: var(--wj-leading-tight);
+  letter-spacing: var(--wj-tracking-tighter);
+  font-weight: var(--wj-weight-semibold);
+}
+.wj-title-lg,
+.wj-title,
+.wj-title-sm {
+  font-family: var(--wj-font-display);
+  line-height: var(--wj-leading-snug);
+  letter-spacing: var(--wj-tracking-tight);
+  font-weight: var(--wj-weight-semibold);
+}
+.wj-title-lg { font-size: var(--wj-text-title-lg); }
+.wj-title    { font-size: var(--wj-text-title); }
+.wj-title-sm { font-size: var(--wj-text-title-sm); }
+
+.wj-body   { font-size: var(--wj-text-body); line-height: var(--wj-leading-body); }
+.wj-label  { font-size: var(--wj-text-label); font-weight: var(--wj-weight-medium); line-height: var(--wj-leading-snug); }
+.wj-caption{ font-size: var(--wj-text-caption); color: var(--wj-fg-muted); line-height: var(--wj-leading-snug); }
+
+/* Section headers. Uppercase micro-type needs tracking or it reads as a smear. */
+.wj-eyebrow {
+  font-size: var(--wj-text-2xs);
+  font-weight: var(--wj-weight-semibold);
+  letter-spacing: var(--wj-tracking-widest);
+  text-transform: uppercase;
+  color: var(--wj-fg-subtle);
+}
+
+.wj-muted { color: var(--wj-fg-muted); }
+.wj-subtle { color: var(--wj-fg-subtle); }
+.wj-mono { font-family: var(--wj-font-mono); font-variant-numeric: tabular-nums; }
+
+/* Money, counts, durations — anything that must align down a column. */
+.wj-numeric {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1, 'ss01' 1;
+}
+
+/* --------------------------------------------------------------------------
+   Button
+   -------------------------------------------------------------------------- */
+
+.wj-btn {
+  --_h: var(--wj-control-height);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wj-space-4);
+  height: var(--_h);
+  padding-inline: var(--wj-space-5);
+  border: 1px solid transparent;
+  border-radius: var(--wj-radius-md);
+  font-family: inherit;
+  font-size: var(--wj-text-label);
+  font-weight: var(--wj-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  color: var(--wj-fg-default);
+  transition:
+    background-color calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out),
+    border-color calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out),
+    color calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out),
+    box-shadow calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out),
+    transform calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out);
+}
+
+/* A press has to register in under 100ms or the control feels dead. This is
+   the cheapest way to buy that: it does not wait for the network. */
+.wj-btn:active:not(:disabled) { transform: scale(0.975); }
+
+.wj-btn:disabled,
+.wj-btn[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.wj-btn[data-size='sm'] { --_h: var(--wj-control-sm); padding-inline: var(--wj-space-4); font-size: var(--wj-text-xs); }
+.wj-btn[data-size='lg'] { --_h: var(--wj-control-lg); padding-inline: var(--wj-space-7); font-size: var(--wj-text-body); }
+.wj-btn[data-size='xl'] { --_h: var(--wj-control-xl); padding-inline: var(--wj-space-8); font-size: var(--wj-text-lg); border-radius: var(--wj-radius-lg); }
+
+.wj-btn[data-full='true'] { width: 100%; }
+
+/* Icon-only. Square, and forced up to the touch floor on touch surfaces —
+   a 28px icon button is a 28px target no matter how big the icon looks. */
+.wj-btn[data-icon-only='true'] {
+  padding-inline: 0;
+  width: var(--_h);
+}
+@media (pointer: coarse) {
+  .wj-btn[data-icon-only='true'] {
+    min-width: var(--wj-touch-target);
+    min-height: var(--wj-touch-target);
+  }
+}
+
+/* -- variants -- */
+
+.wj-btn[data-variant='primary'] {
+  background-color: var(--wj-accent-solid);
+  color: var(--wj-accent-on-solid);
+  box-shadow: var(--wj-shadow-xs);
+}
+.wj-btn[data-variant='primary']:hover:not(:disabled) { background-color: var(--wj-accent-solid-hover); }
+
+.wj-btn[data-variant='secondary'] {
+  background-color: var(--wj-surface-raised);
+  border-color: var(--wj-border-default);
+  box-shadow: var(--wj-shadow-xs);
+}
+.wj-btn[data-variant='secondary']:hover:not(:disabled) {
+  background-color: var(--wj-surface-hover);
+  border-color: var(--wj-border-strong);
+}
+
+.wj-btn[data-variant='ghost']:hover:not(:disabled) { background-color: var(--wj-surface-hover); }
+
+.wj-btn[data-variant='subtle'] {
+  background-color: var(--wj-accent-subtle);
+  color: var(--wj-accent-fg);
+}
+.wj-btn[data-variant='subtle']:hover:not(:disabled) { background-color: var(--wj-accent-muted); }
+
+.wj-btn[data-variant='danger'] {
+  background-color: var(--wj-danger-solid);
+  color: #fff;
+}
+.wj-btn[data-variant='danger']:hover:not(:disabled) { filter: brightness(0.93); }
+
+.wj-btn[data-variant='danger-ghost'] { color: var(--wj-danger-fg); }
+.wj-btn[data-variant='danger-ghost']:hover:not(:disabled) { background-color: var(--wj-danger-subtle); }
+
+/* The glass button. Reserved for controls that float over content — a media
+   overlay, a map, a full-bleed hero. On a normal card it is a solid button
+   pretending to be interesting. */
+.wj-btn[data-variant='glass'] {
+  background-color: color-mix(in srgb, var(--wj-glass-floor) calc(var(--wj-glass-veil-alpha) * 100%), transparent);
+  -webkit-backdrop-filter: blur(var(--wj-glass-veil-blur)) saturate(var(--wj-glass-veil-saturate));
+  backdrop-filter: blur(var(--wj-glass-veil-blur)) saturate(var(--wj-glass-veil-saturate));
+  border-color: var(--wj-glass-hairline);
+  box-shadow: var(--wj-shadow-glass-sm), inset 0 1px 0 var(--wj-glass-edge-low);
+}
+.wj-btn[data-variant='glass']:hover:not(:disabled) {
+  box-shadow: var(--wj-shadow-glass-md), inset 0 1px 0 var(--wj-glass-edge);
+}
+
+/* Loading. The label stays in the DOM at zero opacity so the button does not
+   change width mid-request and shove the layout around. */
+.wj-btn[data-loading='true'] { pointer-events: none; position: relative; }
+.wj-btn[data-loading='true'] > * { opacity: 0; }
+.wj-btn[data-loading='true']::after {
+  content: '';
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  animation: wj-spin 620ms linear infinite;
+}
+@keyframes wj-spin { to { transform: rotate(360deg); } }
+
+/* --------------------------------------------------------------------------
+   Field, Input, Textarea, Select
+   -------------------------------------------------------------------------- */
+
+.wj-field { display: flex; flex-direction: column; gap: var(--wj-space-3); }
+.wj-field__label {
+  font-size: var(--wj-text-label);
+  font-weight: var(--wj-weight-medium);
+  color: var(--wj-fg-default);
+}
+.wj-field__label[data-optional='true']::after {
+  content: ' optional';
+  font-weight: var(--wj-weight-regular);
+  color: var(--wj-fg-subtle);
+}
+.wj-field__help { font-size: var(--wj-text-caption); color: var(--wj-fg-muted); }
+.wj-field__error {
+  font-size: var(--wj-text-caption);
+  color: var(--wj-danger-fg);
+  display: flex;
+  gap: var(--wj-space-3);
+  align-items: flex-start;
+}
+
+.wj-input,
+.wj-textarea,
+.wj-select {
+  width: 100%;
+  min-height: var(--wj-control-height);
+  padding: var(--wj-space-4) var(--wj-space-5);
+  font-family: inherit;
+  font-size: var(--wj-text-body);
+  line-height: var(--wj-leading-snug);
+  color: var(--wj-fg-default);
+  background-color: var(--wj-surface-raised);
+  border: 1px solid var(--wj-border-default);
+  border-radius: var(--wj-radius-md);
+  transition:
+    border-color calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out),
+    background-color calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out);
+}
+.wj-textarea { min-height: 96px; resize: vertical; }
+
+.wj-input::placeholder,
+.wj-textarea::placeholder { color: var(--wj-fg-subtle); }
+
+.wj-input:hover:not(:disabled),
+.wj-textarea:hover:not(:disabled),
+.wj-select:hover:not(:disabled) { border-color: var(--wj-border-strong); }
+
+.wj-input[aria-invalid='true'],
+.wj-textarea[aria-invalid='true'],
+.wj-select[aria-invalid='true'] { border-color: var(--wj-danger-solid); }
+
+.wj-input:disabled,
+.wj-textarea:disabled,
+.wj-select:disabled {
+  background-color: var(--wj-surface-inset);
+  color: var(--wj-fg-disabled);
+  cursor: not-allowed;
+}
+
+.wj-select {
+  appearance: none;
+  padding-right: var(--wj-space-9);
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: right 18px center, right 12px center;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+/* Leading/trailing adornments — currency symbols, units, a search icon. */
+.wj-input-group { position: relative; display: flex; align-items: center; }
+.wj-input-group__affix {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  color: var(--wj-fg-subtle);
+  pointer-events: none;
+}
+.wj-input-group__affix[data-side='start'] { inset-inline-start: var(--wj-space-5); }
+.wj-input-group__affix[data-side='end'] { inset-inline-end: var(--wj-space-5); }
+.wj-input-group:has(.wj-input-group__affix[data-side='start']) .wj-input { padding-inline-start: var(--wj-space-10); }
+.wj-input-group:has(.wj-input-group__affix[data-side='end']) .wj-input { padding-inline-end: var(--wj-space-10); }
+
+/* --------------------------------------------------------------------------
+   Checkbox, Radio, Switch
+   -------------------------------------------------------------------------- */
+
+.wj-check {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--wj-space-4);
+  cursor: pointer;
+  /* The whole row is the target, not the 16px box. */
+  min-height: var(--wj-touch-target-dense);
+  padding-block: var(--wj-space-2);
+}
+.wj-check input { flex: none; margin-top: 2px; accent-color: var(--wj-accent-solid); width: 16px; height: 16px; }
+.wj-check__text { font-size: var(--wj-text-label); }
+.wj-check__help { display: block; font-size: var(--wj-text-caption); color: var(--wj-fg-muted); }
+
+.wj-switch {
+  --_w: 40px;
+  --_h: 24px;
+  position: relative;
+  flex: none;
+  width: var(--_w);
+  height: var(--_h);
+  border-radius: var(--wj-radius-full);
+  background-color: var(--wj-border-strong);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color calc(var(--wj-dur-base) * var(--wj-motion-scale, 1)) var(--wj-ease-glass);
+}
+.wj-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  inset-inline-start: 2px;
+  width: calc(var(--_h) - 4px);
+  height: calc(var(--_h) - 4px);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--wj-shadow-sm);
+  /* The signature curve on the one control people toggle for fun. */
+  transition: transform calc(var(--wj-dur-base) * var(--wj-motion-scale, 1)) var(--wj-ease-glass);
+}
+.wj-switch[aria-checked='true'] { background-color: var(--wj-accent-solid); }
+.wj-switch[aria-checked='true']::after { transform: translateX(calc(var(--_w) - var(--_h))); }
+.wj-switch:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* --------------------------------------------------------------------------
+   Segmented control
+   -------------------------------------------------------------------------- */
+
+.wj-segmented {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  background-color: var(--wj-surface-inset);
+  border-radius: var(--wj-radius-md);
+  border: 1px solid var(--wj-border-subtle);
+}
+.wj-segmented__item {
+  appearance: none;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: var(--wj-text-caption);
+  font-weight: var(--wj-weight-medium);
+  color: var(--wj-fg-muted);
+  padding: var(--wj-space-3) var(--wj-space-5);
+  border-radius: calc(var(--wj-radius-md) - 2px);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    color calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out),
+    background-color calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out);
+}
+.wj-segmented__item:hover { color: var(--wj-fg-default); }
+.wj-segmented__item[aria-selected='true'],
+.wj-segmented__item[data-selected='true'] {
+  background-color: var(--wj-surface-raised);
+  color: var(--wj-fg-default);
+  box-shadow: var(--wj-shadow-xs);
+}
+
+/* --------------------------------------------------------------------------
+   Badge / status pill / chip
+   -------------------------------------------------------------------------- */
+
+.wj-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wj-space-3);
+  padding: 2px var(--wj-space-4);
+  border-radius: var(--wj-radius-full);
+  font-size: var(--wj-text-2xs);
+  font-weight: var(--wj-weight-medium);
+  line-height: 18px;
+  white-space: nowrap;
+  background-color: var(--wj-surface-inset);
+  color: var(--wj-fg-muted);
+}
+.wj-badge[data-tone='accent']  { background-color: var(--wj-accent-subtle);  color: var(--wj-accent-fg); }
+.wj-badge[data-tone='success'] { background-color: var(--wj-success-subtle); color: var(--wj-success-fg); }
+.wj-badge[data-tone='warning'] { background-color: var(--wj-warning-subtle); color: var(--wj-warning-fg); }
+.wj-badge[data-tone='danger']  { background-color: var(--wj-danger-subtle);  color: var(--wj-danger-fg); }
+.wj-badge[data-tone='info']    { background-color: var(--wj-info-subtle);    color: var(--wj-info-fg); }
+.wj-badge[data-variant='solid'] { background-color: var(--wj-accent-solid); color: var(--wj-accent-on-solid); }
+
+/* A status is a colour AND a dot AND a word. Colour alone fails for the ~8% of
+   men with a colour vision deficiency, and fails everyone in bright sunlight
+   holding a phone — which is the driver app's normal condition. */
+.wj-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+
+.wj-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wj-space-4);
+  height: var(--wj-control-sm);
+  padding-inline: var(--wj-space-5);
+  border-radius: var(--wj-radius-full);
+  border: 1px solid var(--wj-border-default);
+  background-color: var(--wj-surface-raised);
+  font-size: var(--wj-text-caption);
+  cursor: pointer;
+  transition: all calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out);
+}
+.wj-chip:hover { border-color: var(--wj-border-strong); background-color: var(--wj-surface-hover); }
+.wj-chip[aria-pressed='true'],
+.wj-chip[data-selected='true'] {
+  background-color: var(--wj-accent-subtle);
+  border-color: var(--wj-accent-border);
+  color: var(--wj-accent-fg);
+}
+
+/* --------------------------------------------------------------------------
+   Card / Panel
+   -------------------------------------------------------------------------- */
+
+.wj-card {
+  background-color: var(--wj-surface-raised);
+  border: 1px solid var(--wj-border-subtle);
+  border-radius: var(--wj-radius-lg);
+  box-shadow: var(--wj-shadow-xs);
+}
+.wj-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wj-space-5);
+  padding: var(--wj-card-padding);
+  border-bottom: 1px solid var(--wj-border-subtle);
+}
+.wj-card__body { padding: var(--wj-card-padding); }
+.wj-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--wj-space-4);
+  padding: var(--wj-card-padding);
+  border-top: 1px solid var(--wj-border-subtle);
+  background-color: var(--wj-surface-sunken);
+  border-radius: 0 0 calc(var(--wj-radius-lg) - 1px) calc(var(--wj-radius-lg) - 1px);
+}
+
+/* Stat tile. Big number, small label, optional delta. The number is display
+   type because on a dashboard the number *is* the content. */
+.wj-stat { display: flex; flex-direction: column; gap: var(--wj-space-2); }
+.wj-stat__label {
+  font-size: var(--wj-text-caption);
+  color: var(--wj-fg-muted);
+  font-weight: var(--wj-weight-medium);
+}
+.wj-stat__value {
+  font-family: var(--wj-font-display);
+  font-size: var(--wj-text-title-lg);
+  font-weight: var(--wj-weight-semibold);
+  letter-spacing: var(--wj-tracking-tight);
+  line-height: var(--wj-leading-tight);
+  font-variant-numeric: tabular-nums;
+}
+.wj-stat__delta { font-size: var(--wj-text-caption); display: inline-flex; align-items: center; gap: var(--wj-space-2); }
+.wj-stat__delta[data-direction='up']   { color: var(--wj-success-fg); }
+.wj-stat__delta[data-direction='down'] { color: var(--wj-danger-fg); }
+.wj-stat__delta[data-direction='flat'] { color: var(--wj-fg-muted); }
+
+/* --------------------------------------------------------------------------
+   Table
+
+   Solid, always. This is the surface the tiered-glass rule exists to protect:
+   a hundred rows of small text over a blurred backdrop is unreadable and it is
+   the screen operators live on.
+   -------------------------------------------------------------------------- */
+
+.wj-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--wj-border-subtle);
+  border-radius: var(--wj-radius-lg);
+  background-color: var(--wj-surface-raised);
+}
+.wj-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: var(--wj-text-label); }
+
+.wj-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: var(--wj-z-raised);
+  text-align: start;
+  font-size: var(--wj-text-2xs);
+  font-weight: var(--wj-weight-semibold);
+  letter-spacing: var(--wj-tracking-wide);
+  text-transform: uppercase;
+  color: var(--wj-fg-subtle);
+  padding: var(--wj-space-4) var(--wj-space-6);
+  border-bottom: 1px solid var(--wj-border-default);
+  /* Veil tier: the header floats over rows as they scroll under it. This is
+     the only glass a table gets, and it is 1px tall's worth of blur. */
+  background-color: color-mix(in srgb, var(--wj-glass-floor) calc(var(--wj-glass-veil-alpha) * 100%), transparent);
+  -webkit-backdrop-filter: blur(var(--wj-glass-veil-blur)) saturate(var(--wj-glass-veil-saturate));
+  backdrop-filter: blur(var(--wj-glass-veil-blur)) saturate(var(--wj-glass-veil-saturate));
+}
+
+.wj-table tbody td {
+  padding: 0 var(--wj-space-6);
+  height: var(--wj-row-height);
+  border-bottom: 1px solid var(--wj-border-subtle);
+  vertical-align: middle;
+}
+.wj-table tbody tr:last-child td { border-bottom: none; }
+.wj-table tbody tr { transition: background-color calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out); }
+.wj-table tbody tr:hover { background-color: var(--wj-surface-hover); }
+.wj-table tbody tr[aria-selected='true'] { background-color: var(--wj-surface-selected); }
+
+.wj-table [data-align='end'] { text-align: end; font-variant-numeric: tabular-nums; }
+.wj-table [data-numeric='true'] { text-align: end; font-variant-numeric: tabular-nums; font-family: var(--wj-font-mono); font-size: var(--wj-text-xs); }
+
+/* --------------------------------------------------------------------------
+   Navigation
+   -------------------------------------------------------------------------- */
+
+/* Sidebar / rail — Pane tier. Persistent, so it never gets louder than this. */
+.wj-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wj-space-1);
+  padding: var(--wj-space-5);
+}
+.wj-nav__item {
+  display: flex;
+  align-items: center;
+  gap: var(--wj-space-5);
+  min-height: var(--wj-control-height);
+  padding: var(--wj-space-3) var(--wj-space-5);
+  border-radius: var(--wj-radius-md);
+  font-size: var(--wj-text-label);
+  font-weight: var(--wj-weight-medium);
+  color: var(--wj-fg-muted);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out);
+}
+.wj-nav__item:hover { background-color: var(--wj-surface-hover); color: var(--wj-fg-default); }
+.wj-nav__item[aria-current='page'],
+.wj-nav__item[data-active='true'] {
+  background-color: var(--wj-accent-subtle);
+  color: var(--wj-accent-fg);
+  font-weight: var(--wj-weight-semibold);
+}
+.wj-nav__group { margin-top: var(--wj-space-6); padding-inline: var(--wj-space-5); }
+
+/* App header — Pane tier, sticky. */
+.wj-header {
+  display: flex;
+  align-items: center;
+  gap: var(--wj-space-6);
+  height: 56px;
+  padding-inline: var(--wj-gutter);
+  position: sticky;
+  top: 0;
+  z-index: var(--wj-z-header);
+}
+
+/* Tab bar — consumer surfaces. Pane tier, floats over content, respects the
+   home indicator. */
+.wj-tabbar {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: var(--wj-z-header);
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  padding: var(--wj-space-3) var(--wj-space-4) calc(var(--wj-space-3) + env(safe-area-inset-bottom));
+  border-radius: 0;
+}
+.wj-tabbar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-height: var(--wj-touch-target);
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: var(--wj-text-3xs);
+  font-weight: var(--wj-weight-medium);
+  color: var(--wj-fg-subtle);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out);
+}
+.wj-tabbar__item[aria-current='page'] { color: var(--wj-accent-fg); }
+
+/* Tabs */
+.wj-tabs { display: flex; gap: var(--wj-space-2); border-bottom: 1px solid var(--wj-border-subtle); }
+.wj-tabs__tab {
+  appearance: none;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: var(--wj-text-label);
+  font-weight: var(--wj-weight-medium);
+  color: var(--wj-fg-muted);
+  padding: var(--wj-space-5) var(--wj-space-5);
+  cursor: pointer;
+  position: relative;
+  transition: color calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out);
+}
+.wj-tabs__tab:hover { color: var(--wj-fg-default); }
+.wj-tabs__tab[aria-selected='true'] { color: var(--wj-fg-default); }
+.wj-tabs__tab[aria-selected='true']::after {
+  content: '';
+  position: absolute;
+  inset-inline: var(--wj-space-4);
+  bottom: -1px;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background-color: var(--wj-accent-solid);
+}
+
+/* Breadcrumb */
+.wj-crumbs { display: flex; align-items: center; gap: var(--wj-space-3); font-size: var(--wj-text-caption); color: var(--wj-fg-muted); }
+.wj-crumbs a { color: inherit; text-decoration: none; }
+.wj-crumbs a:hover { color: var(--wj-fg-default); text-decoration: underline; }
+.wj-crumbs__sep { color: var(--wj-fg-disabled); }
+
+/* --------------------------------------------------------------------------
+   Layers: sheet, modal, popover, toast, tooltip
+   -------------------------------------------------------------------------- */
+
+/* Positioning note for all three dialog layers below.
+   The UA gives <dialog> `margin: auto` and, when modal, `inset-block: 0`.
+   Fighting that with top/left + translate leaves the box off-centre, because
+   the auto margins still get a say. Centring THROUGH the UA rules instead —
+   `inset: 0` plus `margin: auto` plus an intrinsic height — is both shorter and
+   correct, and it keeps working when the content grows. */
+
+.wj-modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  height: fit-content;
+  z-index: var(--wj-z-modal);
+  width: min(560px, calc(100vw - var(--wj-space-9)));
+  max-height: min(85vh, 720px);
+  overflow: auto;
+  border-radius: var(--wj-radius-2xl);
+  padding: var(--wj-space-9);
+}
+
+.wj-sheet {
+  position: fixed;
+  inset: auto 0 0 0;
+  margin: 0;
+  z-index: var(--wj-z-modal);
+  width: 100%;
+  max-height: 92vh;
+  overflow: auto;
+  border-radius: var(--wj-radius-3xl) var(--wj-radius-3xl) 0 0;
+  padding: var(--wj-space-8) var(--wj-gutter) calc(var(--wj-space-8) + env(safe-area-inset-bottom));
+}
+/* Grab handle. Tells the thumb this is draggable before anyone tries. */
+.wj-sheet__handle {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--wj-border-strong);
+  margin: 0 auto var(--wj-space-6);
+}
+
+/* Side sheet — the console's detail pane. */
+.wj-sheet[data-side='end'] {
+  inset: 0 0 0 auto;
+  width: min(480px, 100vw);
+  max-height: none;
+  height: auto;
+  border-radius: var(--wj-radius-2xl) 0 0 var(--wj-radius-2xl);
+}
+
+.wj-popover {
+  position: absolute;
+  z-index: var(--wj-z-popover);
+  min-width: 180px;
+  padding: var(--wj-space-4);
+  border-radius: var(--wj-radius-lg);
+}
+
+.wj-menu { display: flex; flex-direction: column; gap: 1px; }
+.wj-menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--wj-space-5);
+  min-height: var(--wj-control-md);
+  padding: var(--wj-space-3) var(--wj-space-5);
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: var(--wj-text-label);
+  color: var(--wj-fg-default);
+  text-align: start;
+  border-radius: var(--wj-radius-sm);
+  cursor: pointer;
+  transition: background-color calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out);
+}
+.wj-menu__item:hover { background-color: var(--wj-surface-hover); }
+.wj-menu__item[data-tone='danger'] { color: var(--wj-danger-fg); }
+.wj-menu__item[data-tone='danger']:hover { background-color: var(--wj-danger-subtle); }
+.wj-menu__sep { height: 1px; background-color: var(--wj-border-subtle); margin: var(--wj-space-3) 0; }
+
+.wj-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--wj-space-5);
+  width: min(400px, calc(100vw - var(--wj-space-9)));
+  padding: var(--wj-space-5) var(--wj-space-6);
+  border-radius: var(--wj-radius-lg);
+  z-index: var(--wj-z-toast);
+}
+
+.wj-tooltip {
+  position: absolute;
+  z-index: var(--wj-z-tooltip);
+  padding: var(--wj-space-3) var(--wj-space-4);
+  border-radius: var(--wj-radius-sm);
+  font-size: var(--wj-text-caption);
+  background-color: var(--wj-fg-default);
+  color: var(--wj-surface-raised);
+  pointer-events: none;
+  max-width: 260px;
+}
+
+/* Command palette — Shell tier, the most glass in the product. */
+.wj-command {
+  position: fixed;
+  inset: 14vh 0 auto 0;
+  margin-inline: auto;
+  z-index: var(--wj-z-modal);
+  width: min(640px, calc(100vw - var(--wj-space-9)));
+  border-radius: var(--wj-radius-2xl);
+  overflow: hidden;
+}
+.wj-command__input {
+  width: 100%;
+  border: none;
+  background: none;
+  padding: var(--wj-space-7) var(--wj-space-8);
+  font: inherit;
+  font-size: var(--wj-text-lg);
+  color: var(--wj-fg-default);
+  border-bottom: 1px solid var(--wj-glass-hairline);
+}
+.wj-command__input:focus { outline: none; }
+.wj-command__list { max-height: 340px; overflow-y: auto; padding: var(--wj-space-4); }
+
+/* --------------------------------------------------------------------------
+   Feedback: alert, empty, skeleton, progress
+   -------------------------------------------------------------------------- */
+
+.wj-alert {
+  display: flex;
+  gap: var(--wj-space-5);
+  padding: var(--wj-space-5) var(--wj-space-6);
+  border-radius: var(--wj-radius-md);
+  font-size: var(--wj-text-label);
+  border: 1px solid transparent;
+}
+.wj-alert[data-tone='info']    { background-color: var(--wj-info-subtle);    border-color: var(--wj-info-border);    color: var(--wj-info-fg); }
+.wj-alert[data-tone='success'] { background-color: var(--wj-success-subtle); border-color: var(--wj-success-border); color: var(--wj-success-fg); }
+.wj-alert[data-tone='warning'] { background-color: var(--wj-warning-subtle); border-color: var(--wj-warning-border); color: var(--wj-warning-fg); }
+.wj-alert[data-tone='danger']  { background-color: var(--wj-danger-subtle);  border-color: var(--wj-danger-border);  color: var(--wj-danger-fg); }
+.wj-alert__title { font-weight: var(--wj-weight-semibold); }
+.wj-alert__body { color: var(--wj-fg-default); }
+
+.wj-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--wj-space-5);
+  padding: var(--wj-space-13) var(--wj-space-8);
+  max-width: 42ch;
+  margin-inline: auto;
+}
+.wj-empty__icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--wj-radius-xl);
+  background-color: var(--wj-surface-inset);
+  color: var(--wj-fg-subtle);
+  margin-bottom: var(--wj-space-2);
+}
+
+/* Skeletons animate a sheen, not an opacity pulse: a pulse reads as something
+   broken and blinking, a sheen reads as something arriving. */
+.wj-skeleton {
+  border-radius: var(--wj-radius-sm);
+  background-color: var(--wj-surface-inset);
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--wj-fg-default) 6%, transparent),
+    transparent
+  );
+  background-size: 220% 100%;
+  animation: wj-sheen 1.4s var(--wj-ease-in-out) infinite;
+}
+@keyframes wj-sheen { from { background-position: 120% 0; } to { background-position: -120% 0; } }
+@media (prefers-reduced-motion: reduce) { .wj-skeleton { animation: none; } }
+
+.wj-progress {
+  height: 6px;
+  border-radius: var(--wj-radius-full);
+  background-color: var(--wj-surface-inset);
+  overflow: hidden;
+}
+.wj-progress__fill {
+  height: 100%;
+  border-radius: inherit;
+  background-color: var(--wj-accent-solid);
+  transition: width calc(var(--wj-dur-slow) * var(--wj-motion-scale, 1)) var(--wj-ease-glass);
+}
+
+.wj-spinner {
+  width: var(--wj-icon-lg);
+  height: var(--wj-icon-lg);
+  border-radius: 50%;
+  border: 2px solid var(--wj-border-default);
+  border-top-color: var(--wj-accent-solid);
+  animation: wj-spin 620ms linear infinite;
+}
+
+/* --------------------------------------------------------------------------
+   Avatar
+   -------------------------------------------------------------------------- */
+
+.wj-avatar {
+  --_s: 32px;
+  width: var(--_s);
+  height: var(--_s);
+  flex: none;
+  border-radius: var(--wj-radius-full);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background-color: var(--wj-accent-subtle);
+  color: var(--wj-accent-fg);
+  font-size: calc(var(--_s) * 0.38);
+  font-weight: var(--wj-weight-semibold);
+  user-select: none;
+}
+.wj-avatar[data-size='sm'] { --_s: 24px; }
+.wj-avatar[data-size='lg'] { --_s: 40px; }
+.wj-avatar[data-size='xl'] { --_s: 64px; }
+.wj-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --------------------------------------------------------------------------
+   Layout helpers
+
+   A deliberately short list. Anything longer becomes a utility framework, and
+   a design system that ships a utility framework stops being able to change
+   its own layout decisions.
+   -------------------------------------------------------------------------- */
+
+.wj-stack { display: flex; flex-direction: column; gap: var(--wj-space-6); }
+.wj-stack[data-gap='sm'] { gap: var(--wj-space-4); }
+.wj-stack[data-gap='lg'] { gap: var(--wj-space-9); }
+.wj-row { display: flex; align-items: center; gap: var(--wj-space-5); }
+.wj-row[data-justify='between'] { justify-content: space-between; }
+.wj-row[data-wrap='true'] { flex-wrap: wrap; }
+.wj-spacer { flex: 1 1 auto; }
+.wj-grid { display: grid; gap: var(--wj-gutter); }
+.wj-section { display: flex; flex-direction: column; gap: var(--wj-section-gap); }
+.wj-container { width: 100%; max-width: var(--wj-container-lg); margin-inline: auto; padding-inline: var(--wj-gutter); }
+.wj-divider { height: 1px; background-color: var(--wj-border-subtle); border: none; margin: 0; }
+
+/* Screen-reader-only. Present in the kit because the alternative is every
+   surface reinventing it slightly wrong. */
+.wj-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

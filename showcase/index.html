@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en" data-wj-register="operator" data-wj-density="comfortable">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wash Junkie · Design System</title>
+
+<!-- The showcase links the REAL stylesheets rather than a copy. If something
+     renders wrong here, it is wrong in the product. -->
+<link rel="stylesheet" href="../tokens/dist/wj-tokens.css">
+<link rel="stylesheet" href="../css/wj-material.css">
+<link rel="stylesheet" href="../css/wj-components.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* Showcase chrome only. Nothing here is part of the system. */
+  body { margin: 0; }
+  .doc { max-width: 1100px; margin-inline: auto; padding: var(--wj-space-12) var(--wj-space-8) var(--wj-space-15); }
+  section { scroll-margin-top: 92px; padding-block: var(--wj-space-12); border-top: 1px solid var(--wj-border-subtle); }
+  section:first-of-type { border-top: none; }
+  h2 { font-family: var(--wj-font-display); font-size: var(--wj-text-2xl); letter-spacing: -.02em; margin: 0 0 var(--wj-space-3); }
+  h3 { font-family: var(--wj-font-display); font-size: var(--wj-text-lg); margin: var(--wj-space-9) 0 var(--wj-space-5); }
+  .lede { color: var(--wj-fg-muted); max-width: 66ch; margin: 0 0 var(--wj-space-8); font-size: var(--wj-text-lg); line-height: 1.55; }
+  .note { color: var(--wj-fg-muted); font-size: var(--wj-text-caption); max-width: 72ch; line-height: 1.6; }
+  .demo { display: flex; flex-wrap: wrap; gap: var(--wj-space-5); align-items: center; padding: var(--wj-space-7); border: 1px dashed var(--wj-border-default); border-radius: var(--wj-radius-lg); background: var(--wj-surface-sunken); }
+  .cols { display: grid; gap: var(--wj-space-6); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  code { font-family: var(--wj-font-mono); font-size: .86em; background: var(--wj-surface-inset); padding: 1px 5px; border-radius: 4px; }
+
+  /* A deliberately loud backdrop. Glass has nothing to refract over a flat
+     grey, and every legibility problem hides there too. */
+  .stage {
+    position: relative; border-radius: var(--wj-radius-xl); overflow: hidden;
+    padding: var(--wj-space-11) var(--wj-space-8); min-height: 300px;
+    display: flex; flex-direction: column; gap: var(--wj-space-6); align-items: center; justify-content: center;
+    background:
+      radial-gradient(60% 80% at 12% 18%, #2cbec5 0%, transparent 60%),
+      radial-gradient(50% 70% at 82% 22%, #7b5cff 0%, transparent 62%),
+      radial-gradient(70% 90% at 68% 88%, #ff9f43 0%, transparent 58%),
+      radial-gradient(60% 70% at 24% 82%, #14e0a0 0%, transparent 60%),
+      #0d1b2a;
+  }
+  .stage::after {
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background: repeating-linear-gradient(115deg, rgba(255,255,255,.09) 0 2px, transparent 2px 16px);
+  }
+  .stage > * { position: relative; z-index: 1; }
+
+  .swatches { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2px; }
+  .sw { aspect-ratio: 1 / 1.5; border-radius: 3px; position: relative; }
+  .sw span { position: absolute; inset-inline: 0; bottom: 3px; text-align: center; font-size: 9px; font-family: var(--wj-font-mono); color: rgba(255,255,255,.75); }
+  .sw:nth-child(-n+7) span { color: rgba(0,0,0,.45); }
+  .ramp-row { display: grid; grid-template-columns: 68px 1fr; gap: var(--wj-space-5); align-items: center; margin-bottom: var(--wj-space-4); }
+  .ramp-name { font-size: var(--wj-text-caption); font-weight: 600; }
+
+  .tokrow { display: flex; align-items: center; gap: var(--wj-space-5); padding: var(--wj-space-3) 0; border-bottom: 1px solid var(--wj-border-subtle); font-size: var(--wj-text-caption); }
+  .tokrow code { flex: none; min-width: 210px; background: none; padding: 0; color: var(--wj-accent-fg); }
+
+  .iconcell { display: flex; flex-direction: column; align-items: center; gap: var(--wj-space-3); padding: var(--wj-space-6) var(--wj-space-3); border: 1px solid var(--wj-border-subtle); border-radius: var(--wj-radius-md); font-size: 10px; color: var(--wj-fg-subtle); }
+
+  .toc { display: flex; flex-wrap: wrap; gap: var(--wj-space-3); }
+  .toc a { text-decoration: none; }
+</style>
+</head>
+
+<body class="wj-root">
+
+<!-- ============================ Toolbar ============================ -->
+<div class="wj-glass" data-tier="pane" data-sticky="true" style="border-radius:0;padding:var(--wj-space-5) var(--wj-space-8);">
+  <div style="max-width:1100px;margin-inline:auto;display:flex;align-items:center;gap:var(--wj-space-6);flex-wrap:wrap;">
+    <span id="brandmark" style="display:inline-flex;color:var(--wj-brand-mark)"></span>
+    <strong class="wj-label" style="font-family:var(--wj-font-display)">Design System</strong>
+    <span class="wj-badge" data-tone="accent">v1.0</span>
+    <span class="wj-spacer"></span>
+
+    <a class="wj-btn" data-variant="secondary" data-size="sm" href="brand.html">Brand guide →</a>
+
+    <div class="wj-segmented" role="tablist" aria-label="Theme">
+      <button class="wj-segmented__item" data-theme-set="light">Light</button>
+      <button class="wj-segmented__item" data-theme-set="dark">Dark</button>
+      <button class="wj-segmented__item" data-theme-set="system" data-selected="true">Auto</button>
+    </div>
+
+    <div class="wj-segmented" role="tablist" aria-label="Register">
+      <button class="wj-segmented__item" data-register-set="operator" data-selected="true">Operator</button>
+      <button class="wj-segmented__item" data-register-set="consumer">Consumer</button>
+    </div>
+
+    <div class="wj-segmented" role="tablist" aria-label="Density">
+      <button class="wj-segmented__item" data-density-set="comfortable" data-selected="true">Comfortable</button>
+      <button class="wj-segmented__item" data-density-set="compact">Compact</button>
+    </div>
+
+    <label class="wj-row" style="gap:var(--wj-space-3)">
+      <span class="wj-caption">Business accent</span>
+      <input id="accent" type="range" min="0" max="360" value="200" style="width:110px" aria-label="Business accent hue">
+      <button class="wj-btn" data-variant="ghost" data-size="sm" id="accent-reset">Reset</button>
+    </label>
+  </div>
+</div>
+
+<main class="doc">
+
+  <!-- ============================ Intro ============================ -->
+  <section id="top" style="padding-top:var(--wj-space-9)">
+    <p class="wj-eyebrow">Wash Junkie</p>
+    <h1 class="wj-display" style="margin:var(--wj-space-4) 0 var(--wj-space-6)">Liquid Glass,<br>from the console to the kerb.</h1>
+    <p class="lede">
+      One material language across five surfaces — the Service Provider Console, the Customer App, the Driver App,
+      the Agent Console, and everything public-facing. Glass carries the chrome; data stays solid. Every colour,
+      space, and duration below comes from one generated source of truth.
+    </p>
+    <nav class="toc">
+      <a class="wj-chip" href="#brand">Brand</a>
+      <a class="wj-chip" href="#colour">Colour</a>
+      <a class="wj-chip" href="#type">Typography</a>
+      <a class="wj-chip" href="#space">Space &amp; shape</a>
+      <a class="wj-chip" href="#material">Liquid Glass</a>
+      <a class="wj-chip" href="#motion">Motion</a>
+      <a class="wj-chip" href="#icons">Icons</a>
+      <a class="wj-chip" href="#kit">UI kit</a>
+      <a class="wj-chip" href="#patterns">Patterns</a>
+      <a class="wj-chip" href="#registers">Registers</a>
+    </nav>
+  </section>
+
+  <!-- ============================ Brand ============================ -->
+  <section id="brand">
+    <h2>Brand</h2>
+    <p class="lede">The mark renders in <code>currentColor</code>, so one asset serves every context. It never takes a business's accent — the workspace can be orange; Wash Junkie stays Wash Junkie.</p>
+
+    <div class="cols">
+      <!-- Light-locked on purpose: this card demonstrates the mark on white, so
+           it must not follow the viewer's theme. -->
+      <div class="wj-card"><div class="wj-card__body" style="display:grid;place-items:center;min-height:130px;background:#ffffff">
+        <span id="logo-brand" style="color:var(--wj-brand-mark)"></span>
+      </div><div class="wj-card__footer" style="justify-content:flex-start"><span class="wj-caption">Brand teal on white</span></div></div>
+
+      <div class="wj-card"><div class="wj-card__body" style="display:grid;place-items:center;min-height:130px;background:#0b1013">
+        <span id="logo-white" style="color:#fff"></span>
+      </div><div class="wj-card__footer" style="justify-content:flex-start"><span class="wj-caption">Reversed on ink</span></div></div>
+
+      <div class="wj-card" style="overflow:hidden"><div class="stage" style="min-height:130px;border-radius:0;padding:var(--wj-space-8)">
+        <span id="logo-glass" style="color:#fff"></span>
+      </div><div class="wj-card__footer" style="justify-content:flex-start"><span class="wj-caption">Over imagery — reversed, always</span></div></div>
+    </div>
+
+    <h3>Clear space &amp; minimum size</h3>
+    <div class="demo" style="gap:var(--wj-space-12)">
+      <div style="text-align:center">
+        <div style="display:inline-block;padding:12px;outline:1px dashed var(--wj-accent-border);outline-offset:0">
+          <span id="logo-clear" style="color:var(--wj-brand-mark);display:block"></span>
+        </div>
+        <p class="wj-caption" style="margin-top:8px">Clear space = 0.45 × height</p>
+      </div>
+      <div style="text-align:center">
+        <span id="mark-min" style="color:var(--wj-brand-mark)"></span>
+        <p class="wj-caption" style="margin-top:8px">Mark floor: 16px tall</p>
+      </div>
+      <div style="text-align:center">
+        <span id="logo-min" style="color:var(--wj-brand-mark)"></span>
+        <p class="wj-caption" style="margin-top:8px">Lock-up floor: 18px tall</p>
+      </div>
+    </div>
+    <p class="note" style="margin-top:var(--wj-space-5)">Below the lock-up floor the wordmark's counters fill in and it reads as a smudge. Under 18px, use the mark alone.</p>
+  </section>
+
+  <!-- ============================ Colour ============================ -->
+  <section id="colour">
+    <h2>Colour</h2>
+    <p class="lede">Six families, twelve steps each, generated in OKLCH. Step numbers mean the same thing in every family and in both themes — which is what lets a component be re-tinted without anyone re-checking contrast.</p>
+
+    <div id="ramps"></div>
+
+    <h3>The brand teal is a mark colour, not a button colour</h3>
+    <div class="demo" style="align-items:stretch">
+      <div style="flex:1;min-width:220px">
+        <div style="height:64px;border-radius:var(--wj-radius-md);background:#2cbec5;display:grid;place-items:center;color:#fff;font-weight:600">Aa — 2.1:1 ✗</div>
+        <p class="wj-caption" style="margin-top:6px"><code>#2cbec5</code> · the logo teal, with white text</p>
+      </div>
+      <div style="flex:1;min-width:220px">
+        <div style="height:64px;border-radius:var(--wj-radius-md);background:var(--wj-accent-solid);display:grid;place-items:center;color:#fff;font-weight:600">Aa — 4.6:1 ✓</div>
+        <p class="wj-caption" style="margin-top:6px"><code>--wj-accent-solid</code> · aqua-9, the interactive teal</p>
+      </div>
+    </div>
+    <p class="note" style="margin-top:var(--wj-space-5)">
+      At 73% lightness the logo teal carries white text at about 2:1. Shipping it as the primary button would put the
+      most-pressed control in the product below AA. Step 9 sits at 54% lightness for exactly this reason, and
+      <code>build.mjs --check</code> re-proves it on every build.
+    </p>
+
+    <h3>Semantic roles</h3>
+    <p class="note" style="margin-bottom:var(--wj-space-6)">Product code only ever touches this layer. A component that reaches past it into a raw ramp step will look right today and wrong the moment the theme flips.</p>
+    <div id="semantic" class="cols"></div>
+  </section>
+
+  <!-- ============================ Type ============================ -->
+  <section id="type">
+    <h2>Typography</h2>
+    <p class="lede">Inter where legibility rules — tables, forms, body. Outfit where the brand speaks — headlines, empty states, the number on a dashboard tile. JetBrains Mono for anything that has to align down a column.</p>
+
+    <div class="wj-card"><div class="wj-card__body wj-stack">
+      <div><p class="wj-eyebrow">Display · Outfit</p><p class="wj-display" style="margin:4px 0">Every load, tracked.</p></div>
+      <div><p class="wj-eyebrow">Title · Outfit</p><p class="wj-title" style="margin:4px 0">Orders in wash today</p></div>
+      <div><p class="wj-eyebrow">Title small</p><p class="wj-title-sm" style="margin:4px 0">Sunshine Laundry, Ikeja</p></div>
+      <div><p class="wj-eyebrow">Body · Inter</p><p class="wj-body" style="margin:4px 0;max-width:62ch">Body copy carries the product. It sits at 15px in the operator register and 17px in the consumer register, and it is the one role that never changes typeface.</p></div>
+      <div><p class="wj-eyebrow">Label</p><p class="wj-label" style="margin:4px 0">Pickup window</p></div>
+      <div><p class="wj-eyebrow">Caption</p><p class="wj-caption" style="margin:4px 0">Updated 4 minutes ago by Chidera</p></div>
+      <div><p class="wj-eyebrow">Numeric · JetBrains Mono</p><p class="wj-mono" style="margin:4px 0">₦148,250.00 &nbsp; ZABN7V6 &nbsp; 04:12:38</p></div>
+    </div></div>
+
+    <p class="note" style="margin-top:var(--wj-space-5)">
+      Roles, not sizes. <code>wj-title</code> means "this is the title of the thing" — the register decides how big
+      that is. A component that hard-codes 24px has quietly opted out of the consumer surface.
+    </p>
+  </section>
+
+  <!-- ============================ Space ============================ -->
+  <section id="space">
+    <h2>Space &amp; shape</h2>
+    <p class="lede">A 4px grid, and two radius scales the register switches between. Operator surfaces are crisper; consumer surfaces are softer.</p>
+    <div class="cols">
+      <div><h3 style="margin-top:0">Space</h3><div id="spaces"></div></div>
+      <div><h3 style="margin-top:0">Radius <span class="wj-caption" id="reg-label">(operator)</span></h3><div class="demo" id="radii" style="background:none;border-style:solid"></div></div>
+    </div>
+    <p class="note" style="margin-top:var(--wj-space-6)">
+      Concentric rounding: an inner radius equals the outer radius minus the padding between them. A 16px card with
+      12px padding takes an 8px inner radius, not another 16 — matched radii at different insets read as a mistake.
+    </p>
+  </section>
+
+  <!-- ============================ Material ============================ -->
+  <section id="material">
+    <h2>Liquid Glass</h2>
+    <p class="lede">
+      Four optical properties, and all four have to be present: the backdrop <strong>refracts</strong> (blur),
+      it <strong>saturates</strong>, light catches the <strong>rim</strong>, and the surface casts a
+      <strong>shadow</strong>. What is not on that list is transparency.
+    </p>
+
+    <div class="stage">
+      <div class="wj-glass" data-tier="veil" data-over="media" style="padding:var(--wj-space-6) var(--wj-space-8);width:min(520px,100%)">
+        <p class="wj-eyebrow" style="color:inherit;opacity:.7">Tier 1 · Veil — blur 14</p>
+        <p class="wj-label" style="margin:4px 0 0">Inline chrome. Sticky table headers, toolbars, floating chips.</p>
+      </div>
+      <div class="wj-glass" data-tier="pane" data-over="media" style="padding:var(--wj-space-6) var(--wj-space-8);width:min(520px,100%)">
+        <p class="wj-eyebrow" style="color:inherit;opacity:.7">Tier 2 · Pane — blur 24</p>
+        <p class="wj-label" style="margin:4px 0 0">Persistent structure. Nav rail, app header, tab bar.</p>
+      </div>
+      <div class="wj-glass" data-tier="shell" data-over="media" style="padding:var(--wj-space-6) var(--wj-space-8);width:min(520px,100%)">
+        <p class="wj-eyebrow" style="color:inherit;opacity:.7">Tier 3 · Shell — blur 40</p>
+        <p class="wj-label" style="margin:4px 0 0">A layer that arrived. Modals, sheets, popovers, the palette.</p>
+      </div>
+    </div>
+
+    <h3>Tints</h3>
+    <div class="stage" style="min-height:auto;flex-direction:row;flex-wrap:wrap;gap:var(--wj-space-5)">
+      <div class="wj-glass" data-tier="shell" data-tint="brand"   data-over="media" style="padding:var(--wj-space-6);min-width:130px"><span class="wj-label">Brand</span></div>
+      <div class="wj-glass" data-tier="shell" data-tint="accent"  data-over="media" style="padding:var(--wj-space-6);min-width:130px"><span class="wj-label">Accent</span></div>
+      <div class="wj-glass" data-tier="shell" data-tint="success" data-over="media" style="padding:var(--wj-space-6);min-width:130px"><span class="wj-label">Success</span></div>
+      <div class="wj-glass" data-tier="shell" data-tint="warning" data-over="media" style="padding:var(--wj-space-6);min-width:130px"><span class="wj-label">Warning</span></div>
+      <div class="wj-glass" data-tier="shell" data-tint="danger"  data-over="media" style="padding:var(--wj-space-6);min-width:130px"><span class="wj-label">Danger</span></div>
+    </div>
+
+    <h3>Tier 0 exists, and it is where the data lives</h3>
+    <div class="demo" style="background:none">
+      <div class="wj-glass" data-tier="solid" style="padding:var(--wj-space-7);flex:1;min-width:260px">
+        <p class="wj-label" style="margin:0 0 4px">Solid</p>
+        <p class="wj-caption" style="margin:0">Tables, forms, long-form text, anything a person reads for minutes rather than glances at.</p>
+      </div>
+    </div>
+    <p class="note" style="margin-top:var(--wj-space-5)">
+      A hundred rows of 13px text over a blurred backdrop is unreadable, and it is the screen operators live on all
+      day. The tiering is not a stylistic preference — it is what makes glass safe to adopt in a data product.
+    </p>
+
+    <h3>Three ways it turns itself off</h3>
+    <div class="cols">
+      <div class="wj-card"><div class="wj-card__body"><p class="wj-label">No <code>backdrop-filter</code></p><p class="wj-caption">Falls back to the opaque glass floor with a real border. Nothing moves.</p></div></div>
+      <div class="wj-card"><div class="wj-card__body"><p class="wj-label"><code>prefers-reduced-transparency</code></p><p class="wj-caption">Blur goes entirely. The specular rim stays — it is what still communicates layering.</p></div></div>
+      <div class="wj-card"><div class="wj-card__body"><p class="wj-label"><code>forced-colors</code></p><p class="wj-caption">Real borders replace the material, so layer boundaries survive when colour is stripped.</p></div></div>
+    </div>
+  </section>
+
+  <!-- ============================ Motion ============================ -->
+  <section id="motion">
+    <h2>Motion</h2>
+    <p class="lede">Glass moves like something with mass in a viscous medium: it leaves quickly, glides, and stops dead. The one exception is <code>--wj-ease-fluid</code>, a sampled spring that overshoots about 4% — used where the material settles into place.</p>
+    <div class="demo">
+      <button class="wj-btn" data-variant="secondary" data-play="wj-enter-shell">Shell in</button>
+      <button class="wj-btn" data-variant="secondary" data-play="wj-enter-sheet">Sheet in</button>
+      <button class="wj-btn" data-variant="secondary" data-play="wj-enter-settle">Settle (spring)</button>
+      <div id="motion-stage" class="wj-glass" data-tier="shell" style="padding:var(--wj-space-7) var(--wj-space-9);margin-inline-start:auto">
+        <span class="wj-label">Wash Junkie</span>
+      </div>
+    </div>
+    <div id="durations" style="margin-top:var(--wj-space-7)"></div>
+  </section>
+
+  <!-- ============================ Icons ============================ -->
+  <section id="icons">
+    <h2>Icons</h2>
+    <p class="lede">24px grid, 1.75px stroke, round caps and joins, stroked never filled — so one file works at every size and inherits <code>currentColor</code>. Generic icons come from Lucide; what ships here is the set Lucide has no reason to draw.</p>
+    <div id="iconset" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:var(--wj-space-4)"></div>
+  </section>
+
+  <!-- ============================ UI kit ============================ -->
+  <section id="kit">
+    <h2>UI kit</h2>
+
+    <h3>Buttons</h3>
+    <div class="demo">
+      <button class="wj-btn" data-variant="primary">Create order</button>
+      <button class="wj-btn" data-variant="secondary">Cancel</button>
+      <button class="wj-btn" data-variant="subtle">Assign driver</button>
+      <button class="wj-btn" data-variant="ghost">Skip</button>
+      <button class="wj-btn" data-variant="danger">Refund</button>
+      <button class="wj-btn" data-variant="danger-ghost">Delete</button>
+      <button class="wj-btn" data-variant="primary" data-loading="true"><span>Saving</span></button>
+      <button class="wj-btn" data-variant="primary" disabled>Disabled</button>
+    </div>
+    <div class="demo" style="margin-top:var(--wj-space-4)">
+      <button class="wj-btn" data-variant="primary" data-size="sm">Small</button>
+      <button class="wj-btn" data-variant="primary">Medium</button>
+      <button class="wj-btn" data-variant="primary" data-size="lg">Large</button>
+      <button class="wj-btn" data-variant="primary" data-size="xl">Extra large</button>
+    </div>
+    <div class="stage" style="min-height:auto;flex-direction:row;gap:var(--wj-space-4);padding:var(--wj-space-8)">
+      <button class="wj-btn" data-variant="glass">Glass button</button>
+      <button class="wj-btn" data-variant="glass" data-size="lg">Over media only</button>
+    </div>
+
+    <h3>Forms</h3>
+    <div class="wj-card"><div class="wj-card__body cols">
+      <div class="wj-field">
+        <label class="wj-field__label" for="d1">Customer name</label>
+        <input class="wj-input" id="d1" placeholder="Ada Nwosu">
+        <p class="wj-field__help">As it should appear on the receipt.</p>
+      </div>
+      <div class="wj-field">
+        <label class="wj-field__label" for="d2">Phone</label>
+        <div class="wj-input-group">
+          <span class="wj-input-group__affix" data-side="start">+234</span>
+          <input class="wj-input" id="d2" placeholder="801 234 5678" style="padding-inline-start:56px">
+        </div>
+      </div>
+      <div class="wj-field">
+        <label class="wj-field__label" for="d3">Service</label>
+        <select class="wj-select" id="d3"><option>Wash &amp; fold</option><option>Dry clean</option><option>Press only</option></select>
+      </div>
+      <div class="wj-field">
+        <label class="wj-field__label" for="d4">Pickup window</label>
+        <input class="wj-input" id="d4" value="Tomorrow, 9–11am" aria-invalid="true">
+        <p class="wj-field__error" role="alert">That window is fully booked. Try after 2pm.</p>
+      </div>
+      <div class="wj-field">
+        <label class="wj-field__label" for="d5" data-optional="true">Note to the wash house</label>
+        <textarea class="wj-textarea" id="d5" placeholder="Separate the whites…"></textarea>
+      </div>
+      <div class="wj-stack" data-gap="sm">
+        <label class="wj-check"><input type="checkbox" checked><span><span class="wj-check__text">Send SMS on completion</span><span class="wj-check__help">Charged at ₦4 per message.</span></span></label>
+        <label class="wj-check"><input type="checkbox"><span><span class="wj-check__text">Priority handling</span></span></label>
+        <div class="wj-row"><button class="wj-switch" role="switch" aria-checked="true"></button><span class="wj-label">Accept online orders</span></div>
+        <div class="wj-row"><button class="wj-switch" role="switch" aria-checked="false"></button><span class="wj-label">Pause pickups</span></div>
+      </div>
+    </div></div>
+
+    <h3>Status &amp; data</h3>
+    <div class="demo">
+      <span class="wj-badge" data-tone="info" ><span class="wj-badge__dot"></span>New</span>
+      <span class="wj-badge" data-tone="accent"><span class="wj-badge__dot"></span>In wash</span>
+      <span class="wj-badge" data-tone="warning"><span class="wj-badge__dot"></span>Awaiting pickup</span>
+      <span class="wj-badge" data-tone="success"><span class="wj-badge__dot"></span>Delivered</span>
+      <span class="wj-badge" data-tone="danger"><span class="wj-badge__dot"></span>Failed</span>
+      <span class="wj-badge">Draft</span>
+      <span class="wj-avatar">AN</span>
+      <span class="wj-avatar" data-size="lg">CO</span>
+      <span class="wj-chip">Ikeja</span>
+      <span class="wj-chip" aria-pressed="true">Lekki</span>
+    </div>
+
+    <div class="wj-card" style="margin-top:var(--wj-space-6)"><div class="wj-card__body" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--wj-space-8)">
+      <div class="wj-stat"><span class="wj-stat__label">Revenue today</span><span class="wj-stat__value">₦412,900</span><span class="wj-stat__delta" data-direction="up">↑ 12.4%</span></div>
+      <div class="wj-stat"><span class="wj-stat__label">Orders in wash</span><span class="wj-stat__value">38</span><span class="wj-stat__delta" data-direction="flat">→ same</span></div>
+      <div class="wj-stat"><span class="wj-stat__label">Refunds</span><span class="wj-stat__value">4</span><span class="wj-stat__delta" data-direction="down">↑ 2</span></div>
+      <div class="wj-stat"><span class="wj-stat__label">Wash Credit</span><span class="wj-stat__value">18,240</span><span class="wj-stat__delta" data-direction="down">↓ 3,100</span></div>
+    </div></div>
+    <p class="note" style="margin-top:var(--wj-space-4)">Refunds up is coloured as a decline, not a rise. A dashboard that paints every increase green quietly lies to the operator.</p>
+
+    <h3>Table</h3>
+    <div class="wj-table-wrap" style="max-height:280px;overflow-y:auto">
+      <table class="wj-table">
+        <thead><tr><th>Order</th><th>Customer</th><th>Outlet</th><th>Status</th><th data-align="end">Total</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+
+    <h3>Feedback</h3>
+    <div class="wj-stack">
+      <div class="wj-alert" data-tone="info"><div><div class="wj-alert__title">Pickups resume at 2pm</div><div class="wj-alert__body">The Ikeja van is in for servicing this morning.</div></div></div>
+      <div class="wj-alert" data-tone="warning"><div><div class="wj-alert__title">Wash Credit is running low</div><div class="wj-alert__body">About 3 days left at your current rate. Top up to keep online orders flowing.</div></div></div>
+      <div class="wj-alert" data-tone="danger" role="alert"><div><div class="wj-alert__title">Online orders are paused</div><div class="wj-alert__body">Your balance reached zero. Customers can't place new orders until you top up.</div></div></div>
+      <div class="wj-alert" data-tone="success"><div><div class="wj-alert__title">Order ZABN7V6 delivered</div></div></div>
+    </div>
+
+    <div class="cols" style="margin-top:var(--wj-space-7)">
+      <div class="wj-card"><div class="wj-card__body">
+        <div class="wj-empty" style="padding:var(--wj-space-9) var(--wj-space-4)">
+          <div class="wj-empty__icon" id="empty-icon"></div>
+          <h4 class="wj-title-sm" style="margin:0">No orders yet today</h4>
+          <p class="wj-body wj-muted" style="margin:0">Walk-ins you take at the counter will show up here the moment you log them.</p>
+          <button class="wj-btn" data-variant="primary" data-size="sm">Log a walk-in</button>
+        </div>
+      </div></div>
+      <div class="wj-card"><div class="wj-card__body wj-stack">
+        <span class="wj-skeleton" style="height:20px;width:52%"></span>
+        <span class="wj-skeleton" style="height:14px"></span>
+        <span class="wj-skeleton" style="height:14px;width:78%"></span>
+        <div class="wj-row" style="margin-top:var(--wj-space-4)"><span class="wj-spinner"></span><span class="wj-caption">Loading the wash floor…</span></div>
+        <div class="wj-progress" style="margin-top:var(--wj-space-4)"><div class="wj-progress__fill" style="width:64%"></div></div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ============================ Patterns ============================ -->
+  <section id="patterns">
+    <h2>Patterns</h2>
+    <p class="lede">Where the tiers land in a real screen. Chrome is glass; the work surface is solid.</p>
+
+    <div class="wj-card" style="overflow:hidden;padding:0">
+      <div class="stage" style="border-radius:0;min-height:420px;padding:0;display:block">
+        <div style="display:flex;height:420px">
+          <aside class="wj-glass" data-tier="pane" data-over="media" style="width:206px;border-radius:0;flex:none">
+            <div class="wj-nav">
+              <div class="wj-row" style="padding:var(--wj-space-4) var(--wj-space-5) var(--wj-space-7)"><span id="nav-mark" style="color:var(--wj-brand-mark);display:inline-flex"></span></div>
+              <a class="wj-nav__item" aria-current="page"><span id="i-order"></span>Orders</a>
+              <a class="wj-nav__item"><span id="i-washer"></span>Wash floor</a>
+              <a class="wj-nav__item"><span id="i-van"></span>Drivers</a>
+              <a class="wj-nav__item"><span id="i-outlet"></span>Outlets</a>
+              <a class="wj-nav__item"><span id="i-credit"></span>Billing</a>
+            </div>
+          </aside>
+
+          <div style="flex:1;display:flex;flex-direction:column;min-width:0">
+            <header class="wj-glass" data-tier="veil" data-over="media" style="border-radius:0;padding:var(--wj-space-5) var(--wj-space-7);display:flex;align-items:center;gap:var(--wj-space-5)">
+              <strong class="wj-label">Orders</strong>
+              <span class="wj-badge" data-tone="accent">38 in wash</span>
+              <span class="wj-spacer"></span>
+              <button class="wj-btn" data-variant="glass" data-size="sm">Filters</button>
+              <button class="wj-btn" data-variant="primary" data-size="sm">New order</button>
+            </header>
+
+            <div style="flex:1;overflow:auto;padding:var(--wj-space-6);background:var(--wj-bg-canvas)">
+              <div class="wj-table-wrap">
+                <table class="wj-table">
+                  <thead><tr><th>Order</th><th>Customer</th><th>Status</th><th data-align="end">Total</th></tr></thead>
+                  <tbody id="rows2"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:var(--wj-space-5)">
+      Pane on the rail, Veil on the header, and the moment content starts — solid. Two glass tiers visible at once,
+      which is the cap. A popover opening over this would make three, and that is the limit for the whole product.
+    </p>
+
+    <h3>Layers</h3>
+    <div class="demo">
+      <button class="wj-btn" data-variant="secondary" id="open-modal">Open modal</button>
+      <button class="wj-btn" data-variant="secondary" id="open-sheet">Open sheet</button>
+      <button class="wj-btn" data-variant="secondary" id="open-cmd">Command palette <span class="wj-badge wj-mono" style="margin-inline-start:6px">⌘K</span></button>
+      <button class="wj-btn" data-variant="secondary" id="open-toast">Fire a toast</button>
+    </div>
+
+    <h3>Order status — the full set</h3>
+    <p class="note" style="margin-bottom:var(--wj-space-5)">Colour, dot, and word, always all three. Colour alone fails the ~8% of men with a colour vision deficiency, and fails everyone holding a phone in direct sun — which is the driver app's normal condition.</p>
+    <div class="demo" id="statuses"></div>
+  </section>
+
+  <!-- ============================ Registers ============================ -->
+  <section id="registers">
+    <h2>Two registers, one system</h2>
+    <p class="lede">Operator surfaces read calm and dense; consumer surfaces read fresh and generous. Same tokens — the register only changes type roles, rhythm, rounding, and motion scale.</p>
+
+    <div class="cols" style="grid-template-columns:1fr 1fr">
+      <div data-wj-register="operator">
+        <p class="wj-eyebrow" style="margin-bottom:var(--wj-space-4)">Operator</p>
+        <div class="wj-card"><div class="wj-card__body wj-stack" data-gap="sm">
+          <div class="wj-stat"><span class="wj-stat__label">Orders in wash</span><span class="wj-stat__value">38</span></div>
+          <div class="wj-row"><button class="wj-btn" data-variant="primary" data-size="sm">Assign</button><button class="wj-btn" data-variant="secondary" data-size="sm">Hold</button></div>
+          <p class="wj-body" style="margin:0">15px body, 8px radius, 38px rows, motion at 0.85×.</p>
+        </div></div>
+      </div>
+      <div data-wj-register="consumer">
+        <p class="wj-eyebrow" style="margin-bottom:var(--wj-space-4)">Consumer</p>
+        <div class="wj-card"><div class="wj-card__body wj-stack" data-gap="sm">
+          <div class="wj-stat"><span class="wj-stat__label">Your order</span><span class="wj-stat__value">In wash</span></div>
+          <div class="wj-row"><button class="wj-btn" data-variant="primary">Track</button><button class="wj-btn" data-variant="secondary">Reschedule</button></div>
+          <p class="wj-body" style="margin:0">17px body, 14px radius, 56px rows, motion at full speed.</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding-top:var(--wj-space-12);border-top:1px solid var(--wj-border-subtle);margin-top:var(--wj-space-12)">
+    <p class="wj-caption">
+      Generated from <code>tokens/build.mjs</code>. Full documentation in <code>docs/</code>.
+      Wash Junkie · Design System v1.0
+    </p>
+  </footer>
+</main>
+
+<!-- ============================ Layers ============================ -->
+<dialog class="wj-glass wj-modal wj-enter-shell" data-tier="shell" id="modal">
+  <div class="wj-stack">
+    <div class="wj-stack" data-gap="sm">
+      <h2 class="wj-title" style="margin:0">Refund order ZABN7V6?</h2>
+      <p class="wj-body wj-muted" style="margin:0">₦8,400 goes back to Ada Nwosu's card. It usually lands within 3 working days, and we'll let her know.</p>
+    </div>
+    <div class="wj-row" data-justify="between">
+      <span class="wj-spacer"></span>
+      <button class="wj-btn" data-variant="ghost" data-close>Keep the order</button>
+      <button class="wj-btn" data-variant="danger" data-close>Refund ₦8,400</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="wj-glass wj-sheet wj-enter-sheet" data-tier="shell" id="sheet">
+  <div class="wj-sheet__handle"></div>
+  <div class="wj-stack">
+    <h2 class="wj-title" style="margin:0">Pickup window</h2>
+    <div class="wj-stack" data-gap="sm">
+      <label class="wj-check"><input type="radio" name="w" checked><span class="wj-check__text">Today, 2–4pm</span></label>
+      <label class="wj-check"><input type="radio" name="w"><span class="wj-check__text">Tomorrow, 9–11am</span></label>
+      <label class="wj-check"><input type="radio" name="w"><span class="wj-check__text">Tomorrow, 4–6pm</span></label>
+    </div>
+    <button class="wj-btn" data-variant="primary" data-full="true" data-close>Confirm</button>
+  </div>
+</dialog>
+
+<dialog class="wj-glass wj-command wj-enter-shell" data-tier="shell" id="cmd" aria-label="Command palette">
+  <input class="wj-command__input" placeholder="Search orders, customers, settings…" value="ike">
+  <div class="wj-command__list">
+    <button class="wj-menu__item" style="background:var(--wj-surface-hover)"><span style="flex:1">Sunshine Laundry — Ikeja</span><span class="wj-caption">Outlet</span></button>
+    <button class="wj-menu__item"><span style="flex:1">ZABN7V6 · Ada Nwosu</span><span class="wj-caption">Order</span></button>
+    <button class="wj-menu__item"><span style="flex:1">Ikechukwu Obi</span><span class="wj-caption">Customer</span></button>
+    <div class="wj-menu__sep"></div>
+    <button class="wj-menu__item"><span style="flex:1">Go to Wash floor</span><span class="wj-caption wj-mono">G then W</span></button>
+  </div>
+</dialog>
+
+<div id="toasts" aria-live="polite" style="position:fixed;inset-inline-end:var(--wj-space-6);bottom:var(--wj-space-6);z-index:700;display:flex;flex-direction:column;gap:var(--wj-space-4)"></div>
+
+<script>
+/* ------------------------------------------------------------------ *
+ * Showcase wiring. Not part of the system.
+ * ------------------------------------------------------------------ */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const root = document.documentElement;
+const cs = () => getComputedStyle(root);
+
+/* -- toolbar -- */
+function segment(attr, apply) {
+  $$(`[${attr}]`).forEach((b) => b.addEventListener('click', () => {
+    $$(`[${attr}]`).forEach((x) => x.removeAttribute('data-selected'));
+    b.setAttribute('data-selected', 'true');
+    apply(b.getAttribute(attr));
+  }));
+}
+segment('data-theme-set', (v) => v === 'system' ? root.removeAttribute('data-wj-theme') : root.setAttribute('data-wj-theme', v));
+segment('data-register-set', (v) => { root.setAttribute('data-wj-register', v); $('#reg-label').textContent = `(${v})`; drawRadii(); });
+segment('data-density-set', (v) => root.setAttribute('data-wj-density', v));
+
+$('#accent').addEventListener('input', (e) => root.style.setProperty('--wj-accent-h', e.target.value));
+$('#accent-reset').addEventListener('click', () => { root.style.removeProperty('--wj-accent-h'); $('#accent').value = 200; });
+
+/* -- brand marks -- */
+const MARK_VB = '0 0 100.78 49.9', WORD_VB = '0 0 325.06 56.01';
+const MARK_D = ["M17.62,13.67a3.24,3.24,0,0,1-1.24.11,13.74,13.74,0,0,1-3.71-.63A28,28,0,0,1,3.25,8.69,10.36,10.36,0,0,1,.69,6,4,4,0,0,1,1.22.88,3.14,3.14,0,0,1,4.39.16a17.63,17.63,0,0,1,7.1,4.17,28.94,28.94,0,0,1,6,6.87,6.12,6.12,0,0,1,.66,1.42c.18.62,0,.86-.57,1.05","M17.5,21.08a13.24,13.24,0,0,1-7.12,2,8.12,8.12,0,0,1-2.3-.25,3.39,3.39,0,0,1-2.54-4.07A3.6,3.6,0,0,1,6,17.71a4.15,4.15,0,0,1,2.86-1.5,11.18,11.18,0,0,1,6.64,1,7.36,7.36,0,0,1,2.29,1.53,1.35,1.35,0,0,1-.27,2.37","M100.63,12.17A32,32,0,0,1,99.25,18a52.06,52.06,0,0,1-3.08,7.46,75.22,75.22,0,0,1-3.91,6.8c-.53.81-1,1.61-1.62,2.39a55.75,55.75,0,0,1-8.15,9.08,10.67,10.67,0,0,0-1.89,1.25A8.65,8.65,0,0,1,74,46.2a9.06,9.06,0,0,1-5.14-3.12c-.6-.75-1.17-1.53-1.7-2.33-.94-1.49-1.72-3.1-2.63-4.62a7.15,7.15,0,0,0-1.74-2.2,3,3,0,0,0-4.24,0l-.17.19a9.19,9.19,0,0,0-1.74,2.36c-.77,1.48-1.54,3-2.24,4.46a25.31,25.31,0,0,1-3.2,5.27,9.5,9.5,0,0,1-3.53,2.91,6.42,6.42,0,0,1-6.92-.57,24.49,24.49,0,0,1-4.07-3.81l-.19-.27c-1.82-2.23-3.64-4.45-5.25-6.84Q27.64,32.35,24,27.06l-.11-.15-.14-.21-.69-1-.1-.15c-1-1.69-2.24-4.38-1-6.09,1.87-2.63,7.28-2.26,10.75-.85l.33.14c.61.31,1.22.58,1.86.84a15,15,0,0,0,7.76.94,4.36,4.36,0,0,0,2.66-1.33,3.11,3.11,0,0,0,.93-.67,13.36,13.36,0,0,0,2.83-4.33,44.41,44.41,0,0,1,3.06-5.79,8.72,8.72,0,0,1,5.51-3.93,5.65,5.65,0,0,1,5.2.92,8.57,8.57,0,0,1,1.8,2,43,43,0,0,1,2.81,5A26.8,26.8,0,0,0,69,15.19,20.91,20.91,0,0,0,70.62,18a9.33,9.33,0,0,0,1.69,1.75A3.44,3.44,0,0,0,76.2,20a8.87,8.87,0,0,0,2.28-2.08C80.39,15.55,82,13,83.7,10.52a32.94,32.94,0,0,1,5.07-6.15,9.12,9.12,0,0,1,3.23-2,5.31,5.31,0,0,1,3.22-.27c.73.18,1.35.51,2,.73a7.27,7.27,0,0,1,2.48,2.6,11,11,0,0,1,.89,6.78","M18.79,21c.16.11.32.22.48.35a1.85,1.85,0,0,1-.48-.35","M23.92,26.91c-.15-.22-.47-.66-.83-1.25l.83,1.25"];
+const svg = (vb, ds, h, ratio) => `<svg width="${Math.round(h*ratio)}" height="${h}" viewBox="${vb}" fill="currentColor" aria-hidden="true">${ds.map(d=>`<path d="${d}"/>`).join('')}</svg>`;
+const mark = (h) => svg(MARK_VB, MARK_D, h, 100.78/49.9);
+/* The full lock-up ships as an asset; the showcase uses it directly so the
+   file on disk is what gets reviewed. */
+const word = (h) => `<img src="../assets/wj-wordmark.svg" alt="Wash Junkie" style="height:${h}px;display:block">`;
+
+$('#brandmark').innerHTML = mark(18);
+$('#nav-mark').innerHTML = mark(16);
+$('#logo-brand').innerHTML = word(30);
+$('#logo-white').innerHTML = word(30);
+$('#logo-glass').innerHTML = word(30);
+$('#logo-clear').innerHTML = word(26);
+$('#mark-min').innerHTML = mark(16);
+$('#logo-min').innerHTML = word(18);
+/* The asset has the teal baked in; the reversed cards need it white. */
+$$('#logo-white img, #logo-glass img').forEach(i => i.style.filter = 'brightness(0) invert(1)');
+
+/* -- colour ramps -- */
+const FAMILIES = ['aqua','tide','sun','moss','ember','slate'];
+$('#ramps').innerHTML = FAMILIES.map((f) => `
+  <div class="ramp-row">
+    <span class="ramp-name">${f}</span>
+    <div class="swatches">${Array.from({length:12},(_,i)=>
+      `<div class="sw" style="background:var(--wj-${f}-${i+1})" title="--wj-${f}-${i+1}"><span>${i+1}</span></div>`).join('')}</div>
+  </div>`).join('');
+
+const ROLES = [
+  ['Surfaces', ['bg-canvas','surface-default','surface-raised','surface-sunken','surface-inset','surface-hover','surface-selected']],
+  ['Text', ['fg-default','fg-muted','fg-subtle','fg-disabled']],
+  ['Borders', ['border-subtle','border-default','border-strong']],
+  ['Accent', ['accent-subtle','accent-muted','accent-border','accent-solid','accent-fg']],
+  ['Semantic', ['success-solid','warning-solid','danger-solid','info-solid']],
+  ['Glass', ['glass-floor','glass-edge','glass-hairline','scrim-ink']],
+];
+$('#semantic').innerHTML = ROLES.map(([title, roles]) => `
+  <div class="wj-card"><div class="wj-card__body">
+    <p class="wj-eyebrow" style="margin:0 0 var(--wj-space-5)">${title}</p>
+    ${roles.map(r=>`<div class="tokrow"><span style="width:22px;height:22px;border-radius:5px;border:1px solid var(--wj-border-subtle);background:var(--wj-${r});flex:none"></span><code>--wj-${r}</code></div>`).join('')}
+  </div></div>`).join('');
+
+/* -- space & radius -- */
+const SPACES = [1,2,3,4,5,6,7,8,9,10,11,12];
+$('#spaces').innerHTML = SPACES.map(n=>{
+  const v = cs().getPropertyValue(`--wj-space-${n}`).trim();
+  return `<div class="tokrow"><code style="min-width:110px">--wj-space-${n}</code><span style="width:${v};height:12px;background:var(--wj-accent-solid);border-radius:2px"></span><span class="wj-caption">${v}</span></div>`;
+}).join('');
+
+function drawRadii(){
+  const names = ['xs','sm','md','lg','xl','2xl','3xl'];
+  $('#radii').innerHTML = names.map(n=>{
+    const v = cs().getPropertyValue(`--wj-radius-${n}`).trim();
+    return `<div style="text-align:center"><div style="width:58px;height:58px;background:var(--wj-accent-subtle);border:1px solid var(--wj-accent-border);border-radius:var(--wj-radius-${n})"></div><span class="wj-caption" style="display:block;margin-top:4px">${n} · ${v}</span></div>`;
+  }).join('');
+}
+drawRadii();
+
+/* -- motion -- */
+const DURS = ['fast','base','slow','slower','slowest'];
+$('#durations').innerHTML = DURS.map(d=>{
+  const v = cs().getPropertyValue(`--wj-dur-${d}`).trim();
+  return `<div class="tokrow"><code style="min-width:150px">--wj-dur-${d}</code><span class="wj-caption">${v}</span></div>`;
+}).join('') + `<div class="tokrow"><code style="min-width:150px">--wj-ease-glass</code><span class="wj-caption">cubic-bezier(0.32, 0.72, 0, 1) — the signature</span></div>
+<div class="tokrow"><code style="min-width:150px">--wj-ease-fluid</code><span class="wj-caption">sampled damped spring, ~4% overshoot</span></div>`;
+
+$$('[data-play]').forEach(b=>b.addEventListener('click',()=>{
+  const st = $('#motion-stage'); const cls = b.dataset.play;
+  st.className = 'wj-glass'; void st.offsetWidth; st.className = `wj-glass ${cls}`;
+}));
+
+/* -- icons -- */
+const ICONS = {
+  washer:'<rect x="4" y="3" width="16" height="18" rx="3"/><path d="M4 8h16"/><circle cx="12" cy="14.5" r="4"/><path d="M9.2 13.6c1-.9 1.9-.9 2.8 0s1.8.9 2.8 0"/>',
+  dryer:'<rect x="4" y="3" width="16" height="18" rx="3"/><path d="M4 8h16"/><circle cx="12" cy="14.5" r="4"/><path d="M12 12.2a2.3 2.3 0 1 1-1.9 3.6"/>',
+  basket:'<path d="M4 8h16l-1.4 10.2a2 2 0 0 1-2 1.8H7.4a2 2 0 0 1-2-1.8Z"/><path d="M2.5 8h19"/><path d="M9 11.5v5M15 11.5v5"/>',
+  folded:'<rect x="3.5" y="14.5" width="17" height="5" rx="1.6"/><rect x="5" y="9.5" width="14" height="4.5" rx="1.6"/><rect x="6.5" y="5" width="11" height="4" rx="1.6"/>',
+  hanger:'<path d="M12 8.5V7.2a2.1 2.1 0 1 1 2.1-2.1"/><path d="m12 8.5 8 5.6a1.6 1.6 0 0 1-.9 2.9H4.9a1.6 1.6 0 0 1-.9-2.9Z"/>',
+  iron:'<path d="M3 16.5h18a7.5 7.5 0 0 0-7.5-7.5H8.2A5.2 5.2 0 0 0 3 14.2Z"/><path d="M7.5 9V7.4A2.4 2.4 0 0 1 9.9 5h5.6"/><path d="M3 19.5h18"/>',
+  droplet:'<path d="M12 3.2c3.4 3.9 5.6 6.6 5.6 9.3a5.6 5.6 0 1 1-11.2 0c0-2.7 2.2-5.4 5.6-9.3Z"/>',
+  van:'<path d="M2.5 16.5V7.8a1.3 1.3 0 0 1 1.3-1.3h8.9v10"/><path d="M12.7 10.2h3.6l4 3.3v3h-1.8"/><path d="M6.4 16.5h7.4"/><circle cx="8.4" cy="17.6" r="1.9"/><circle cx="17.6" cy="17.6" r="1.9"/>',
+  route:'<circle cx="6" cy="6.5" r="2.4"/><circle cx="18" cy="17.5" r="2.4"/><path d="M8.4 6.5h4.4a3.4 3.4 0 0 1 0 6.8h-2.6a3.2 3.2 0 0 0 0 4.2h5.4" stroke-dasharray="0.1 3.4"/>',
+  outlet:'<path d="M4 9.5V20h16V9.5"/><path d="M3 9.5 4.8 4.6A1 1 0 0 1 5.7 4h12.6a1 1 0 0 1 .9.6L21 9.5a3 3 0 0 1-5.6 1.6 3 3 0 0 1-5.5 0A3 3 0 0 1 3 9.5Z"/><path d="M9.8 20v-5.2h4.4V20"/>',
+  washHouse:'<path d="M3 20V10.4a1 1 0 0 1 .5-.9l7.9-4.7a1 1 0 0 1 1.1 0l7.9 4.7a1 1 0 0 1 .6.9V20"/><path d="M2 20h20"/><rect x="8" y="12.5" width="8" height="7.5" rx="1.4"/><circle cx="12" cy="16.2" r="1.9"/>',
+  washCredit:'<rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19"/><path d="M6.5 14.8h3.5"/><path d="M16.4 13.2c1.3 1.5 2.1 2.5 2.1 3.4a2.1 2.1 0 1 1-4.2 0c0-.9.8-1.9 2.1-3.4Z"/>',
+  order:'<path d="M5 3.5h14a1 1 0 0 1 1 1v16l-3-1.8-3 1.8-3-1.8-3 1.8-3-1.8V4.5a1 1 0 0 1 1-1Z"/><path d="M8.5 8.5h7M8.5 12.5h7M8.5 16h4"/>',
+};
+const ico = (n, size=22) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]}</svg>`;
+$('#iconset').innerHTML = Object.keys(ICONS).map(n=>`<div class="iconcell"><span style="color:var(--wj-fg-default)">${ico(n,24)}</span>${n}</div>`).join('');
+$('#empty-icon').innerHTML = ico('basket', 24);
+['order','washer','van','outlet','credit'].forEach((k,i)=>{
+  const el = $('#i-'+k); if (el) el.innerHTML = ico(['order','washer','van','outlet','washCredit'][i], 17);
+});
+
+/* -- tables -- */
+const ROWS = [
+  ['ZABN7V6','Ada Nwosu','Ikeja','In wash','accent','₦8,400'],
+  ['PSTF1EK','Ikechukwu Obi','Lekki','Awaiting pickup','warning','₦12,900'],
+  ['E998V20','Funmi Adeyemi','Ikeja','Delivered','success','₦4,250'],
+  ['5RR2MND','Chidera Eze','Yaba','New','info','₦21,000'],
+  ['X86WE8T','Tunde Bello','Lekki','Failed delivery','danger','₦6,700'],
+  ['MQNP7W7','Amaka Nwachukwu','Ikeja','Delivered','success','₦9,150'],
+  ['C74G1FM','Segun Lawal','Yaba','In wash','accent','₦15,300'],
+];
+const badge = (t, tone) => `<span class="wj-badge" data-tone="${tone}"><span class="wj-badge__dot"></span>${t}</span>`;
+$('#rows').innerHTML = ROWS.map(r=>`<tr><td class="wj-mono" style="font-size:12px">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${badge(r[3],r[4])}</td><td data-numeric="true">${r[5]}</td></tr>`).join('');
+$('#rows2').innerHTML = ROWS.map((r,i)=>`<tr${i===0?' aria-selected="true"':''}><td class="wj-mono" style="font-size:12px">${r[0]}</td><td>${r[1]}</td><td>${badge(r[3],r[4])}</td><td data-numeric="true">${r[5]}</td></tr>`).join('');
+$('#statuses').innerHTML = [
+  ['New','info'],['Picked up','info'],['In wash','accent'],['Drying','accent'],['Folding','accent'],
+  ['Ready','success'],['Out for delivery','warning'],['Delivered','success'],['Failed delivery','danger'],['Cancelled','neutral'],
+].map(([t,tone])=> tone==='neutral' ? `<span class="wj-badge"><span class="wj-badge__dot"></span>${t}</span>` : badge(t,tone)).join('');
+
+/* -- switches -- */
+$$('.wj-switch').forEach(s=>s.addEventListener('click',()=>s.setAttribute('aria-checked', s.getAttribute('aria-checked')==='true'?'false':'true')));
+
+/* -- layers -- */
+const openDialog = (sel) => { const d = $(sel); d.showModal(); d.addEventListener('click', (e)=>{ if(e.target===d) d.close(); }, {once:true}); };
+$('#open-modal').onclick = () => openDialog('#modal');
+$('#open-sheet').onclick = () => openDialog('#sheet');
+$('#open-cmd').onclick = () => openDialog('#cmd');
+$$('[data-close]').forEach(b=>b.onclick=()=>b.closest('dialog').close());
+addEventListener('keydown',(e)=>{ if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openDialog('#cmd');} });
+
+/* Real order references. The production encoder in the API is an affine scramble
+   of a sequence into 7-char Crockford base32 (no I/L/O/U), so a reference looks
+   random and carries no date. Faking them as `WJ-2026-0731` would be showing a
+   format the product replaced because it collided on concurrent creates. */
+const TOAST_CODES = ['X86WE8T', 'MQNP7W7', 'C74G1FM', '3PK9V31'];
+let toastN = 0;
+$('#open-toast').onclick = () => {
+  const el = document.createElement('div');
+  el.className = 'wj-glass wj-toast wj-enter-shell';
+  el.dataset.tier = 'shell'; el.dataset.tint = 'success';
+  el.innerHTML = `<div class="wj-stack" data-gap="sm" style="flex:1"><strong class="wj-label">Order marked delivered</strong><span class="wj-caption">${TOAST_CODES[toastN++ % TOAST_CODES.length]} · Ada Nwosu</span></div><button class="wj-btn" data-variant="ghost" data-size="sm">Undo</button>`;
+  $('#toasts').append(el);
+  setTimeout(()=>el.remove(), 4200);
+};
+</script>
+</body>
+</html>

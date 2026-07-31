@@ -1,0 +1,169 @@
+/* ==========================================================================
+   Wash Junkie · compatibility bridge
+   Load AFTER wj-tokens.css, BEFORE the console's own prototype CSS.
+
+   The Service Provider Console (`web/`) shipped before this design system and
+   styles itself with unprefixed variables — `--bg`, `--surface`, `--text`,
+   `--accent`, `--radius`, `--step` — spread across fifteen prototype
+   stylesheets and hundreds of rules.
+
+   This file re-points every one of those names at the new semantic layer. The
+   console keeps working unchanged, on the new palette, in both themes, and can
+   then adopt `--wj-*` and the glass tiers one screen at a time instead of in
+   one enormous unreviewable commit.
+
+   It is deliberately a BRIDGE, not a permanent layer: every mapping below is a
+   line that should eventually be deleted when the last rule referencing the old
+   name is gone. Track that in docs/15-adoption.md.
+
+   Note the direction of the mapping. Old names are defined FROM new tokens, so
+   there is exactly one source of truth and the bridge cannot drift from it.
+   ========================================================================== */
+
+:root {
+  /* -- surfaces -------------------------------------------------------- */
+  --bg: var(--wj-bg-canvas);
+  --surface: var(--wj-surface-default);
+  --surface-2: var(--wj-surface-sunken);
+  --surface-3: var(--wj-surface-inset);
+
+  --border: var(--wj-border-subtle);
+  --border-strong: var(--wj-border-default);
+
+  /* -- text ------------------------------------------------------------
+     The console's four text steps map onto three semantic roles plus
+     disabled. `--text-2` and `--text-3` were used almost interchangeably for
+     "secondary"; both land on fg-muted, which is the one that passes AA. */
+  --text: var(--wj-fg-default);
+  --text-2: var(--wj-fg-muted);
+  --text-3: var(--wj-fg-muted);
+  --text-4: var(--wj-fg-subtle);
+
+  /* -- brand -----------------------------------------------------------
+     The console already drew this distinction correctly: --brand is Wash
+     Junkie's own colour and never re-tints, --accent is the business's. The
+     new system keeps the same split, so this is a straight rename. */
+  --brand: var(--wj-brand-mark);
+  --brand-ink: var(--wj-brand-mark-ink);
+
+  /* -- accent ---------------------------------------------------------- */
+  --accent: var(--wj-accent-solid);
+  --accent-hover: var(--wj-accent-solid-hover);
+  --accent-soft: var(--wj-accent-subtle);
+  --accent-ink: var(--wj-accent-on-solid);
+  --accent-ring: color-mix(in srgb, var(--wj-focus-ring) 35%, transparent);
+
+  /* -- semantic --------------------------------------------------------
+     The old names carried only the solid step. Code that needed a tinted
+     background hand-rolled a color-mix; those sites can move to
+     --wj-<tone>-subtle as they're touched. */
+  --ok: var(--wj-success-solid);
+  --warn: var(--wj-warning-solid);
+  --err: var(--wj-danger-solid);
+
+  /* -- shape -----------------------------------------------------------
+     The console's radius scale was 6/10/14/20; the operator register's is
+     6/8/12/16/20. Mapped to the nearest role rather than preserved exactly —
+     the small shift is the point of adopting the system. */
+  --radius-sm: var(--wj-radius-sm);
+  --radius: var(--wj-radius-md);
+  --radius-lg: var(--wj-radius-lg);
+  --radius-xl: var(--wj-radius-xl);
+  /* Referenced directly by the shadcn Button in the console. */
+  --radius-md: var(--wj-radius-md);
+
+  /* -- elevation -------------------------------------------------------- */
+  --shadow-xs: var(--wj-shadow-xs);
+  --shadow-sm: var(--wj-shadow-sm);
+  --shadow-md: var(--wj-shadow-md);
+  --shadow-lg: var(--wj-shadow-lg);
+
+  /* -- rhythm ----------------------------------------------------------
+     `--step` was the console's single spacing unit, switched by its own
+     density attribute. It now follows the register/density tokens, so the
+     console's [data-density] switch and this system's [data-wj-density]
+     switch stay in agreement instead of fighting. */
+  --step: var(--wj-gutter);
+
+  /* -- type ------------------------------------------------------------- */
+  --font-sans: var(--wj-font-sans);
+  --font-display: var(--wj-font-display);
+  --font-mono: var(--wj-font-mono);
+}
+
+/* The console's own theme switch is `[data-theme="dark"]`; this system's is
+   `[data-wj-theme="dark"]`. Mirror one onto the other so a single toggle drives
+   both, whichever attribute the app happens to set. Both directions, because
+   during migration either could be the one being written. */
+[data-theme='dark'] {
+  color-scheme: dark;
+}
+[data-wj-theme='dark'] {
+  color-scheme: dark;
+}
+
+/* Density likewise. */
+[data-density='compact'] {
+  --step: var(--wj-space-5);
+}
+
+/* The console's accent switcher writes `[data-accent="indigo"]` and friends.
+   Re-express each as a hue on the new derivation so the presets and the
+   free-form business accent produce colour from the same maths — and so the
+   presets inherit the contrast guarantees the old hard-coded values never had.
+   Values are the hue of each old preset, rounded. */
+[data-accent='cyan']   { --wj-accent-h: 200; --wj-accent-c: 0.118; }
+[data-accent='indigo'] { --wj-accent-h: 272; --wj-accent-c: 0.170; }
+[data-accent='green']  { --wj-accent-h: 155; --wj-accent-c: 0.135; }
+[data-accent='orange'] { --wj-accent-h: 52;  --wj-accent-c: 0.155; }
+
+/* The old "black" accent was a near-black ink that had to invert in dark mode.
+   It has no hue, so it can't go through the OKLCH derivation — map it
+   explicitly to the neutral ramp, which already inverts correctly.
+
+   `:root[…]`, not `[…]`, and the qualifier is load-bearing. Unlike the four
+   hue presets above — which set `--wj-accent-h` and are therefore read BY the
+   derivation — this rule sets the derived roles directly, so it competes with
+   them. The OS-dark block in wj-tokens.css is `:root:not([data-wj-theme='light'])`
+   at (0,2,0); a bare attribute selector is (0,1,0) and loses on specificity no
+   matter how late it is imported. A dark-OS operator on the black accent would
+   silently get the default teal back. `:root[data-accent='black']` ties at
+   (0,2,0) and wins on source order, which is the guarantee the bridge relies on
+   everywhere else. */
+:root[data-accent='black'] {
+  --wj-accent-solid: var(--wj-slate-12);
+  --wj-accent-solid-hover: var(--wj-slate-11);
+  --wj-accent-subtle: var(--wj-slate-3);
+  --wj-accent-muted: var(--wj-slate-4);
+  --wj-accent-border: var(--wj-slate-7);
+  --wj-accent-fg: var(--wj-slate-12);
+  --wj-accent-on-solid: var(--wj-slate-1);
+  --wj-focus-ring: var(--wj-slate-9);
+}
+
+/* Bridge for shadcn/ui's semantic layer, which the console maps by hand in
+   globals.css. Pointing it here instead means shadcn components follow the
+   design system rather than a hand-maintained copy of it. */
+@supports (color: color-mix(in srgb, red, blue)) {
+  :root {
+    --color-background: var(--wj-surface-default);
+    --color-foreground: var(--wj-fg-default);
+    --color-card: var(--wj-surface-raised);
+    --color-card-foreground: var(--wj-fg-default);
+    --color-popover: var(--wj-surface-raised);
+    --color-popover-foreground: var(--wj-fg-default);
+    --color-primary: var(--wj-accent-solid);
+    --color-primary-foreground: var(--wj-accent-on-solid);
+    --color-secondary: var(--wj-surface-sunken);
+    --color-secondary-foreground: var(--wj-fg-default);
+    --color-muted: var(--wj-surface-sunken);
+    --color-muted-foreground: var(--wj-fg-muted);
+    --color-accent: var(--wj-surface-hover);
+    --color-accent-foreground: var(--wj-fg-default);
+    --color-border: var(--wj-border-subtle);
+    --color-input: var(--wj-border-default);
+    --color-ring: var(--wj-focus-ring);
+    --color-destructive: var(--wj-danger-solid);
+    --color-destructive-foreground: #ffffff;
+  }
+}

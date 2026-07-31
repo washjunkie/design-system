@@ -1,0 +1,21 @@
+# Build output. Regenerate with `node pdf/build.mjs`.
+#
+# Deliberately ignored even though the PDF is a deliverable: it is a 4MB binary
+# that changes wholesale on every rebuild, and the sources it is built from are
+# all here. Ship it by attaching the built file, not by committing every version
+# of it.
+pdf/dist/
+
+# Cached webfont downloads (~800KB). `pdf/fonts.mjs` re-fetches them on the
+# first build and caches them here, so a clone needs one online build and then
+# works offline.
+pdf/fonts/
+
+# Chrome's throwaway profile, if a build is killed before it cleans up.
+.chrome-profile/
+
+node_modules/
+.DS_Store
+
+# tokens/dist/ IS committed. It is the published artifact — `web/` vendors those
+# files, and a fresh clone should have working tokens before anyone runs a build.
