@@ -102,10 +102,19 @@ brand this age.
 ## Tools
 
 ```bash
-node ../../tokens/print.mjs                     # production colour report
-node ../../tokens/print.mjs '#2cbec5' '#00A5B5' # ΔE2000 against a spot candidate
+node ../../tokens/print.mjs                       # production colour report
+node ../../tokens/print.mjs '#2cbec5' '#00A5B5'   # ΔE2000 against a spot candidate
+node ../../tokens/color.mjs '#1d2022' '#fcfcfd'   # contrast ratio, with verdicts
 ```
 
-The second one is the real workflow: read a candidate off a **physical** Pantone
-bridge guide under D50, then check it. A hex found on a website is a screen
-approximation of a print approximation and carries no authority.
+**Which tool answers which question**, because getting this wrong wastes a run:
+`print.mjs` returns ΔE2000 and CMYK and **never a contrast ratio**; contrast
+lives in `color.mjs`.
+
+The second is the real spot-colour workflow: read a candidate off a **physical**
+Pantone bridge guide under D50, then check it. A hex found on a website is a
+screen approximation of a print approximation and carries no authority.
+
+The third is what [the artefact grant](03-identity-system.md#the-artefact-grant--decided)
+means by *measure the field before approving a pairing* — a provider's van body
+or fascia is their colour, not one of ours, so no table here can pre-answer it.

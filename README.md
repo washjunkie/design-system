@@ -28,6 +28,7 @@ node tokens/build.mjs           # write every output, then audit
 node tokens/build.mjs --check   # audit only — non-zero exit on failure
 node tokens/checklinks.mjs      # every relative doc link resolves
 node tokens/print.mjs           # production colour: CMYK, TAC, 1-bit, ink choice
+node tokens/color.mjs a b       # contrast ratio between two colours, with verdicts
 ```
 
 ---
@@ -80,9 +81,12 @@ Full reasoning: [docs/01-principles.md](docs/01-principles.md).
 ```
 tokens/
   color.mjs          OKLCH ↔ sRGB, contrast, gamut clamping. No dependencies.
+                     Also the contrast CLI — print.mjs never returns a ratio.
   palette.mjs        The ramp recipe — six families × twelve steps
   source.mjs         Everything non-colour + the semantic mapping
   build.mjs          Compiles to five outputs, then audits
+  print.mjs          Production colour: CMYK, TAC, 1-bit, ink choice, ΔE2000
+  checklinks.mjs     Every relative link in the docs resolves
   dist/              ── generated, never edited by hand ──
     wj.tokens.json         W3C DTCG — the portable spec
     wj-tokens.css          CSS custom properties, themed + registered
@@ -96,7 +100,18 @@ css/
   wj-bridge.css      Maps the console's existing token names onto this system
 
 packages/react/      Typed React bindings. Behaviour and ARIA, never appearance.
-showcase/index.html  Live gallery. Links the real CSS.
+
+pdf/
+  build.mjs          The ten brand-guide chapters → one A4 document
+  fonts.mjs          Fetches and inlines the three faces as data URIs
+  print.css          Print overrides. Typeset in the system's own tokens.
+  verify.mjs         Fails if the built PDF is not the document we think it is
+  dist/              ── gitignored: `node pdf/build.mjs` regenerates it ──
+
+showcase/
+  index.html         The design system, live. Links the real CSS.
+  brand.html         The brand guide, live — contrast computed at render time
+
 assets/              Brand artwork
 ```
 
