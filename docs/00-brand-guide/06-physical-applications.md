@@ -282,12 +282,13 @@ a dropped symbol on a tax document is worse than a verbose one; and the optional
 footer **"Powered by Wash Junkie"**, the deferential form of the endorsement and
 the right shape for a provider's document.
 
-> **Known drift.** The PDF currently sets "Wash Junkie" at 20pt above the
-> business name at 10pt, inverting the endorsement hierarchy this guide
-> specifies for a provider's artefact. Resolving it is [strategy open decision
-> #8](01-strategy.md#open-decisions), not a styling change: decide whether the
-> platform mark belongs on a provider's receipt at all, then fix the file in the
-> same pass.
+> **Fixed 2026-07-31.** The PDF set "Wash Junkie" at 20pt above the business
+> name at 10pt — and the print-receipt modal carried the same inversion, so a fix
+> to one alone would have left the two versions of one record disagreeing. The
+> business now leads in both, falling back to the outlet and never to the
+> platform. Two colour defects went with it: the file's ink was `#141416` rather
+> than the system's `#1d2022`, and its grey measured 4.42:1 on white, under the
+> floor [12 · Accessibility](../12-accessibility.md) audits.
 
 ---
 

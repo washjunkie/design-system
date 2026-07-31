@@ -364,13 +364,14 @@ backdrop**. Both sets of rules run together:
 | **Printed fabric is a substrate** — proof on the actual fabric | [Nobody signs off a physical piece on a screen](06-physical-applications.md#before-any-physical-order-ships), and a backdrop is no exception |
 | **Giveaways go through the earning test**, not the stand budget | An item bought because there is a stand has no job in the service ([merchandise](10-merchandise.md)) |
 
-> **Known drift.** The demo dataset exists — `bun run db:seed:demo`
-> (`api/src/database/seed-demo-oron.ts`) builds a full outlet of invented
-> customers and orders, additively and idempotently — but it numbers those orders
-> `FF-1000` upward, which is exactly the reference shape the rule above bans from
-> a demo. The prefix is doing real work as the seeder's reset key, so this is a
-> fix in the seeder, not a rule to relax. It has to be resolved before anyone
-> demos from it.
+> **Fixed 2026-07-31.** The demo dataset — `bun run db:seed:demo`
+> (`api/src/database/seed-demo-oron.ts`) — numbered its orders `FF-1000` upward,
+> the exact shape the rule above bans from a demo. It now draws real references
+> from `order_number_seq` through the same encoder production uses, so demo data
+> is indistinguishable from real data by construction rather than by a format
+> somebody has to remember to imitate. The prefix had been doing double duty as
+> the reset key; that job moved to the demo customer's own e-mail domain, which
+> the script already used to tear down customers and drivers.
 
 ---
 
@@ -441,7 +442,7 @@ exists, so the first request will be answered by whoever is asked.
 | 7 | **Whether partners may onboard providers** | The one partnership shape that reaches the fraud surface |
 | 8 | **Sponsorship approver and budget** | Neither exists |
 | 9 | **Where liability sits** between platform, provider and customer | Legal, not brand — already flagged in [Strategy](01-strategy.md#what-wash-junkie-is-not). Until it lands, representatives describe the record and nothing else |
-| 10 | **A business reserved for demos** | The seeded dataset already exists — `bun run db:seed:demo` (`api/src/database/seed-demo-oron.ts`) builds a full outlet of invented customers and orders. It writes into an existing business matched **by name**, so on any database with real tenants on it the target is whichever business happens to carry that name. Name a business that is only ever demoed from, and fix the `FF-`-prefixed order references in the same pass |
+| 10 | **A business reserved for demos** | The seeded dataset already exists — `bun run db:seed:demo` (`api/src/database/seed-demo-oron.ts`) builds a full outlet of invented customers and orders. It writes into an existing business matched **by name**, so on any database with real tenants on it the target is whichever business happens to carry that name. Name a business that is only ever demoed from. The `FF-` order references are **fixed** — the seeder now draws real ones from `order_number_seq` — so what is left is the target-by-name problem alone |
 | 11 | **Whether the provider terms commit to any availability** | Legal, not brand. Until it is answered, uptime is described as behaviour and never as a number |
 | 12 | **A customer-facing notice that names who is coming to the door** | The doorstep-identification promise the driver question rests on. Today the only notice in the codebase is the order-status SMS — per-business opt-in, inert until Twilio is configured — carrying the business and the reference and nothing else. Blocked on the Customer App; it is what makes option A survivable |
 
