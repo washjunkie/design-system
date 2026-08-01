@@ -96,10 +96,19 @@ counters fill in.
 > at 2400px, threshold on alpha, take a 3-4 chamfer distance transform over ink
 > and over background, read the 5th-percentile ridge width in each.
 >
-> **No script in `tokens/` reproduces this yet** — unlike the colour figures,
-> which `tokens/color.mjs` and `tokens/print.mjs` regenerate on demand. Every
-> millimetre in this document rests on these two ratios, so committing the
-> measurement is [open decision #10](#open-decisions-and-to-specify).
+>     node tokens/geometry.mjs --check
+>
+> **`tokens/geometry.mjs` now implements exactly that**, rasterising through the
+> same headless Chrome the PDF build uses and diffing the result against the
+> table above — which it parses out of this file, so the doc is the expectation
+> and cannot drift from the artwork behind a green check.
+>
+> It confirms the table to ±0.003, which is the resolution the method supports:
+> the raster quantises to ~0.0003, and ridge extraction accepts plateau ties, so
+> it reads marginally fine. **It is a redraw detector, not a third-decimal
+> authority** — a redrawn logo moves these by whole percent. The prose bullets
+> above (the 0.037 taper, the 0.005 and 0.017 pinches) are individual named
+> features, are still hand figures, and are **not** covered by `--check`.
 
 ## Minimum sizes for physical reproduction
 
@@ -481,7 +490,7 @@ equivalent in the medium.
 | 7 | **A deep-teal `#007e84` mark variant** for distance work on light fields | Proposal above. Needs sign-off and artwork |
 | 8 | ~~Whether the platform mark appears on provider artefacts~~ — **the relative size is still unset** | Presence: **closed**, see [the artefact grant](#the-artefact-grant--decided). The size a provider's mark and ours sit at against each other remains open, and is set per artefact by the optical-matching method above |
 | 9 | **A category descriptor in the lock-up** | [Strategy open decisions #4 and #5](01-strategy.md#open-decisions). **Settle it before the first physical asset is produced** — every number here is measured off the current artwork |
-| 10 | **A committed script for the two feature ratios** | The [method](#the-geometry-that-governs-reproduction) is written down but nothing in `tokens/` runs it, so the ratios cannot be re-derived on demand the way the colour figures can. Add it beside `tokens/print.mjs`, and re-run it on any artwork change |
+| 10 | ~~A committed script for the two feature ratios~~ | **Closed 2026-07-31.** `tokens/geometry.mjs` measures both ratios off `assets/` and `--check` diffs them against [the table](#the-geometry-that-governs-reproduction), which it reads out of this file. Run it on any artwork change — it exits non-zero on drift. Caveat recorded with the method: it resolves to ±0.003 and covers the table only, not the taper and pinch bullets |
 
 ---
 

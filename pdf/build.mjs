@@ -27,8 +27,8 @@
  * pasted screenshot would.
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from 'node:fs';
-import { execFileSync } from 'node:child_process';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, statSync } from 'node:fs';
+import { execFileSync, spawn } from 'node:child_process';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -425,7 +425,20 @@ const pdfPath = join(DIST, 'wash-junkie-brand-guide.pdf');
 const profile = join(DIST, '.chrome-profile');
 rmSync(profile, { recursive: true, force: true });
 
-execFileSync(
+/*
+ * Chrome is spawned, watched, and KILLED once the PDF is written — its EXIT is
+ * deliberately not the success signal, because with a fresh `--user-data-dir`
+ * this Chrome never exits. It renders, writes the file, and then sits there.
+ * Measured against a trivial one-line page: isolated profile hangs
+ * indefinitely, default profile returns in ~4s, and none of the usual remedies
+ * change it — `--no-first-run`, a `First Run` sentinel, `--profile-directory`,
+ * `--use-mock-keychain`, `--no-zygote`, `--disable-background-networking`.
+ *
+ * Dropping the isolated profile would "fix" this by running the build against
+ * the user's REAL Chrome profile, which is worse than a slow build. So: watch
+ * for the file, wait for its size to stop moving, then kill.
+ */
+const child = spawn(
   CHROME,
   [
     // `--headless=new` is not cosmetic here. Old headless ships its own
@@ -439,6 +452,9 @@ execFileSync(
     '--disable-gpu',
     '--no-sandbox',
     `--user-data-dir=${profile}`,
+    '--no-first-run',
+    '--no-default-browser-check',
+    '--disable-background-networking',
     '--no-pdf-header-footer',
     // Data URIs need no network, but the faces still have to decode before the
     // first paint the printer sees.
@@ -446,8 +462,34 @@ execFileSync(
     `--print-to-pdf=${pdfPath}`,
     `file://${htmlPath}`,
   ],
-  { stdio: ['ignore', 'ignore', 'pipe'] }
+  { stdio: ['ignore', 'ignore', 'ignore'] },
 );
+
+/* Sync sleep, so this stays a straight-line script. */
+const sleepSync = (ms) => {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+};
+
+const DEADLINE = 240_000;
+const t0 = Date.now();
+let last = -1;
+let stable = 0;
+for (;;) {
+  sleepSync(500);
+  const size = existsSync(pdfPath) ? statSync(pdfPath).size : -1;
+  // Two consecutive identical non-zero sizes means the writer is finished.
+  if (size > 0 && size === last) {
+    if (++stable >= 2) break;
+  } else {
+    stable = 0;
+  }
+  last = size;
+  if (Date.now() - t0 > DEADLINE) {
+    child.kill('SIGKILL');
+    throw new Error(`Chrome did not produce a PDF within ${DEADLINE / 1000}s`);
+  }
+}
+child.kill('SIGKILL');
 
 rmSync(profile, { recursive: true, force: true });
 

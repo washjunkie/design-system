@@ -169,9 +169,11 @@ specific:
 | **Anything sold to anyone** | Governed elsewhere | Selling an item carrying the mark needs a **written agreement** ([08](08-usage-and-legal.md#third-party-usage)) — including a run sold at cost to a provider |
 
 Two standing rules survive every exception. **Nothing durable carries a phone
-number** ([06](06-physical-applications.md#merchandise)) — put the URL on it and
-nothing else, because a URL survives an office move and five hundred printed bags
-do not. The service card sits outside that rule only because it is paper and
+number, and no platform name or domain either** — the mark alone
+([06](06-physical-applications.md#merchandise), amended 2026-07-31: a domain
+survives an office move but not a rename, and it is wrong on every object at
+once). The URL goes on things cheap to reprint; five hundred printed bags are
+not that. The service card sits outside that rule only because it is paper and
 reprinted; what may actually appear on it is
 [09's](09-brand-representation.md#what-an-agent-leaves-behind), and an agent's own
 number is not on the list. And
@@ -282,9 +284,10 @@ stale price in someone's hand is a worse claim than no price at all.
 
 ## Before a merchandise run is committed
 
-Run [06's eleven-line pre-production
-gate](06-physical-applications.md#before-any-physical-order-ships) first — vector
-artwork, height not width, clear space genuinely empty, floors re-run with the
+Run [06's twelve-line pre-production
+gate](06-physical-applications.md#before-any-physical-order-ships) first — the
+lock-up specified and the architecture not mid-reopen, vector artwork, height
+not width, clear space genuinely empty, floors re-run with the
 supplier's own figures, spot code with its substrate, approved pairing, 1-bit
 check, distance check, physical proof, proof signed and filed, copy through
 [Verbal identity](02-verbal-identity.md). All of it applies. Merchandise adds the

@@ -83,11 +83,18 @@ the driver.
 ## What is proposal and what is decided
 
 **Decided and closed:** the driver question ([09](09-brand-representation.md#decided--option-a)),
-the artefact grant — strategy #8 — and the vehicle livery scheme
+the artefact grant — strategy #8 — the vehicle livery scheme
 ([03 · the artefact grant](03-identity-system.md#the-artefact-grant--decided) and
-[06](06-physical-applications.md#vehicle-livery)).
+[06](06-physical-applications.md#vehicle-livery)), and **brand architecture, in
+scope**: [01](01-strategy.md#recommendation) decides **laundry and car wash on
+the masterbrand** and deliberately leaves home cleaning open, because that one is
+a product question before it is a naming one.
 
-Strategy, personality attributes, taglines, and brand architecture in
+With that scoped, the last thing standing between the guide and a first physical
+asset is the **category descriptor** ([01 #5](01-strategy.md#open-decisions)) —
+nobody can print a lock-up nobody has specified.
+
+Strategy, personality attributes and taglines in
 [01-strategy.md](01-strategy.md) are **proposals awaiting sign-off**, marked as
 such, with an open-decisions list at the end of that document. Every one of the
 ten ends with the same kind of list, and they cross-reference rather than each

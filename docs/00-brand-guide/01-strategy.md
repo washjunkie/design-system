@@ -248,27 +248,119 @@ product question before the naming one.**
 
 | | Shape | Works because | Costs |
 |---|---|---|---|
-| **A · Masterbrand stretch** | One name, one mark, three verticals. The vertical appears as a descriptor in type, never in artwork | One brand to build and defend. One app to install. Cross-sell is free. The mark already covers all three | "Wash" is inaccurate for home cleaning, and every piece of copy in that vertical pays a small tax forever |
-| **B · Endorsed sub-brands** | Distinct names per vertical, each endorsed *by Wash Junkie* | Each vertical gets a name that fits it. The endorsement carries the trust across | Three identities to build, document, and police on one team's budget. Doubles the lock-up spec, and fragments the customer app's identity — the surface where platform trust matters most |
+| **A · Masterbrand stretch** | One name, one mark, three verticals. The vertical appears as a descriptor in type, never in artwork | One brand to build and defend. The mark already covers all three. **ASSUMPTION, unverified:** *"one app to install, cross-sell is free"* — that holds only if all three verticals share one customer app, which nobody has decided | "Wash" would be inaccurate for home cleaning — a tax this decision **declines to incur**, by scoping to laundry and car wash |
+| **B · Endorsed sub-brands** | Distinct names per vertical, each endorsed *by Wash Junkie* | Each vertical gets a name that fits it. The endorsement carries the trust across | It multiplies the **measurement set**, not the artwork: two feature ratios, eight process floors, keep-clear arithmetic, spot/thread/vinyl matches, a stitch file and a cut file — per name, and the first set is not finished once. It also leaves the endorsement with **almost no physical surface to sit on**, since [the artefact grant](03-identity-system.md#the-artefact-grant--decided) already refuses the driver, the bag face and the cab doors |
 | **C · Category-neutral parent** | A new parent name; Wash Junkie becomes the laundry vertical beneath it | Honest and extends indefinitely | The most expensive option, and it discards equity already built. Renames the platform, the app-store listings, the console chrome, and probably the domain vocabulary — which is an API migration, not a design exercise |
 
 ### Recommendation
 
-> **PROPOSAL — needs sign-off.** **Option A now, with option C kept cheap.**
+> **DECIDED 2026-07-31 — option A, scoped.** **Laundry and car wash run on the
+> masterbrand.** Home cleaning is *not* decided here; it is decided with
+> [#7](#open-decisions), and the naming question waits on the product one.
 
-Stretch the masterbrand through car wash, which it fits, and revisit when home
-cleaning is actually specified. Keep the exit to C affordable with three things
-that cost nothing today:
+Stretch the masterbrand through car wash, which the name fits literally. Nothing
+about home cleaning is settled by this, and the row below says so.
 
-1. **Nothing laundry-specific in a permanent asset.** No washing machine, shirt,
-   or hanger in the favicon, app icon, livery, or embroidered mark. Water in
-   motion, nothing narrower.
-2. **Vertical signalling lives in type, never in artwork.** A descriptor set in
-   Outfit changes in an afternoon; a redrawn mark does not. **TO SPECIFY:**
-   whether the lock-up takes a descriptor at all, and if so its placement and
-   size — the [Identity system](03-identity-system.md)'s call, not this one's.
-3. **Keep the platform noun and the vertical noun separate in copy.** Never fuse
-   them into a compound the customer has to learn.
+**The honest reason the exits stay open is not the guards.** They are open
+because **nothing physical has been produced**, **no app-store listing exists**,
+and **Wash Credit has no ledger** — all three verified. That is worth stating
+plainly, because "we are keeping our options open" is the kind of claim a company
+believes long after it has stopped being true.
+
+So the exits are protected by **tripwires, not by good intentions**. Each is
+currently unbuilt, each is individually checkable, and after any one of them the
+architecture must be **re-taken rather than inherited**:
+
+| Tripwire | Why it closes the exit |
+|---|---|
+| The **first app-store submission** | A listing identity is the single most-cited irreversibility in any rename |
+| The **first physical production run** | You cannot un-print 4,000 bags or un-wrap a fleet ([06](06-physical-applications.md)) |
+| The **Wash Credit ledger and top-up rail** going live | Renaming money mid-flight is the worst class of rename — see the correction below |
+
+### What the three rules actually protect
+
+They were offered as protecting the exit to option C. Two of them do not.
+
+| Rule | What it really defends |
+|---|---|
+| **1 · Nothing laundry-specific in a permanent asset** — no washing machine, shirt or hanger in the favicon, app icon, livery or embroidered mark. Water in motion, nothing narrower | A **vertical** change, not a name change. The mark was never at risk from a rename — this chapter already says it carries all three verticals without a redraw |
+| **2 · Vertical signalling lives in type, never artwork** | A **vertical** change. And note this is exactly the substrate an endorsed sub-brand needs, so these two keep **B** cheap as much as C |
+| **3 · Platform noun and vertical noun stay separate in copy** — never fused into a compound | The only one of the three that genuinely reduces **C**'s cost |
+
+**Rule 2 is already being violated in three places nobody audits**, so it is a
+rule with an owner or it is not a rule: `web/src/app/manifest.ts` and
+`web/src/app/layout.tsx` both ship *"Run your laundry business, end-to-end"*, and
+`api/src/services/order-notifications.service.ts` falls back to **`"your
+laundry"`** in the customer-facing SMS. **Owner: Samuel Ogu**; forced by the
+first car-wash surface, which is the day those strings become wrong rather than
+merely narrow.
+
+### What actually keeps the exit affordable
+
+Four more, each costing nothing today, each aimed at a cost the first three miss.
+
+**4 · The feature-ratio measurement is now a script — `tokens/geometry.mjs`,
+committed 2026-07-31.** Option C destroys the **wordmark** — drawn artwork, 14
+filled paths, no font produces it — and [03's two measured
+ratios](03-identity-system.md#the-geometry-that-governs-reproduction) are taken
+off *that specific artwork*. Every physical minimum in 03, every height in [06's
+distance table](06-physical-applications.md#height-by-viewing-distance), and
+every lock-up floor in [10's catalogue](10-merchandise.md#the-catalogue) divides
+by them, and until now nothing reproduced them: a redraw would have invalidated
+the measured spine of the whole physical guide silently, because a stale ratio
+still looks like a number.
+
+    node tokens/geometry.mjs --check
+
+It rasterises the artwork and diffs the result against 03's table, exiting
+non-zero on drift. It confirms the committed figures to ±0.003 — a redraw
+detector, not a third-decimal authority, and 03 records why. **Run it on any
+artwork change**, which is precisely the change option C forces.
+
+**5 · Reconcile the durability rule.** [06](06-physical-applications.md) and
+[10](10-merchandise.md) both say *nothing durable carries a phone number — put
+the URL on it instead*, and the receipt already prints `washjunkie.com/{slug}`.
+That instructs putting the platform **domain** on every durable object, which is
+the opposite of keeping a rename cheap. Amended: **no permanent asset carries the
+platform name or domain — the mark alone on durables**; the URL belongs only on
+artefacts cheap to reprint.
+
+**6 · The `wj-` namespace is permanently out of scope of any rename.** So are the
+`washjunkie/` Cloudinary folder paths persisted into `order_photos.url`, the
+Postgres role and database, and the PM2 process names. None is user-facing.
+Written down now, this keeps roughly 2,600 internal references from being dragged
+into a job by somebody being thorough.
+
+### Two corrections to this chapter's own cost figures
+
+**Wash Credit is not currently the most expensive rename.** It is ~27 string
+sites with **no ledger, no gateway and no charging** behind it — today a
+find-and-replace. It becomes the worst class of rename **at the ledger and
+top-up rail**, which is why that is a tripwire above rather than a present cost.
+
+**`WashHouse` and `Machine` are not option C's cost.** They are *laundry domain
+nouns*, not brand nouns: under C, Wash Junkie becomes the laundry vertical and
+`WashHouse` stays correct. Their real rename trigger is generalising the spine to
+car wash or home cleaning — which **option A incurs too**. Roughly two thirds of
+the domain-migration cost this chapter charged to C belongs to a different
+decision.
+
+Related, and worth knowing before anyone assumes the data model is waiting: the
+platform has **no vertical discriminator at all**. `businessTypeId` is a single
+FK whose seeded values are laundry business models, so Phase 5 needs a schema
+change under A, B and C alike.
+
+### When B becomes correct
+
+Stated so it is recognisable rather than a judgement call:
+
+> **B becomes correct on the day home cleaning is planned to ship as its own
+> app-store listing rather than a section inside the Customer App.**
+
+That is a product decision, it is binary, it is made by someone who is not the
+brand owner, and it lands before any physical asset. Note that rules 1 and 2
+above keep B cheap as well as C, so this reopening is not expensive — which is
+the point of writing it down.
 
 ### Two things to check, not to redesign around
 
@@ -330,8 +422,8 @@ indefinitely.
 | 1 | **Positioning statements** | Adopt as proposed · rewrite | Every headline, the app-store description, the sales script, the first-run screens |
 | 2 | **Brand promise** | "Nothing gets lost" · alternative | The one line on the homepage, and the standard support is held to |
 | 3 | **The six personality attributes** | Adopt · trim · replace | Copy review criteria, tone of every notification, what an agency is briefed against |
-| 4 | **Brand architecture for Phase 5** | A masterbrand · B endorsed sub-brands · C neutral parent | The name, the app icon, livery, app-store listings, and possibly the domain vocabulary (`WashHouse`, `Machine`, Wash Credit). **Decide before the first physical asset is produced** |
-| 5 | **Category descriptor in the lock-up** | None · descriptor line · vertical wordmarks | The identity-system spec and every physical application. Blocked on #4 |
+| 4 | **Brand architecture — home cleaning only.** Laundry and car wash are **decided 2026-07-31: masterbrand** ([recommendation](#recommendation)). This row is what is left | Reopens with **#7**. The countable event: a home-cleaning fulfilment model that does not use the order/driver spine — or, for B specifically, the day home cleaning is planned as its own app-store listing rather than a section inside the Customer App | The name, the app icon, livery, app-store listings, and possibly the domain vocabulary (`WashHouse`, `Machine`, Wash Credit). **Decide before the first physical asset is produced** |
+| 5 | **Category descriptor in the lock-up** — **the top pre-production blocker, owner: Samuel Ogu.** With #4 scoped-decided, this is the only thing between *architecture settled* and a first physical asset: nobody can print a lock-up nobody has specified. [03](03-identity-system.md) owns the geometry, including whether a descriptor sits inside or outside the clear-space box — it is only cheap to change while it is a detached typeset element outside it | None · descriptor line · vertical wordmarks | The identity-system spec and every physical application. Blocked on #4 |
 | 6 | **The word "junkie" in expansion markets** | Keep everywhere · check market by market | Naming in a second country, app-store category review. A check, not a redesign |
 | 7 | **Home cleaning's fulfilment shape** | Same order/driver spine · separate model | Whether option B becomes a fit rather than a cost. Product decision, brand consequence. Should be answered **before** #4 is finalised |
 | 8 | ~~Co-branding on the provider's own artefacts~~ | **Closed 2026-07-31 — per artefact, on written request, never automatic.** | Full record: [03 · the artefact grant](03-identity-system.md#the-artefact-grant--decided). The option set was mis-shaped: this row named three objects (receipt, bag, shopfront) while [03's co-branding table](03-identity-system.md#co-branding-and-partner-lock-ups) placed five in the same class, and one answer across all of them is what produced the ambiguity. The answer is the standing test applied per artefact |

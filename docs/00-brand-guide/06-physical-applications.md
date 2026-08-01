@@ -351,8 +351,22 @@ The laundry bag itself is specified [above](#laundry-bags), because it is an
 object before it is a programme.
 
 One standing rule sits here with the other physical rules: **nothing durable
-carries a phone number.** Put the URL on it and nothing else — a URL survives an
-office move; five hundred printed bags do not.
+carries a phone number** — a URL survives an office move; five hundred printed
+bags do not.
+
+**Amended 2026-07-31, and the amendment matters more than the rule.** The
+original went on to say *put the URL on it and nothing else*, which quietly
+instructed printing the platform **domain** onto every durable object — the
+single most expensive thing to have done if the platform is ever renamed, and a
+direct contradiction of [01's exit
+guards](01-strategy.md#recommendation). A phone number outlives an office move
+badly; a domain outlives a rename worse, because it is wrong on every object at
+once rather than one. So: **nothing durable carries the platform name or domain
+either — the mark alone on durables.** The URL belongs on artefacts that are
+cheap to reprint (receipts, dockets, hang tags, packaging), where it earns its
+keep and costs nothing to change. Vehicle rear panels are the deliberate
+exception [above](#contact-block): a wrap is a scheduled-replacement item with a
+warranted life, not a permanent asset.
 
 ---
 
@@ -360,6 +374,17 @@ office move; five hundred printed bags do not.
 
 Run all of it. Each line has cost someone money somewhere.
 
+- [ ] **The lock-up this asset carries is specified, and the architecture
+      behind it is not mid-reopen.** First, because it is the cheapest line to
+      fail and the most expensive to discover after a run. [Brand architecture
+      is decided for laundry and car wash and open for home
+      cleaning](01-strategy.md#recommendation), and the **category descriptor is
+      still unspecified** ([01 #5](01-strategy.md#open-decisions)) — so an asset
+      that needs one cannot be ordered yet, and an asset that carries the mark
+      alone can. Note also that a physical run is itself a
+      [tripwire](01-strategy.md#recommendation): ordering one is part of what
+      closes the architecture, so do it deliberately rather than by being first
+      to a supplier.
 - [ ] **Vector artwork from [`assets/`](../../assets)** — no screenshot, no
       upscaled PNG, nothing the supplier redrew from a JPEG.
 - [ ] **Specified by height, not width.** Width follows from the ratio.

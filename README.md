@@ -29,6 +29,7 @@ node tokens/build.mjs --check   # audit only — non-zero exit on failure
 node tokens/checklinks.mjs      # every relative doc link resolves
 node tokens/print.mjs           # production colour: CMYK, TAC, 1-bit, ink choice
 node tokens/color.mjs a b       # contrast ratio between two colours, with verdicts
+node tokens/geometry.mjs --check  # the logo's feature ratios still match 03
 ```
 
 ---
@@ -87,6 +88,9 @@ tokens/
   build.mjs          Compiles to five outputs, then audits
   print.mjs          Production colour: CMYK, TAC, 1-bit, ink choice, ΔE2000
   checklinks.mjs     Every relative link in the docs resolves
+  geometry.mjs       Measures the two feature ratios off assets/ and diffs them
+                     against 03's table. Every physical minimum divides by them,
+                     so a redraw must not pass silently. Needs Chrome.
   dist/              ── generated, never edited by hand ──
     wj.tokens.json         W3C DTCG — the portable spec
     wj-tokens.css          CSS custom properties, themed + registered
