@@ -313,8 +313,15 @@ off the two surfaces a customer reads while a stranger is holding their clothes.
 **The bag face and the cab doors are a *staged* grant, not a refusal.** They
 become available to a business the day that business's customers receive a notice
 naming who is coming to the door
-([09 #1a](09-brand-representation.md#open-decisions-and-to-specify)). The
-condition is per business and checkable in the platform's own database.
+([09 #1a](09-brand-representation.md#open-decisions-and-to-specify), **owner:
+Samuel Ogu**). The condition is per business and checkable in the platform's own
+database.
+
+**This grant is also what forces that notice to get built.** The first request
+for a bag face or a cab door is the event that has to be answered, so the debt
+cannot outlive the moment somebody wants the thing it gates. If you are reading
+this because a provider asked, that request is the trigger — it is not a queue to
+join.
 
 **One mark per shopfront.** One instance is an endorsement; four is a franchise
 sign. The grant reverses on a countable observable — a customer contacting the

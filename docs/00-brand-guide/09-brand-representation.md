@@ -148,9 +148,18 @@ That debt is **partly dischargeable today, not blocked on the Customer App**:
 `order-notifications.service.ts` already composes that string and already
 resolves a first name, so adding the driver's is a change in that one file —
 subject to the per-business opt-in and to Twilio being configured. Full discharge
-is blocked on the Customer App. **TO SPECIFY: nobody owns this item.** Until
-someone does, this is a debt, not a plan — and adopting A without the record
-carrying driver identity removes the forcing function that kept it visible.
+is blocked on the Customer App.
+
+> **Owner: Samuel Ogu.** Assigned 2026-07-31, so this is a plan rather than a
+> debt.
+>
+> **What forces it:** the first time any business asks for the staged grant —
+> the laundry bag's printed face, or its cab doors
+> ([03](03-identity-system.md#the-artefact-grant--decided)). That grant is
+> conditional on *that business's* customers receiving a notice naming who is
+> coming, so the debt cannot be deferred past the moment somebody wants the
+> thing it gates. Chosen over a date deliberately: a date slips quietly, and a
+> gate does not.
 
 Hi-vis belongs to the safety requirement, not to us
 ([06](06-physical-applications.md#uniforms)).
@@ -432,7 +441,7 @@ exists, so the first request will be answered by whoever is asked.
 | | Item | Method / blocked on |
 |---|---|---|
 | 1 | ~~Whether drivers carry any platform identity at all~~ | **Closed 2026-07-31 — option A.** No platform mark on platform-supplied driver kit; scope, reversal condition and the permitted sentence are [above](#decided--option-a). [03's co-branding table](03-identity-system.md#co-branding-and-partner-lock-ups) was corrected in the same pass |
-| 1a | **The driver's name in the customer notice**, and an owner for it | Partly dischargeable now in `api/src/services/order-notifications.service.ts`, which already resolves a first name; full discharge needs the Customer App. **Unowned** — this is the debt option A took on |
+| 1a | **The driver's name in the customer notice** | **Owner: Samuel Ogu** (assigned 2026-07-31). Partly dischargeable now in `api/src/services/order-notifications.service.ts`, which already resolves a first name; full discharge needs the Customer App. **Forced by the first staged-grant request** — no business gets the bag face or cab doors until its own customers are told who is coming, so the gate pays the debt rather than a date doing it |
 | 1b | **A driver row in [02's tone matrix](02-verbal-identity.md#tone-matrix)** for the permitted sentence | 09's decision ships a *never* with no *may*. One sentence, and the matrix has no driver row for it |
 | 2 | **How a provider verifies a field agent** — the pre-visit email, the name-check surface, the call-back number | None exist. Blocked on the Agent Console; the sending domain is in hand ([08 #2](08-usage-and-legal.md#open-decisions-and-to-specify)) |
 | 3 | **Whether agent-performed registrations are attributed to the agent in the audit trail** | `audit_logs` covers super-admin writes today. Decide before the Agent Console ships, not after |
