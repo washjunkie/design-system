@@ -194,7 +194,7 @@ wrong-word column is not taste; each one causes a specific problem.
 | **order** | job, ticket, batch, docket | `Order` is the record every surface shares. "Ticket" belongs to support and will collide the day we ship one. |
 | **driver** | rider, courier, dispatch rider | `Driver` is a first-class model, not a role. "Dispatch rider" is Nigeria-specific and breaks the moment a market uses vans. |
 | **customer** | client, user, consumer, end-user | `Customer` is who the provider serves. **"User" is ambiguous now** — `User` is the one platform identity, and a person can be a customer, a driver and an owner at once. |
-| **service provider** *(market)* / **business** *(in-product)* | vendor, merchant, partner, laundromat | `Business` is the entity. "Laundromat" is American and names a coin-op self-service shop, which is not what our providers run. |
+| **service provider** *(market)* / **business** *(in-product)* | vendor, merchant, partner | `Business` is the entity, and it covers every type an owner can pick at onboarding — laundromat, pickup & delivery, drop-off, hotel/B&B. Do not reach for one of those four as the name for all of them; "laundromat" in particular reads as American English for "laundry" and is [opt-in, not free](#words-we-dont-use). |
 | **staff member** | employee, agent, worker | Staff belong to an outlet (per-outlet membership on one `User`, not a separate person record). **"Agent" is taken** by field agents; reusing it confuses two products. |
 | **field agent** | rep, sales agent, onboarder | The person who registers providers — and why the Agent Console is called that. |
 | **Wash Credit** | wallet, balance, top-up, points, funds | Prepaid, per business, never cash-refundable, never transferable, redeemable only against Wash Junkie's own services. Those three constraints are what the closed-loop-contract-liability position rests on (Nigeria/CBN analysis, jurisdiction-specific, not counsel-reviewed). "Wallet" and "funds" describe stored value and argue against our own position. |
@@ -321,7 +321,7 @@ Two more that bite later:
 | seamless, revolutionary, cutting-edge, one-stop shop | No proof point behind any of them. |
 | sorry for any inconvenience | Apologise for the actual thing, or don't apologise. |
 | failed, invalid, error | Fine in a log. Never in a sentence aimed at a person. |
-| laundromat | American, and names a coin-op self-service shop — not what our providers run. |
+| laundromat | **Amended 2026-08-10 — no longer banned outright, now opt-in.** The old reason ("not what our providers run") was factually wrong: `api/src/database/seed-data.ts` seeds `business-type-laundromat` — "Laundromat · Self-serve washers & dryers" — as the first business type an owner picks at onboarding. Use it where you mean that trade, and nowhere else; it is still wrong as an American synonym for "laundry". `landing/scripts/brand-lint.mjs` enforces this: the word fails the build unless the element carries `data-lint-allow="laundromat"`. Naming the trade is fine; implying we run its coin-op tills is not, because there is no payment rail. |
 | "we'll wash your clothes" | Factually false. Wash Junkie does not wash anything. |
 
 ---
