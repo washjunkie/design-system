@@ -1,0 +1,45 @@
+name: CI
+
+# Gates the deploy. The design system ships CSS and tokens that four apps
+# consume, so a bad token build is not a cosmetic problem — it is every surface
+# at once.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: Token audit and link integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Everything here is plain ESM against node builtins plus this repo's own
+      # modules — there is no package.json at the root and nothing to install.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # The contrast audit. This is the check that matters: it fails the build
+      # if any ramp step, semantic role, or text-on-glass pairing drops below
+      # its contrast floor, which is what stops a palette change quietly
+      # shipping unreadable text.
+      - name: Token build + contrast audit
+        run: node tokens/build.mjs --check
+
+      # 520 relative links across the docs. Cheap, and catches the renames that
+      # otherwise rot silently.
+      - name: Documentation link integrity
+        run: node tokens/checklinks.mjs
+
+      # NOT a gate, deliberately. geometry.mjs rasterises the wordmark by
+      # driving a real Chrome and measuring the pixels, so it depends on a
+      # browser being present and behaving identically run to run. That is a
+      # reasonable thing to look at and a bad thing to block a deploy on — it
+      # fails locally on a machine without a usable Chrome. Reported, not
+      # enforced.
+      - name: Logo geometry (informational)
+        continue-on-error: true
+        run: node tokens/geometry.mjs --check

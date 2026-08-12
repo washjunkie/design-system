@@ -1,0 +1,55 @@
+name: Deploy Design System
+
+# Publishes design.washjunkie.com, but only after CI has gone green.
+#
+# `workflow_run` waits for CI to finish and the job below checks its conclusion,
+# so a failed token audit never reaches the server. This mirrors the api and web
+# repos rather than the landing one, which deploys straight off a push — the
+# design system has real checks worth gating on.
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main]
+  # Redeploying the current commit is a normal thing to want — after a server
+  # restart, or to recover a failed run — and pushing an empty commit to ask
+  # for it is a silly way to do it.
+  workflow_dispatch:
+
+# Never two design deploys at once; let an in-flight one finish.
+concurrency:
+  group: deploy-design
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to home lab
+    runs-on: self-hosted
+    # `workflow_run` fires on completion whatever the outcome, so without this a
+    # red CI would still hand off. workflow_dispatch has no workflow_run payload,
+    # which is what the first clause lets through.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main')
+    steps:
+      - name: What is being deployed
+        run: |
+          echo "trigger: ${{ github.event_name }}"
+          echo "commit : ${{ github.event.workflow_run.head_sha || github.sha }}"
+
+      # Runs ON the deploy host via a self-hosted runner. The server sits behind
+      # Starlink CGNAT and accepts no inbound connections, so there is no SSH
+      # hop — the runner dials out to GitHub.
+      - name: Deploy
+        timeout-minutes: 15
+        env:
+          # Short-lived and scoped to this job, so no long-lived git credential
+          # is needed for the fetch.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd /var/www/washjunkie/design
+          AUTH=$(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 -w0)
+          git -c http.extraheader="AUTHORIZATION: basic ${AUTH}" fetch origin main
+          git reset --hard origin/main
+          bash scripts/deploy.sh "${{ github.event.workflow_run.head_sha || github.sha }}"
