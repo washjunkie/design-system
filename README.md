@@ -184,6 +184,6 @@ is why there is no "don't put glass over photos" caveat anywhere in this system.
 ---
 
 Project knowledge lives in the
-[vault](../../Projects/washjunkie/washjunkie-vault) — see
+[vault](https://github.com/washjunkie/wiki) — see
 `Decisions/Design System.md`. The vault is canonical for platform decisions;
 this repo is canonical for how they look.

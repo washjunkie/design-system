@@ -98,4 +98,4 @@ than a checklist.
 
 One concept, one icon. If `washer` and `washHouse` start being used
 interchangeably, that is a naming problem in the domain, not an icon problem —
-fix it in the [vault](../../../Projects/washjunkie/washjunkie-vault) first.
+fix it in the [vault](https://github.com/washjunkie/wiki) first.

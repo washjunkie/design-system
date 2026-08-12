@@ -19,7 +19,7 @@ node tokens/build.mjs --check   # audit only, non-zero exit on failure
 ```
 
 The wider project's source of truth is the
-[vault](../../../Projects/washjunkie/washjunkie-vault). A change here that
+[vault](https://github.com/washjunkie/wiki). A change here that
 alters a platform-level decision gets written there in the same pass — see
 `Decisions/Design System.md`.
 

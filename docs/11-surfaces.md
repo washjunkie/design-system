@@ -1,7 +1,7 @@
 # Surfaces
 
 How the one system expresses itself on each of the five. Platform context lives
-in the [vault](../../../Projects/washjunkie/washjunkie-vault) — `Platform.md`
+in the [vault](https://github.com/washjunkie/wiki) — `Platform.md`
 and `Surfaces.md` are canonical for what each surface *is*; this page is only
 about how it *looks and behaves*.
 
