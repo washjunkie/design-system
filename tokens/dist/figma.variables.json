@@ -20,8 +20,8 @@
           "name": "palette/aqua/1",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#f7fefe",
-            "Dark": "#070e0e"
+            "Light": "#f6ffff",
+            "Dark": "#010809"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -31,8 +31,8 @@
           "name": "palette/aqua/2",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#eefafa",
-            "Dark": "#091617"
+            "Light": "#ebfbfc",
+            "Dark": "#001112"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -42,8 +42,8 @@
           "name": "palette/aqua/3",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#def4f5",
-            "Dark": "#052122"
+            "Light": "#daf6f7",
+            "Dark": "#001c1e"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -53,8 +53,8 @@
           "name": "palette/aqua/4",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#cfeef0",
-            "Dark": "#002a2c"
+            "Light": "#caf0f2",
+            "Dark": "#002527"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -64,8 +64,8 @@
           "name": "palette/aqua/5",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#bee7e9",
-            "Dark": "#003234"
+            "Light": "#bae9eb",
+            "Dark": "#002e30"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -75,8 +75,8 @@
           "name": "palette/aqua/6",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#abdee1",
-            "Dark": "#003e41"
+            "Light": "#a6dfe2",
+            "Dark": "#003b3e"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -86,8 +86,8 @@
           "name": "palette/aqua/7",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#8ed2d5",
-            "Dark": "#004f53"
+            "Light": "#8bd3d6",
+            "Dark": "#004e51"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -131,7 +131,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#005f63",
-            "Dark": "#67c2c7"
+            "Dark": "#6ac5ca"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -141,8 +141,8 @@
           "name": "palette/aqua/12",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#002527",
-            "Dark": "#cff1f3"
+            "Light": "#002123",
+            "Dark": "#d2f5f6"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -152,8 +152,8 @@
           "name": "palette/tide/1",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#fafcff",
-            "Dark": "#080c13"
+            "Light": "#fbfdff",
+            "Dark": "#03060f"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -163,8 +163,8 @@
           "name": "palette/tide/2",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#f2f8ff",
-            "Dark": "#0c141e"
+            "Light": "#f3f8ff",
+            "Dark": "#050e1d"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -175,7 +175,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#e6f0ff",
-            "Dark": "#0f1c30"
+            "Dark": "#061730"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -185,8 +185,8 @@
           "name": "palette/tide/4",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#d9e9ff",
-            "Dark": "#102340"
+            "Light": "#dae9ff",
+            "Dark": "#071e40"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -196,8 +196,8 @@
           "name": "palette/tide/5",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#cae0ff",
-            "Dark": "#122a4e"
+            "Light": "#cbe0ff",
+            "Dark": "#09264f"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -208,7 +208,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#b8d5ff",
-            "Dark": "#163561"
+            "Dark": "#0f3162"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -219,7 +219,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#a0c6ff",
-            "Dark": "#1d447c"
+            "Dark": "#19427d"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -263,7 +263,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#1c509a",
-            "Dark": "#83b3fa"
+            "Dark": "#86b6fd"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -273,8 +273,8 @@
           "name": "palette/tide/12",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#091f3d",
-            "Dark": "#ddebff"
+            "Light": "#061b39",
+            "Dark": "#e2eeff"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -284,8 +284,8 @@
           "name": "palette/sun/1",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#fffbf7",
-            "Dark": "#100b06"
+            "Light": "#fffcf9",
+            "Dark": "#0c0501"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -296,7 +296,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#fff6eb",
-            "Dark": "#1a1107"
+            "Dark": "#170b00"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -306,8 +306,8 @@
           "name": "palette/sun/3",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#fdecd9",
-            "Dark": "#281803"
+            "Light": "#ffecd6",
+            "Dark": "#241300"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -317,8 +317,8 @@
           "name": "palette/sun/4",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#fae3c8",
-            "Dark": "#341e00"
+            "Light": "#fee3c3",
+            "Dark": "#2e1a00"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -328,8 +328,8 @@
           "name": "palette/sun/5",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#f6d9b6",
-            "Dark": "#3d2500"
+            "Light": "#f9d8b1",
+            "Dark": "#392200"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -339,8 +339,8 @@
           "name": "palette/sun/6",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#f0cca1",
-            "Dark": "#4b2e00"
+            "Light": "#f3cc9c",
+            "Dark": "#482c00"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -350,8 +350,8 @@
           "name": "palette/sun/7",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#e9bb82",
-            "Dark": "#603c00"
+            "Light": "#eaba7f",
+            "Dark": "#5e3b00"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -395,7 +395,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#724800",
-            "Dark": "#dea559"
+            "Dark": "#e1a85d"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -405,8 +405,8 @@
           "name": "palette/sun/12",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#2e1a00",
-            "Dark": "#fee5c8"
+            "Light": "#291700",
+            "Dark": "#ffe9cf"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -416,8 +416,8 @@
           "name": "palette/moss/1",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#f8fefa",
-            "Dark": "#080e0a"
+            "Light": "#f7fffa",
+            "Dark": "#020804"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -427,8 +427,8 @@
           "name": "palette/moss/2",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#f0faf3",
-            "Dark": "#0b160f"
+            "Light": "#edfcf2",
+            "Dark": "#031208"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -438,8 +438,8 @@
           "name": "palette/moss/3",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#e2f5e7",
-            "Dark": "#0c2114"
+            "Light": "#dff7e6",
+            "Dark": "#021d0d"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -449,8 +449,8 @@
           "name": "palette/moss/4",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#d4efdc",
-            "Dark": "#0b2b18"
+            "Light": "#d1f1db",
+            "Dark": "#002712"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -460,8 +460,8 @@
           "name": "palette/moss/5",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#c6e8d0",
-            "Dark": "#0a341d"
+            "Light": "#c2eacf",
+            "Dark": "#003118"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -471,8 +471,8 @@
           "name": "palette/moss/6",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#b4dfc2",
-            "Dark": "#084023"
+            "Light": "#b1e0c0",
+            "Dark": "#003e20"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -482,8 +482,8 @@
           "name": "palette/moss/7",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#9cd4ae",
-            "Dark": "#09532e"
+            "Light": "#99d4ad",
+            "Dark": "#00522c"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -527,7 +527,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#006336",
-            "Dark": "#7bc495"
+            "Dark": "#7ec798"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -537,8 +537,8 @@
           "name": "palette/moss/12",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#022713",
-            "Dark": "#d5f2de"
+            "Light": "#002310",
+            "Dark": "#d9f5e1"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -548,8 +548,8 @@
           "name": "palette/ember/1",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#fffbfa",
-            "Dark": "#130908"
+            "Light": "#fffcfb",
+            "Dark": "#0f0303"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -559,8 +559,8 @@
           "name": "palette/ember/2",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#fff4f3",
-            "Dark": "#1e0e0c"
+            "Light": "#fff5f3",
+            "Dark": "#1c0605"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -570,8 +570,8 @@
           "name": "palette/ember/3",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#ffe9e6",
-            "Dark": "#2f120f"
+            "Light": "#ffeae7",
+            "Dark": "#2e0907"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -581,8 +581,8 @@
           "name": "palette/ember/4",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#ffdfda",
-            "Dark": "#3e1411"
+            "Light": "#ffdfdb",
+            "Dark": "#3d0a09"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -593,7 +593,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#ffd2cc",
-            "Dark": "#4b1713"
+            "Dark": "#4b0d0b"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -604,7 +604,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#ffc1ba",
-            "Dark": "#5e1b18"
+            "Dark": "#5e1411"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -615,7 +615,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#ffaba1",
-            "Dark": "#78231f"
+            "Dark": "#781f1b"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -659,7 +659,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#94221f",
-            "Dark": "#f88f84"
+            "Dark": "#fc9287"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -669,8 +669,8 @@
           "name": "palette/ember/12",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#3b0d0a",
-            "Dark": "#ffe2de"
+            "Light": "#370907",
+            "Dark": "#ffe6e3"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -680,8 +680,8 @@
           "name": "palette/slate/1",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#fcfcfd",
-            "Dark": "#0c0c0d"
+            "Light": "#fcfdfe",
+            "Dark": "#060607"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -691,8 +691,8 @@
           "name": "palette/slate/2",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#f6f7f8",
-            "Dark": "#121314"
+            "Light": "#f6f7f9",
+            "Dark": "#0c0e0f"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -702,8 +702,8 @@
           "name": "palette/slate/3",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#edeff1",
-            "Dark": "#1a1c1e"
+            "Light": "#edf0f2",
+            "Dark": "#15181a"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -713,8 +713,8 @@
           "name": "palette/slate/4",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#e5e7ea",
-            "Dark": "#212426"
+            "Light": "#e5e8eb",
+            "Dark": "#1d2023"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -724,8 +724,8 @@
           "name": "palette/slate/5",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#dbdee2",
-            "Dark": "#282b2e"
+            "Light": "#dbdfe3",
+            "Dark": "#24282b"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -736,7 +736,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#cfd3d8",
-            "Dark": "#32363a"
+            "Dark": "#2f3338"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -746,8 +746,8 @@
           "name": "palette/slate/7",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#c0c5ca",
-            "Dark": "#41464b"
+            "Light": "#bfc5ca",
+            "Dark": "#3f4449"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -791,7 +791,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#4d535a",
-            "Dark": "#acb2b8"
+            "Dark": "#afb5bc"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -801,8 +801,8 @@
           "name": "palette/slate/12",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#1d2022",
-            "Dark": "#e7eaed"
+            "Light": "#191c1f",
+            "Dark": "#eaedf0"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -812,8 +812,8 @@
           "name": "semantic/bg/canvas",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#fcfcfd",
-            "Dark": "#0c0c0d"
+            "Light": "#fcfdfe",
+            "Dark": "#060607"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -824,8 +824,8 @@
           "name": "semantic/bg/subtle",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#f6f7f8",
-            "Dark": "#121314"
+            "Light": "#f6f7f9",
+            "Dark": "#0c0e0f"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -837,7 +837,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#ffffff",
-            "Dark": "#121314"
+            "Dark": "#0c0e0f"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -849,7 +849,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#ffffff",
-            "Dark": "#1a1c1e"
+            "Dark": "#15181a"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -860,8 +860,8 @@
           "name": "semantic/surface/sunken",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#f6f7f8",
-            "Dark": "#0c0c0d"
+            "Light": "#f6f7f9",
+            "Dark": "#060607"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -872,8 +872,8 @@
           "name": "semantic/surface/inset",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#edeff1",
-            "Dark": "#1a1c1e"
+            "Light": "#edf0f2",
+            "Dark": "#15181a"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -884,8 +884,8 @@
           "name": "semantic/surface/hover",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#edeff1",
-            "Dark": "#212426"
+            "Light": "#edf0f2",
+            "Dark": "#1d2023"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -896,8 +896,8 @@
           "name": "semantic/surface/active",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#e5e7ea",
-            "Dark": "#282b2e"
+            "Light": "#e5e8eb",
+            "Dark": "#24282b"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -908,8 +908,8 @@
           "name": "semantic/surface/selected",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#def4f5",
-            "Dark": "#002a2c"
+            "Light": "#daf6f7",
+            "Dark": "#002527"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -920,8 +920,8 @@
           "name": "semantic/border/subtle",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#dbdee2",
-            "Dark": "#282b2e"
+            "Light": "#dbdfe3",
+            "Dark": "#24282b"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -933,7 +933,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#cfd3d8",
-            "Dark": "#32363a"
+            "Dark": "#2f3338"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -944,8 +944,8 @@
           "name": "semantic/border/strong",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#c0c5ca",
-            "Dark": "#41464b"
+            "Light": "#bfc5ca",
+            "Dark": "#3f4449"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -957,7 +957,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#4d535a",
-            "Dark": "#acb2b8"
+            "Dark": "#afb5bc"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -968,8 +968,8 @@
           "name": "semantic/fg/default",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#1d2022",
-            "Dark": "#e7eaed"
+            "Light": "#191c1f",
+            "Dark": "#eaedf0"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -981,7 +981,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#4d535a",
-            "Dark": "#acb2b8"
+            "Dark": "#afb5bc"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1029,7 +1029,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#ffffff",
-            "Dark": "#0c0c0d"
+            "Dark": "#060607"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1040,8 +1040,8 @@
           "name": "semantic/accent/subtle",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#def4f5",
-            "Dark": "#052122"
+            "Light": "#daf6f7",
+            "Dark": "#001c1e"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1052,8 +1052,8 @@
           "name": "semantic/accent/muted",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#bee7e9",
-            "Dark": "#003234"
+            "Light": "#bae9eb",
+            "Dark": "#002e30"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1064,8 +1064,8 @@
           "name": "semantic/accent/border",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#8ed2d5",
-            "Dark": "#004f53"
+            "Light": "#8bd3d6",
+            "Dark": "#004e51"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1101,7 +1101,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#005f63",
-            "Dark": "#67c2c7"
+            "Dark": "#6ac5ca"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1124,8 +1124,8 @@
           "name": "semantic/success/subtle",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#e2f5e7",
-            "Dark": "#0c2114"
+            "Light": "#dff7e6",
+            "Dark": "#021d0d"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1136,8 +1136,8 @@
           "name": "semantic/success/border",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#9cd4ae",
-            "Dark": "#09532e"
+            "Light": "#99d4ad",
+            "Dark": "#00522c"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1161,7 +1161,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#006336",
-            "Dark": "#7bc495"
+            "Dark": "#7ec798"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1172,8 +1172,8 @@
           "name": "semantic/warning/subtle",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#fdecd9",
-            "Dark": "#281803"
+            "Light": "#ffecd6",
+            "Dark": "#241300"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1184,8 +1184,8 @@
           "name": "semantic/warning/border",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#e9bb82",
-            "Dark": "#603c00"
+            "Light": "#eaba7f",
+            "Dark": "#5e3b00"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1209,7 +1209,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#724800",
-            "Dark": "#dea559"
+            "Dark": "#e1a85d"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1220,8 +1220,8 @@
           "name": "semantic/danger/subtle",
           "type": "COLOR",
           "valuesByMode": {
-            "Light": "#ffe9e6",
-            "Dark": "#2f120f"
+            "Light": "#ffeae7",
+            "Dark": "#2e0907"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1233,7 +1233,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#ffaba1",
-            "Dark": "#78231f"
+            "Dark": "#781f1b"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1257,7 +1257,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#94221f",
-            "Dark": "#f88f84"
+            "Dark": "#fc9287"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1269,7 +1269,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#e6f0ff",
-            "Dark": "#0f1c30"
+            "Dark": "#061730"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1281,7 +1281,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#a0c6ff",
-            "Dark": "#1d447c"
+            "Dark": "#19427d"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1305,7 +1305,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#1c509a",
-            "Dark": "#83b3fa"
+            "Dark": "#86b6fd"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1317,7 +1317,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#ffffff",
-            "Dark": "#212426"
+            "Dark": "#1d2023"
           },
           "scopes": [
             "ALL_SCOPES"
@@ -1329,7 +1329,7 @@
           "type": "COLOR",
           "valuesByMode": {
             "Light": "#ffffff",
-            "Dark": "#121314"
+            "Dark": "#0c0e0f"
           },
           "scopes": [
             "ALL_SCOPES"

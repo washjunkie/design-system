@@ -57,20 +57,24 @@
    quietly opted out of the consumer surface.
    -------------------------------------------------------------------------- */
 
+/* Weight and tracking come through `--wj-weight-title` / `--wj-tracking-title`
+   rather than being written here, so the touch axis can make headings heavier
+   and tighter without a second definition of every role to keep in step. The
+   fallback is what these always were, so nothing moves on a pointer surface. */
 .wj-display {
   font-family: var(--wj-font-display);
   font-size: var(--wj-text-display);
   line-height: var(--wj-leading-tight);
   letter-spacing: var(--wj-tracking-tighter);
-  font-weight: var(--wj-weight-semibold);
+  font-weight: var(--wj-weight-title, var(--wj-weight-semibold));
 }
 .wj-title-lg,
 .wj-title,
 .wj-title-sm {
   font-family: var(--wj-font-display);
   line-height: var(--wj-leading-snug);
-  letter-spacing: var(--wj-tracking-tight);
-  font-weight: var(--wj-weight-semibold);
+  letter-spacing: var(--wj-tracking-title, var(--wj-tracking-tight));
+  font-weight: var(--wj-weight-title, var(--wj-weight-semibold));
 }
 .wj-title-lg { font-size: var(--wj-text-title-lg); }
 .wj-title    { font-size: var(--wj-text-title); }
@@ -926,3 +930,41 @@
   white-space: nowrap;
   border: 0;
 }
+
+/* --------------------------------------------------------------------------
+   Concentric rounding
+   --------------------------------------------------------------------------
+   The rule has been in the guide since the beginning — an inner radius equals
+   the outer radius minus the padding between them — and until now it was
+   arithmetic every component had to redo by hand, which meant it was done in
+   about half of them. Matched radii at different insets are the one geometry
+   error the eye catches reliably: the inner corner looks too round, and the
+   two shapes stop reading as one object.
+
+   A container declares what it is (`--wj-r`, `--wj-p`) and publishes the
+   radius its children must use. Children read `--wj-r`. Because the child's
+   value lands on the same custom property the parent read, **nesting composes
+   on its own** — a panel inside a card inside a sheet each steps down once,
+   with no component knowing its own depth.
+
+       <div data-wj-concentric style="--wj-r:22px; --wj-p:16px">   → 22px
+         <div data-wj-concentric class="wj-r">                     → 6px, and
+           <div class="wj-r">                                      → 0 … floored
+                                                                     at --wj-radius-xs
+
+   `max()` against `--wj-radius-xs` is the floor. Nesting deeply enough to
+   reach zero would give a square inside a round, which reads as a bug rather
+   than as a decision. */
+[data-wj-concentric] {
+  --_wj-cr: var(--wj-r, var(--wj-radius-xl));
+  --_wj-cp: var(--wj-p, var(--wj-card-padding));
+  border-radius: var(--_wj-cr);
+  padding: var(--_wj-cp);
+}
+[data-wj-concentric] > * {
+  --wj-r: max(var(--wj-radius-xs), calc(var(--_wj-cr) - var(--_wj-cp)));
+}
+/* Opt in on the child. Deliberately not applied to every child automatically:
+   a divider, a label and a text node have no corners to round, and blanket
+   `border-radius` on `> *` would round things nobody asked to be round. */
+.wj-r { border-radius: var(--wj-r, var(--wj-radius-md)); }

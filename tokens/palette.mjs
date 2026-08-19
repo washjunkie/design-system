@@ -37,14 +37,34 @@ import { oklchToHex, hexToOklch, contrast, bestInk } from './color.mjs';
    the single most-pressed control in the product — shipping below AA. 54% is
    the lightest value that clears it for all six families with margin.
    `tokens/build.mjs --check` re-proves this on every build. */
-const L_LIGHT = [99.1, 97.6, 95.2, 92.8, 90.0, 86.6, 82.0, 74.5, 54.0, 49.5, 44.0, 24.0];
-const L_DARK = [15.5, 18.8, 22.6, 25.8, 28.8, 33.0, 39.0, 48.0, 54.0, 59.5, 76.0, 93.5];
+const L_LIGHT = [99.3, 97.7, 95.3, 92.9, 90.1, 86.6, 82.0, 74.5, 54.0, 49.5, 44.0, 22.5];
+/* Dark's ground dropped from 15.5% to 12.4% in the 2026-08-19 refinement, and
+   steps 2–7 were re-spaced from the new floor so the perceptual step stays even.
+
+   The reason is the material, not taste. Liquid Glass reads as glass because a
+   blurred, saturated backdrop is VISIBLY lighter than the ground behind it —
+   that difference is the whole illusion. At 15.5% the ground sat close enough
+   to a `pane` over it that the panel edge did the work the material was
+   supposed to do, and the console read as flat cards with a blur filter. The
+   deeper ground widens that separation without touching a single alpha.
+
+   Steps 8–10 are UNCHANGED and must stay so: 9 is the solid fill whose 4.5:1
+   against white is the palette's load-bearing guarantee, and 8 and 10 are the
+   focus ring and its hover. Everything the refinement moves is either a
+   background (further from text, so contrast only improves) or a text step
+   (moved away from the ground, same direction). */
+const L_DARK = [12.4, 16.2, 20.6, 24.0, 27.4, 32.0, 38.4, 48.0, 54.0, 59.5, 77.0, 94.5];
 
 /* Chroma multiplier per step. Colour is barely present in the backgrounds,
    peaks at the solid fill, and eases off again in the text steps so that
    coloured text reads as text rather than as decoration. */
-const C_CURVE = [0.06, 0.11, 0.20, 0.28, 0.36, 0.45, 0.58, 0.78, 1.0, 0.99, 0.86, 0.42];
-const C_CURVE_DARK = [0.10, 0.16, 0.28, 0.38, 0.46, 0.56, 0.68, 0.84, 1.0, 0.98, 0.74, 0.30];
+/* Chroma lifted at the background steps (1–7) in the same refinement. A
+   surface tinted with the family it belongs to reads as part of the brand;
+   the same surface at near-zero chroma reads as grey with a coloured border
+   stuck on it. The peak (step 9) and the text steps are untouched — coloured
+   text has to read as text, not as decoration, and that was already right. */
+const C_CURVE = [0.09, 0.15, 0.25, 0.33, 0.41, 0.49, 0.61, 0.78, 1.0, 0.99, 0.86, 0.42];
+const C_CURVE_DARK = [0.15, 0.23, 0.35, 0.45, 0.53, 0.61, 0.71, 0.84, 1.0, 0.98, 0.74, 0.30];
 
 /**
  * Families. `chroma` is the peak chroma at step 9; the curve scales it.

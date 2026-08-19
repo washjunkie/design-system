@@ -49,6 +49,14 @@ export const space = {
 export const radius = {
   operator: { xs: '4px', sm: '6px', md: '8px', lg: '12px', xl: '16px', '2xl': '20px', '3xl': '28px' },
   consumer: { xs: '6px', sm: '10px', md: '14px', lg: '18px', xl: '24px', '2xl': '32px', '3xl': '44px' },
+  /** The touch ladder — see `touch` below. Softer than operator and a shade
+   *  crisper than consumer, and the steps are spaced so that CONCENTRIC
+   *  nesting lands on a real token rather than between two: an `xl` card at
+   *  `--wj-space-5` (12px) of padding leaves 16px, which is `lg`; that `lg`
+   *  panel at 8px leaves 14px, near `md`. A ladder whose gaps match the
+   *  padding scale is what makes concentricity composable instead of
+   *  arithmetic somebody has to redo per component. */
+  touch: { xs: '8px', sm: '12px', md: '14px', lg: '16px', xl: '22px', '2xl': '28px', '3xl': '38px' },
   full: '999px',
 };
 
@@ -143,6 +151,11 @@ export const fontWeight = {
   medium: '500',
   semibold: '600',
   bold: '700',
+  /** Titles on a touch surface only. At 26px+ on a phone held at arm's length
+   *  700 reads as merely firm; 800 is what makes a heading the first thing the
+   *  eye lands on. Deliberately NOT available to body copy — Inter at 800 in a
+   *  dense table is a wall, and Outfit is the face that carries it. */
+  extrabold: '800',
 };
 
 /* ------------------------------------------------------------------ *
@@ -440,6 +453,67 @@ export const register = {
     'glass-max-tier': '3',
     font: font.sans,
   },
+};
+
+/**
+ * Touch — a third axis, orthogonal to both register and density.
+ *
+ * NOT a third register. The system's whole claim is "two registers, one
+ * system", and a register is a statement about WHO is reading: an operator
+ * doing this for the four-hundredth time today, or a customer doing it once.
+ * A phone does not change who is reading. It changes what their hands can
+ * reach and how far the screen is from their face — which is the same kind of
+ * fact as density, and belongs on the same kind of axis.
+ *
+ * So this overlays whichever register is active. The console stays
+ * `operator` on a phone; it does not become a consumer app with an operator's
+ * data in it.
+ *
+ * Applied automatically by a media query (see build.mjs) rather than by an
+ * attribute the app has to remember to set — a token layer that depends on
+ * JavaScript having run is a token layer that is wrong on first paint.
+ * `[data-wj-touch]` forces it on or off for the showcase and for testing.
+ */
+export const touch = {
+  /* ── Type. Bolder and larger, because the reading distance is longer and
+     the glance is shorter. 16px body is also the floor below which iOS Safari
+     zooms the whole document on focus and never zooms back out. */
+  'text-body': fontSize.lg,          //  15 → 17
+  'text-label': fontSize.md,         //  13 → 15
+  'text-caption': fontSize.sm,       //  12 → 13
+  'text-title-sm': fontSize.xl,      //  17 → 20
+  'text-title': fontSize['2xl'],     //  20 → 24
+  'text-title-lg': fontSize['3xl'],  //  24 → 30
+  'text-display': fontSize['4xl'],   //  30 → 38
+  'leading-body': lineHeight.normal,
+
+  /* ── Weight and tracking. The display face gets heavier and tighter; this
+     is the single biggest contributor to "bolder", far more than size. */
+  'weight-title': fontWeight.extrabold,
+  'tracking-title': letterSpacing.tighter,
+
+  /* ── Rhythm. Rows and controls clear the 44px accessibility floor with
+     room, and the gutter grows slightly so full-bleed cards still breathe. */
+  'row-height': '52px',
+  'control-height': size.control.xl,
+  gutter: space[6],
+  'card-padding': space[6],
+  /* Sections sit CLOSER on a phone, not further apart. On a desktop the gap
+     separates things the eye takes in together; on a phone only one section is
+     on screen at a time, so a 32px gap is just scrolling. */
+  'section-gap': space[7],
+
+  /* ── Motion at full speed. The operator register runs at 0.85 because
+     someone repeating an action four hundred times wants it out of the way.
+     A phone is the opposite case: touch has no hover to telegraph intent, so
+     the animation IS the feedback, and clipping it reads as a dropped frame. */
+  'motion-scale': '1',
+
+  /* ── Concentric defaults. `--wj-r` is the outer radius a container rounds
+     to and `--wj-p` the inset it holds; children read `--wj-r` and get the
+     derived inner value. See `wj-touch.css`. */
+  r: 'var(--wj-radius-xl)',
+  p: space[6],
 };
 
 export const brand = {

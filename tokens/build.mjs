@@ -297,6 +297,37 @@ ${themeBlock('dark')}
     L.push('}\n');
   }
 
+  /* -------- touch -------- */
+
+  /* A media query, not an attribute. A token layer that waits for JavaScript
+     is a token layer that is wrong on the first paint — and the first paint is
+     the one an operator opening the console at a counter actually sees.
+
+     Two conditions, matching the console's own responsive rule: a phone width
+     unconditionally, and a coarse pointer up to tablet. Width alone misses an
+     iPad in landscape; pointer alone silently vanishes in every desktop-browser
+     check, which is where this gets verified. */
+  const touchTokens = (indent) => {
+    const out = [];
+    for (const [k, v] of Object.entries(T.touch)) out.push(`${indent}--wj-${k}: ${v};`);
+    for (const [k, v] of Object.entries(T.radius.touch)) out.push(`${indent}--wj-radius-${k}: ${v};`);
+    return out.join('\n');
+  };
+
+  L.push(`/* Touch is a third axis, orthogonal to register AND density — see
+   \`touch\` in tokens/source.mjs for why a phone is not a third register.
+   \`[data-wj-touch='off']\` opts a subtree out (a pointer-only dense toolbar
+   embedded in a phone layout); \`[data-wj-touch='on']\` forces it on at any
+   width, which is what the showcase's Touch switch does. */
+@media (max-width: ${T.breakpoint.sm}), (pointer: coarse) and (max-width: ${T.breakpoint.lg}) {
+  :root:not([data-wj-touch='off']) {
+${touchTokens('    ')}
+  }
+}
+[data-wj-touch='on'] {
+${touchTokens('  ')}
+}\n`);
+
   L.push(`/* Density is orthogonal to register: an operator can compact the console
    without turning it into a different product. It only ever touches rhythm. */
 [data-wj-density='compact'] {

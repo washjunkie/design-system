@@ -13,31 +13,31 @@
       "aqua": {
         "1": {
           "$type": "color",
-          "$value": "#f7fefe"
+          "$value": "#f6ffff"
         },
         "2": {
           "$type": "color",
-          "$value": "#eefafa"
+          "$value": "#ebfbfc"
         },
         "3": {
           "$type": "color",
-          "$value": "#def4f5"
+          "$value": "#daf6f7"
         },
         "4": {
           "$type": "color",
-          "$value": "#cfeef0"
+          "$value": "#caf0f2"
         },
         "5": {
           "$type": "color",
-          "$value": "#bee7e9"
+          "$value": "#bae9eb"
         },
         "6": {
           "$type": "color",
-          "$value": "#abdee1"
+          "$value": "#a6dfe2"
         },
         "7": {
           "$type": "color",
-          "$value": "#8ed2d5"
+          "$value": "#8bd3d6"
         },
         "8": {
           "$type": "color",
@@ -57,36 +57,36 @@
         },
         "12": {
           "$type": "color",
-          "$value": "#002527"
+          "$value": "#002123"
         },
         "$description": "Aqua — 12-step ramp, hue 199.9°",
         "1-dark": {
           "$type": "color",
-          "$value": "#070e0e"
+          "$value": "#010809"
         },
         "2-dark": {
           "$type": "color",
-          "$value": "#091617"
+          "$value": "#001112"
         },
         "3-dark": {
           "$type": "color",
-          "$value": "#052122"
+          "$value": "#001c1e"
         },
         "4-dark": {
           "$type": "color",
-          "$value": "#002a2c"
+          "$value": "#002527"
         },
         "5-dark": {
           "$type": "color",
-          "$value": "#003234"
+          "$value": "#002e30"
         },
         "6-dark": {
           "$type": "color",
-          "$value": "#003e41"
+          "$value": "#003b3e"
         },
         "7-dark": {
           "$type": "color",
-          "$value": "#004f53"
+          "$value": "#004e51"
         },
         "8-dark": {
           "$type": "color",
@@ -102,21 +102,21 @@
         },
         "11-dark": {
           "$type": "color",
-          "$value": "#67c2c7"
+          "$value": "#6ac5ca"
         },
         "12-dark": {
           "$type": "color",
-          "$value": "#cff1f3"
+          "$value": "#d2f5f6"
         }
       },
       "tide": {
         "1": {
           "$type": "color",
-          "$value": "#fafcff"
+          "$value": "#fbfdff"
         },
         "2": {
           "$type": "color",
-          "$value": "#f2f8ff"
+          "$value": "#f3f8ff"
         },
         "3": {
           "$type": "color",
@@ -124,11 +124,11 @@
         },
         "4": {
           "$type": "color",
-          "$value": "#d9e9ff"
+          "$value": "#dae9ff"
         },
         "5": {
           "$type": "color",
-          "$value": "#cae0ff"
+          "$value": "#cbe0ff"
         },
         "6": {
           "$type": "color",
@@ -156,36 +156,36 @@
         },
         "12": {
           "$type": "color",
-          "$value": "#091f3d"
+          "$value": "#061b39"
         },
         "$description": "Tide — 12-step ramp, hue 258°",
         "1-dark": {
           "$type": "color",
-          "$value": "#080c13"
+          "$value": "#03060f"
         },
         "2-dark": {
           "$type": "color",
-          "$value": "#0c141e"
+          "$value": "#050e1d"
         },
         "3-dark": {
           "$type": "color",
-          "$value": "#0f1c30"
+          "$value": "#061730"
         },
         "4-dark": {
           "$type": "color",
-          "$value": "#102340"
+          "$value": "#071e40"
         },
         "5-dark": {
           "$type": "color",
-          "$value": "#122a4e"
+          "$value": "#09264f"
         },
         "6-dark": {
           "$type": "color",
-          "$value": "#163561"
+          "$value": "#0f3162"
         },
         "7-dark": {
           "$type": "color",
-          "$value": "#1d447c"
+          "$value": "#19427d"
         },
         "8-dark": {
           "$type": "color",
@@ -201,17 +201,17 @@
         },
         "11-dark": {
           "$type": "color",
-          "$value": "#83b3fa"
+          "$value": "#86b6fd"
         },
         "12-dark": {
           "$type": "color",
-          "$value": "#ddebff"
+          "$value": "#e2eeff"
         }
       },
       "sun": {
         "1": {
           "$type": "color",
-          "$value": "#fffbf7"
+          "$value": "#fffcf9"
         },
         "2": {
           "$type": "color",
@@ -219,23 +219,23 @@
         },
         "3": {
           "$type": "color",
-          "$value": "#fdecd9"
+          "$value": "#ffecd6"
         },
         "4": {
           "$type": "color",
-          "$value": "#fae3c8"
+          "$value": "#fee3c3"
         },
         "5": {
           "$type": "color",
-          "$value": "#f6d9b6"
+          "$value": "#f9d8b1"
         },
         "6": {
           "$type": "color",
-          "$value": "#f0cca1"
+          "$value": "#f3cc9c"
         },
         "7": {
           "$type": "color",
-          "$value": "#e9bb82"
+          "$value": "#eaba7f"
         },
         "8": {
           "$type": "color",
@@ -255,36 +255,36 @@
         },
         "12": {
           "$type": "color",
-          "$value": "#2e1a00"
+          "$value": "#291700"
         },
         "$description": "Sun — 12-step ramp, hue 72°",
         "1-dark": {
           "$type": "color",
-          "$value": "#100b06"
+          "$value": "#0c0501"
         },
         "2-dark": {
           "$type": "color",
-          "$value": "#1a1107"
+          "$value": "#170b00"
         },
         "3-dark": {
           "$type": "color",
-          "$value": "#281803"
+          "$value": "#241300"
         },
         "4-dark": {
           "$type": "color",
-          "$value": "#341e00"
+          "$value": "#2e1a00"
         },
         "5-dark": {
           "$type": "color",
-          "$value": "#3d2500"
+          "$value": "#392200"
         },
         "6-dark": {
           "$type": "color",
-          "$value": "#4b2e00"
+          "$value": "#482c00"
         },
         "7-dark": {
           "$type": "color",
-          "$value": "#603c00"
+          "$value": "#5e3b00"
         },
         "8-dark": {
           "$type": "color",
@@ -300,41 +300,41 @@
         },
         "11-dark": {
           "$type": "color",
-          "$value": "#dea559"
+          "$value": "#e1a85d"
         },
         "12-dark": {
           "$type": "color",
-          "$value": "#fee5c8"
+          "$value": "#ffe9cf"
         }
       },
       "moss": {
         "1": {
           "$type": "color",
-          "$value": "#f8fefa"
+          "$value": "#f7fffa"
         },
         "2": {
           "$type": "color",
-          "$value": "#f0faf3"
+          "$value": "#edfcf2"
         },
         "3": {
           "$type": "color",
-          "$value": "#e2f5e7"
+          "$value": "#dff7e6"
         },
         "4": {
           "$type": "color",
-          "$value": "#d4efdc"
+          "$value": "#d1f1db"
         },
         "5": {
           "$type": "color",
-          "$value": "#c6e8d0"
+          "$value": "#c2eacf"
         },
         "6": {
           "$type": "color",
-          "$value": "#b4dfc2"
+          "$value": "#b1e0c0"
         },
         "7": {
           "$type": "color",
-          "$value": "#9cd4ae"
+          "$value": "#99d4ad"
         },
         "8": {
           "$type": "color",
@@ -354,36 +354,36 @@
         },
         "12": {
           "$type": "color",
-          "$value": "#022713"
+          "$value": "#002310"
         },
         "$description": "Moss — 12-step ramp, hue 155°",
         "1-dark": {
           "$type": "color",
-          "$value": "#080e0a"
+          "$value": "#020804"
         },
         "2-dark": {
           "$type": "color",
-          "$value": "#0b160f"
+          "$value": "#031208"
         },
         "3-dark": {
           "$type": "color",
-          "$value": "#0c2114"
+          "$value": "#021d0d"
         },
         "4-dark": {
           "$type": "color",
-          "$value": "#0b2b18"
+          "$value": "#002712"
         },
         "5-dark": {
           "$type": "color",
-          "$value": "#0a341d"
+          "$value": "#003118"
         },
         "6-dark": {
           "$type": "color",
-          "$value": "#084023"
+          "$value": "#003e20"
         },
         "7-dark": {
           "$type": "color",
-          "$value": "#09532e"
+          "$value": "#00522c"
         },
         "8-dark": {
           "$type": "color",
@@ -399,29 +399,29 @@
         },
         "11-dark": {
           "$type": "color",
-          "$value": "#7bc495"
+          "$value": "#7ec798"
         },
         "12-dark": {
           "$type": "color",
-          "$value": "#d5f2de"
+          "$value": "#d9f5e1"
         }
       },
       "ember": {
         "1": {
           "$type": "color",
-          "$value": "#fffbfa"
+          "$value": "#fffcfb"
         },
         "2": {
           "$type": "color",
-          "$value": "#fff4f3"
+          "$value": "#fff5f3"
         },
         "3": {
           "$type": "color",
-          "$value": "#ffe9e6"
+          "$value": "#ffeae7"
         },
         "4": {
           "$type": "color",
-          "$value": "#ffdfda"
+          "$value": "#ffdfdb"
         },
         "5": {
           "$type": "color",
@@ -453,36 +453,36 @@
         },
         "12": {
           "$type": "color",
-          "$value": "#3b0d0a"
+          "$value": "#370907"
         },
         "$description": "Ember — 12-step ramp, hue 27°",
         "1-dark": {
           "$type": "color",
-          "$value": "#130908"
+          "$value": "#0f0303"
         },
         "2-dark": {
           "$type": "color",
-          "$value": "#1e0e0c"
+          "$value": "#1c0605"
         },
         "3-dark": {
           "$type": "color",
-          "$value": "#2f120f"
+          "$value": "#2e0907"
         },
         "4-dark": {
           "$type": "color",
-          "$value": "#3e1411"
+          "$value": "#3d0a09"
         },
         "5-dark": {
           "$type": "color",
-          "$value": "#4b1713"
+          "$value": "#4b0d0b"
         },
         "6-dark": {
           "$type": "color",
-          "$value": "#5e1b18"
+          "$value": "#5e1411"
         },
         "7-dark": {
           "$type": "color",
-          "$value": "#78231f"
+          "$value": "#781f1b"
         },
         "8-dark": {
           "$type": "color",
@@ -498,33 +498,33 @@
         },
         "11-dark": {
           "$type": "color",
-          "$value": "#f88f84"
+          "$value": "#fc9287"
         },
         "12-dark": {
           "$type": "color",
-          "$value": "#ffe2de"
+          "$value": "#ffe6e3"
         }
       },
       "slate": {
         "1": {
           "$type": "color",
-          "$value": "#fcfcfd"
+          "$value": "#fcfdfe"
         },
         "2": {
           "$type": "color",
-          "$value": "#f6f7f8"
+          "$value": "#f6f7f9"
         },
         "3": {
           "$type": "color",
-          "$value": "#edeff1"
+          "$value": "#edf0f2"
         },
         "4": {
           "$type": "color",
-          "$value": "#e5e7ea"
+          "$value": "#e5e8eb"
         },
         "5": {
           "$type": "color",
-          "$value": "#dbdee2"
+          "$value": "#dbdfe3"
         },
         "6": {
           "$type": "color",
@@ -532,7 +532,7 @@
         },
         "7": {
           "$type": "color",
-          "$value": "#c0c5ca"
+          "$value": "#bfc5ca"
         },
         "8": {
           "$type": "color",
@@ -552,36 +552,36 @@
         },
         "12": {
           "$type": "color",
-          "$value": "#1d2022"
+          "$value": "#191c1f"
         },
         "$description": "Slate — 12-step ramp, hue 250°",
         "1-dark": {
           "$type": "color",
-          "$value": "#0c0c0d"
+          "$value": "#060607"
         },
         "2-dark": {
           "$type": "color",
-          "$value": "#121314"
+          "$value": "#0c0e0f"
         },
         "3-dark": {
           "$type": "color",
-          "$value": "#1a1c1e"
+          "$value": "#15181a"
         },
         "4-dark": {
           "$type": "color",
-          "$value": "#212426"
+          "$value": "#1d2023"
         },
         "5-dark": {
           "$type": "color",
-          "$value": "#282b2e"
+          "$value": "#24282b"
         },
         "6-dark": {
           "$type": "color",
-          "$value": "#32363a"
+          "$value": "#2f3338"
         },
         "7-dark": {
           "$type": "color",
-          "$value": "#41464b"
+          "$value": "#3f4449"
         },
         "8-dark": {
           "$type": "color",
@@ -597,89 +597,89 @@
         },
         "11-dark": {
           "$type": "color",
-          "$value": "#acb2b8"
+          "$value": "#afb5bc"
         },
         "12-dark": {
           "$type": "color",
-          "$value": "#e7eaed"
+          "$value": "#eaedf0"
         }
       }
     },
     "semantic": {
       "bg-canvas": {
         "$type": "color",
-        "$value": "#fcfcfd",
-        "$description": "light: #fcfcfd · dark: #0c0c0d"
+        "$value": "#fcfdfe",
+        "$description": "light: #fcfdfe · dark: #060607"
       },
       "bg-subtle": {
         "$type": "color",
-        "$value": "#f6f7f8",
-        "$description": "light: #f6f7f8 · dark: #121314"
+        "$value": "#f6f7f9",
+        "$description": "light: #f6f7f9 · dark: #0c0e0f"
       },
       "surface-default": {
         "$type": "color",
         "$value": "#ffffff",
-        "$description": "light: #ffffff · dark: #121314"
+        "$description": "light: #ffffff · dark: #0c0e0f"
       },
       "surface-raised": {
         "$type": "color",
         "$value": "#ffffff",
-        "$description": "light: #ffffff · dark: #1a1c1e"
+        "$description": "light: #ffffff · dark: #15181a"
       },
       "surface-sunken": {
         "$type": "color",
-        "$value": "#f6f7f8",
-        "$description": "light: #f6f7f8 · dark: #0c0c0d"
+        "$value": "#f6f7f9",
+        "$description": "light: #f6f7f9 · dark: #060607"
       },
       "surface-inset": {
         "$type": "color",
-        "$value": "#edeff1",
-        "$description": "light: #edeff1 · dark: #1a1c1e"
+        "$value": "#edf0f2",
+        "$description": "light: #edf0f2 · dark: #15181a"
       },
       "surface-hover": {
         "$type": "color",
-        "$value": "#edeff1",
-        "$description": "light: #edeff1 · dark: #212426"
+        "$value": "#edf0f2",
+        "$description": "light: #edf0f2 · dark: #1d2023"
       },
       "surface-active": {
         "$type": "color",
-        "$value": "#e5e7ea",
-        "$description": "light: #e5e7ea · dark: #282b2e"
+        "$value": "#e5e8eb",
+        "$description": "light: #e5e8eb · dark: #24282b"
       },
       "surface-selected": {
         "$type": "color",
-        "$value": "#def4f5",
-        "$description": "light: #def4f5 · dark: #002a2c"
+        "$value": "#daf6f7",
+        "$description": "light: #daf6f7 · dark: #002527"
       },
       "border-subtle": {
         "$type": "color",
-        "$value": "#dbdee2",
-        "$description": "light: #dbdee2 · dark: #282b2e"
+        "$value": "#dbdfe3",
+        "$description": "light: #dbdfe3 · dark: #24282b"
       },
       "border-default": {
         "$type": "color",
         "$value": "#cfd3d8",
-        "$description": "light: #cfd3d8 · dark: #32363a"
+        "$description": "light: #cfd3d8 · dark: #2f3338"
       },
       "border-strong": {
         "$type": "color",
-        "$value": "#c0c5ca",
-        "$description": "light: #c0c5ca · dark: #41464b"
+        "$value": "#bfc5ca",
+        "$description": "light: #bfc5ca · dark: #3f4449"
       },
       "border-inverse": {
         "$type": "color",
         "$value": "#4d535a",
-        "$description": "light: #4d535a · dark: #acb2b8"
+        "$description": "light: #4d535a · dark: #afb5bc"
       },
       "fg-default": {
         "$type": "color",
-        "$value": "#1d2022",
-        "$description": "light: #1d2022 · dark: #e7eaed"
+        "$value": "#191c1f",
+        "$description": "light: #191c1f · dark: #eaedf0"
       },
       "fg-muted": {
         "$type": "color",
         "$value": "#4d535a",
-        "$description": "light: #4d535a · dark: #acb2b8"
+        "$description": "light: #4d535a · dark: #afb5bc"
       },
       "fg-subtle": {
         "$type": "color",
@@ -699,22 +699,22 @@
       "fg-inverse": {
         "$type": "color",
         "$value": "#ffffff",
-        "$description": "light: #ffffff · dark: #0c0c0d"
+        "$description": "light: #ffffff · dark: #060607"
       },
       "accent-subtle": {
         "$type": "color",
-        "$value": "#def4f5",
-        "$description": "light: #def4f5 · dark: #052122"
+        "$value": "#daf6f7",
+        "$description": "light: #daf6f7 · dark: #001c1e"
       },
       "accent-muted": {
         "$type": "color",
-        "$value": "#bee7e9",
-        "$description": "light: #bee7e9 · dark: #003234"
+        "$value": "#bae9eb",
+        "$description": "light: #bae9eb · dark: #002e30"
       },
       "accent-border": {
         "$type": "color",
-        "$value": "#8ed2d5",
-        "$description": "light: #8ed2d5 · dark: #004f53"
+        "$value": "#8bd3d6",
+        "$description": "light: #8bd3d6 · dark: #004e51"
       },
       "accent-solid": {
         "$type": "color",
@@ -729,7 +729,7 @@
       "accent-fg": {
         "$type": "color",
         "$value": "#005f63",
-        "$description": "light: #005f63 · dark: #67c2c7"
+        "$description": "light: #005f63 · dark: #6ac5ca"
       },
       "accent-on-solid": {
         "$type": "color",
@@ -738,13 +738,13 @@
       },
       "success-subtle": {
         "$type": "color",
-        "$value": "#e2f5e7",
-        "$description": "light: #e2f5e7 · dark: #0c2114"
+        "$value": "#dff7e6",
+        "$description": "light: #dff7e6 · dark: #021d0d"
       },
       "success-border": {
         "$type": "color",
-        "$value": "#9cd4ae",
-        "$description": "light: #9cd4ae · dark: #09532e"
+        "$value": "#99d4ad",
+        "$description": "light: #99d4ad · dark: #00522c"
       },
       "success-solid": {
         "$type": "color",
@@ -754,17 +754,17 @@
       "success-fg": {
         "$type": "color",
         "$value": "#006336",
-        "$description": "light: #006336 · dark: #7bc495"
+        "$description": "light: #006336 · dark: #7ec798"
       },
       "warning-subtle": {
         "$type": "color",
-        "$value": "#fdecd9",
-        "$description": "light: #fdecd9 · dark: #281803"
+        "$value": "#ffecd6",
+        "$description": "light: #ffecd6 · dark: #241300"
       },
       "warning-border": {
         "$type": "color",
-        "$value": "#e9bb82",
-        "$description": "light: #e9bb82 · dark: #603c00"
+        "$value": "#eaba7f",
+        "$description": "light: #eaba7f · dark: #5e3b00"
       },
       "warning-solid": {
         "$type": "color",
@@ -774,17 +774,17 @@
       "warning-fg": {
         "$type": "color",
         "$value": "#724800",
-        "$description": "light: #724800 · dark: #dea559"
+        "$description": "light: #724800 · dark: #e1a85d"
       },
       "danger-subtle": {
         "$type": "color",
-        "$value": "#ffe9e6",
-        "$description": "light: #ffe9e6 · dark: #2f120f"
+        "$value": "#ffeae7",
+        "$description": "light: #ffeae7 · dark: #2e0907"
       },
       "danger-border": {
         "$type": "color",
         "$value": "#ffaba1",
-        "$description": "light: #ffaba1 · dark: #78231f"
+        "$description": "light: #ffaba1 · dark: #781f1b"
       },
       "danger-solid": {
         "$type": "color",
@@ -794,17 +794,17 @@
       "danger-fg": {
         "$type": "color",
         "$value": "#94221f",
-        "$description": "light: #94221f · dark: #f88f84"
+        "$description": "light: #94221f · dark: #fc9287"
       },
       "info-subtle": {
         "$type": "color",
         "$value": "#e6f0ff",
-        "$description": "light: #e6f0ff · dark: #0f1c30"
+        "$description": "light: #e6f0ff · dark: #061730"
       },
       "info-border": {
         "$type": "color",
         "$value": "#a0c6ff",
-        "$description": "light: #a0c6ff · dark: #1d447c"
+        "$description": "light: #a0c6ff · dark: #19427d"
       },
       "info-solid": {
         "$type": "color",
@@ -814,17 +814,17 @@
       "info-fg": {
         "$type": "color",
         "$value": "#1c509a",
-        "$description": "light: #1c509a · dark: #83b3fa"
+        "$description": "light: #1c509a · dark: #86b6fd"
       },
       "glass-tint": {
         "$type": "color",
         "$value": "#ffffff",
-        "$description": "light: #ffffff · dark: #212426"
+        "$description": "light: #ffffff · dark: #1d2023"
       },
       "glass-floor": {
         "$type": "color",
         "$value": "#ffffff",
-        "$description": "light: #ffffff · dark: #121314"
+        "$description": "light: #ffffff · dark: #0c0e0f"
       },
       "glass-edge": {
         "$type": "color",
@@ -1172,6 +1172,10 @@
         "bold": {
           "$type": "fontWeight",
           "$value": 700
+        },
+        "extrabold": {
+          "$type": "fontWeight",
+          "$value": 800
         }
       },
       "lineHeight": {

@@ -25,6 +25,10 @@ about how it *looks and behaves*.
 reference implementation.
 
 - `data-wj-register="operator"`, density user-selectable.
+- **On a phone it stays `operator` and picks up the [touch axis](16-touch.md)** —
+  bigger type at 800 weight, 52px rows, softer radii, motion back to full speed.
+  It does not switch to `consumer`: the register is about who is reading, and
+  that is the same person holding a phone.
 - Rail `pane`, page header `veil`, everything below solid.
 - Detail views are `side="end"` sheets, not routes — operators keep their place
   in the list.

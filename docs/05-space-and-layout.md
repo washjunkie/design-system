@@ -66,6 +66,45 @@ Matched radii at different insets read as a mistake — the inner corner looks
 too round. This is one of the few places the eye is reliably better than the
 spec at spotting an error.
 
+### It is a utility now, not arithmetic
+
+The rule above was prose for a long time, which meant every component redid the
+subtraction by hand — and roughly half of them didn't. `[data-wj-concentric]`
+makes it structural: a container declares what it *is*, and publishes the radius
+its children must use.
+
+```html
+<div data-wj-concentric style="--wj-r:22px; --wj-p:16px">   <!-- 22px -->
+  <div data-wj-concentric class="wj-r" style="--wj-p:8px">  <!--  6px -->
+    <div class="wj-r">                                      <!--  4px, floored -->
+```
+
+| | |
+|---|---|
+| `--wj-r` | the outer radius this container rounds to |
+| `--wj-p` | the inset it holds |
+| `.wj-r` | opt-in on a child: `border-radius: var(--wj-r)` |
+
+**Nesting composes on its own.** The child's derived value lands on the same
+custom property the parent read, so a panel inside a card inside a sheet each
+steps down once and no component needs to know its own depth.
+
+`max()` floors the result at `--wj-radius-xs`. Nesting deep enough to reach zero
+would put a square inside a round, which reads as a bug rather than a decision.
+
+`.wj-r` is opt-in rather than applied to every child, because a divider, a label
+and a text node have no corners — blanket `border-radius` on `> *` rounds things
+nobody asked to be round.
+
+### The touch ladder is spaced for this
+
+`radius.touch` (8 / 12 / 14 / 16 / 22 / 28 / 38) is not just "operator, softer".
+Its gaps match the padding scale, so a concentric step lands **on a token**
+rather than between two: an `xl` card at `--wj-space-5` leaves 16px, which is
+`lg`; that `lg` panel at 8px leaves 14px, which is `md`. A ladder whose gaps
+match the spacing scale is what makes concentricity composable instead of
+arithmetic somebody has to redo per component.
+
 ---
 
 ## Layout helpers

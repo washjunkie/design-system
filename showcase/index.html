@@ -93,6 +93,15 @@
       <button class="wj-segmented__item" data-density-set="compact">Compact</button>
     </div>
 
+    <!-- Touch is normally decided by a media query, not a switch. Forcing it at
+         desktop width is the only way to see it side by side with the pointer
+         expression, which is the comparison that matters when reviewing it. -->
+    <div class="wj-segmented" role="tablist" aria-label="Touch">
+      <button class="wj-segmented__item" data-touch-set="auto" data-selected="true">Auto</button>
+      <button class="wj-segmented__item" data-touch-set="on">Touch</button>
+      <button class="wj-segmented__item" data-touch-set="off">Pointer</button>
+    </div>
+
     <label class="wj-row" style="gap:var(--wj-space-3)">
       <span class="wj-caption">Business accent</span>
       <input id="accent" type="range" min="0" max="360" value="200" style="width:110px" aria-label="Business accent hue">
@@ -123,6 +132,8 @@
       <a class="wj-chip" href="#kit">UI kit</a>
       <a class="wj-chip" href="#patterns">Patterns</a>
       <a class="wj-chip" href="#registers">Registers</a>
+      <a class="wj-chip" href="#touch">Touch</a>
+      <a class="wj-chip" href="#concentric">Concentric</a>
     </nav>
   </section>
 
@@ -507,6 +518,75 @@
     </div>
   </section>
 
+  <!-- ============================ Touch ============================ -->
+  <section id="touch">
+    <h2>Touch — a third axis</h2>
+    <p class="lede">
+      Not a third register. A register says <em>who</em> is reading; a phone changes what the hand can
+      reach and how far the screen is from the face, which is the same kind of fact as density. It
+      overlays whichever register is active, and it is applied by a media query rather than an
+      attribute — a token layer that waits for JavaScript is wrong on the first paint. Use the
+      <strong>Touch</strong> switch above to force it at this width.
+    </p>
+
+    <div class="cols" style="grid-template-columns:1fr 1fr">
+      <div data-wj-touch="off">
+        <p class="wj-eyebrow" style="margin-bottom:var(--wj-space-4)">Pointer</p>
+        <div class="wj-card"><div class="wj-card__body wj-stack" data-gap="sm">
+          <h3 class="wj-title" style="margin:0">Update status</h3>
+          <p class="wj-body" style="margin:0">15px body · titles at 600 · 34px controls · motion 0.85×</p>
+          <div class="wj-row"><button class="wj-btn" data-variant="primary" data-size="sm">Save</button><button class="wj-btn" data-variant="secondary" data-size="sm">Cancel</button></div>
+        </div></div>
+      </div>
+      <div data-wj-touch="on">
+        <p class="wj-eyebrow" style="margin-bottom:var(--wj-space-4)">Touch</p>
+        <div class="wj-card"><div class="wj-card__body wj-stack" data-gap="sm">
+          <h3 class="wj-title" style="margin:0">Update status</h3>
+          <p class="wj-body" style="margin:0">17px body · titles at 800 · 48px controls · motion 1×</p>
+          <div class="wj-row"><button class="wj-btn" data-variant="primary">Save</button><button class="wj-btn" data-variant="secondary">Cancel</button></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== Concentric rounding ======================== -->
+  <section id="concentric">
+    <h2>Concentric rounding</h2>
+    <p class="lede">
+      An inner radius equals the outer radius minus the padding between them. The guide has said so
+      since the beginning; until now it was arithmetic every component redid by hand, which meant it
+      was done in about half of them. A container declares what it is and publishes the radius its
+      children must use, so <strong>nesting composes without any component knowing its own depth</strong>.
+    </p>
+
+    <div class="cols" style="grid-template-columns:1fr 1fr">
+      <div>
+        <p class="wj-eyebrow" style="margin-bottom:var(--wj-space-4)">Concentric</p>
+        <div data-wj-concentric style="--wj-r:var(--wj-radius-3xl);--wj-p:var(--wj-space-6);background:var(--wj-surface-sunken);border:1px solid var(--wj-border-subtle)">
+          <div data-wj-concentric class="wj-r" style="--wj-p:var(--wj-space-5);background:var(--wj-surface-raised);border:1px solid var(--wj-border-subtle)">
+            <div class="wj-r" style="background:var(--wj-accent-solid);color:var(--wj-accent-on-solid);padding:var(--wj-space-5)">
+              <p class="wj-caption" style="margin:0;color:inherit">Three nested corners, one curve</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="wj-eyebrow" style="margin-bottom:var(--wj-space-4)">Matched radii — the mistake</p>
+        <div style="border-radius:var(--wj-radius-3xl);padding:var(--wj-space-6);background:var(--wj-surface-sunken);border:1px solid var(--wj-border-subtle)">
+          <div style="border-radius:var(--wj-radius-3xl);padding:var(--wj-space-5);background:var(--wj-surface-raised);border:1px solid var(--wj-border-subtle)">
+            <div style="border-radius:var(--wj-radius-3xl);background:var(--wj-accent-solid);color:var(--wj-accent-on-solid);padding:var(--wj-space-5)">
+              <p class="wj-caption" style="margin:0;color:inherit">The inner corner reads too round</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="wj-caption" style="margin-top:var(--wj-space-5)">
+      This is one of the few places the eye is reliably better than the spec at spotting an error —
+      matched radii at different insets stop reading as one object.
+    </p>
+  </section>
+
   <footer style="padding-top:var(--wj-space-12);border-top:1px solid var(--wj-border-subtle);margin-top:var(--wj-space-12)">
     <p class="wj-caption">
       Generated from <code>tokens/build.mjs</code>. Full documentation in <code>docs/</code>.
@@ -576,6 +656,13 @@ function segment(attr, apply) {
 segment('data-theme-set', (v) => v === 'system' ? root.removeAttribute('data-wj-theme') : root.setAttribute('data-wj-theme', v));
 segment('data-register-set', (v) => { root.setAttribute('data-wj-register', v); $('#reg-label').textContent = `(${v})`; drawRadii(); });
 segment('data-density-set', (v) => root.setAttribute('data-wj-density', v));
+/* `auto` removes the attribute so the media query decides again — which is the
+   real behaviour, and the state a reviewer should return to. */
+segment('data-touch-set', (v) => {
+  if (v === 'auto') root.removeAttribute('data-wj-touch');
+  else root.setAttribute('data-wj-touch', v);
+  drawRadii();
+});
 
 $('#accent').addEventListener('input', (e) => root.style.setProperty('--wj-accent-h', e.target.value));
 $('#accent-reset').addEventListener('click', () => { root.style.removeProperty('--wj-accent-h'); $('#accent').value = 200; });

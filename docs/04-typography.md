@@ -48,6 +48,13 @@ the consumer surface.
 The raw scale (`--wj-text-xs` … `--wj-text-7xl`) exists for marketing layouts
 that genuinely need a specific size. In product code, use the roles.
 
+**The [touch axis](16-touch.md) resizes these again**, and also swaps
+`--wj-weight-title` to 800 and `--wj-tracking-title` to `tighter`. Those two are
+tokens rather than values written into the role classes, precisely so the touch
+layer can make headings heavier without a second definition of every role to
+keep in step. A component that hard-codes `font-weight: 600` on a heading has
+opted out of that.
+
 ---
 
 ## The details that matter

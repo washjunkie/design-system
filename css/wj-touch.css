@@ -1,0 +1,178 @@
+/* ==========================================================================
+   Liquid Glass · Touch
+   ==========================================================================
+
+   The mobile expression of the system. Loads after `wj-components.css` and
+   corrects nothing — it only adds behaviour that has no meaning on a pointer
+   surface.
+
+   ## Why this is not a third register
+
+   `tokens/source.mjs` argues it in full; the short version is that a register
+   says WHO is reading (an operator on their four-hundredth order today, or a
+   customer on their first) and a phone does not change that. It changes what
+   the hand can reach and how far the screen sits from the face. That is the
+   same kind of fact as density, so it rides the same kind of axis. The console
+   stays `operator` on a phone. It does not become a consumer app that happens
+   to have an operator's data in it.
+
+   The token half is generated (see the `@media` block in `wj-tokens.css`) and
+   applies automatically — type grows, weight goes to 800, rows clear 44px,
+   radii soften, and `--wj-motion-scale` returns to 1. This file is the part
+   that cannot be expressed as a token swap:
+
+     1. Type that leads from the left edge
+     2. Interaction that answers the finger
+     3. Glass that behaves like a physical layer on a small screen
+
+   ## What touch does NOT get
+
+   Hover. There is no such thing, and a `:hover` rule on a touch surface latches
+   on tap and sits there until something else is tapped. Every interactive
+   treatment below is `:active` or `:focus-visible`.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 600px), (pointer: coarse) and (max-width: 1080px) {
+  /* ------------------------------------------------------------------------
+     1 · Type leads from the left
+     ------------------------------------------------------------------------
+     Centred headings are the default failure of a narrow layout, and they cost
+     twice. A centred heading has no fixed edge, so consecutive headings start
+     at different x-positions and the eye re-finds the start of every line
+     instead of running down a single rail. And on a screen this narrow a
+     centred heading of any length wraps, which turns one ragged edge into two.
+
+     The exception is deliberate and short: something with no siblings to align
+     to — an empty state, a completion screen — may centre, because there is no
+     rail to break. It opts in with `.wj-center`. */
+  :where(.wj-root, [data-wj-touch='on']) :is(.wj-display, .wj-title-lg, .wj-title, .wj-title-sm, .wj-eyebrow):not(.wj-center) {
+    text-align: left;
+    /* `balance` on a heading that is now allowed to wrap: it evens the lines
+       instead of leaving one orphaned word, and it costs nothing where the
+       heading fits on one line anyway. */
+    text-wrap: balance;
+  }
+
+  /* Optical alignment. A heading at 800 weight and -0.03em sits visually a
+     hair right of a body line at the same x, because its left sidebearing is
+     tighter. Pulling it back by a fraction of the tracking puts the two stems
+     on one rail — the kind of correction that is invisible when right and
+     nagging when absent. */
+  :where(.wj-root, [data-wj-touch='on']) :is(.wj-display, .wj-title-lg, .wj-title) {
+    margin-left: -0.01em;
+  }
+
+  /* ------------------------------------------------------------------------
+     2 · Interaction answers the finger
+     ------------------------------------------------------------------------
+     A pointer surface telegraphs intent with hover, so a press can afford to
+     be quiet. Touch has no such warning: the first the interface knows of a
+     press is the press, which makes the press response the ONLY feedback
+     before the result arrives. It has to be immediate and it has to be felt.
+
+     Scale, not colour. A colour change on a control the thumb is currently
+     covering is a change nobody can see. */
+  .wj-press,
+  :where(.wj-root, [data-wj-touch='on']) :is(button, [role='button'], a.wj-btn, .wj-btn, .wj-chip, .wj-tile):not(:disabled):not([aria-disabled='true']) {
+    /* `transform` and `filter` only — both composited, so this never costs a
+       layout pass on a device that has none to spare. */
+    transition:
+      transform calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out),
+      filter calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1)) var(--wj-ease-out);
+    /* Kills the 300ms grey flash iOS paints over anything tappable, which
+       otherwise fires on top of everything below and looks like a bug. */
+    -webkit-tap-highlight-color: transparent;
+  }
+  .wj-press:active,
+  :where(.wj-root, [data-wj-touch='on']) :is(button, [role='button'], a.wj-btn, .wj-btn, .wj-chip, .wj-tile):not(:disabled):not([aria-disabled='true']):active {
+    transform: scale(0.972);
+    filter: brightness(0.97);
+    /* The release is where the spring lives. Pressing is the finger's motion
+       and should track it exactly; releasing is the interface's motion, and
+       `--wj-ease-fluid` — the one curve in the system allowed to overshoot —
+       is what makes the control feel like it has mass rather than like a
+       sprite that changed size. */
+    transition-duration: calc(var(--wj-dur-fast) * var(--wj-motion-scale, 1));
+  }
+
+  /* A row is pressed across its whole width, so it dips rather than shrinks —
+     a scaled row would visibly detach from its neighbours in a list. */
+  .wj-row-press:active {
+    background: var(--wj-surface-hover);
+    transform: none;
+  }
+
+  /* ------------------------------------------------------------------------
+     3 · Glass as a physical layer
+     ------------------------------------------------------------------------
+     On a desktop a sheet is one layer among several and its job is to be
+     clearly on top. On a phone it is the entire screen, and its job is to read
+     as a thing that arrived from somewhere — which is what keeps the causal
+     link to whatever was pressed. */
+
+  /* Sheets rise from the edge they are anchored to and settle. `--wj-dur-slower`
+     and the fluid spring, because a layer arriving is the one moment in an
+     operator console worth watching. */
+  .wj-enter-sheet {
+    animation: wj-touch-rise calc(var(--wj-dur-slower) * var(--wj-motion-scale, 1)) var(--wj-ease-fluid) both;
+  }
+
+  /* The grab handle earns its space on touch and only on touch — it is the
+     affordance that says this layer can be thrown away, and there is no
+     equivalent gesture with a mouse. */
+  .wj-sheet__handle {
+    width: 40px;
+    height: 5px;
+    border-radius: var(--wj-radius-full);
+    background: var(--wj-border-strong);
+    opacity: 0.55;
+    margin: 0 auto var(--wj-space-5);
+  }
+
+  /* Momentum and snapping on anything that scrolls sideways. Without
+     `overscroll-behavior: contain` a horizontal scroller at its end hands the
+     gesture to the page, so a flick through status chips scrolls the whole
+     screen instead — the single most common way a phone layout feels broken
+     while every element in it is correct. */
+  .wj-scroller {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .wj-scroller::-webkit-scrollbar { display: none; }
+  .wj-scroller > * { scroll-snap-align: start; }
+
+  /* A glass layer pinned to the bottom edge has to clear the home indicator,
+     and the inset only resolves if the document opted into `viewport-fit=cover`
+     — which is the trap the console already has on record: a dozen carefully
+     written insets all resolving to 0px because the meta tag was missing. */
+  .wj-dock {
+    padding-bottom: max(var(--wj-space-5), env(safe-area-inset-bottom));
+  }
+}
+
+@keyframes wj-touch-rise {
+  from {
+    transform: translateY(calc(var(--wj-space-8) * 1.5));
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Someone who has asked for less motion has asked for less motion on a phone
+   too — and this is the layer that adds the most of it. The press response
+   stays, because it is feedback rather than decoration and removing it would
+   leave a control that gives no sign it was touched. */
+@media (prefers-reduced-motion: reduce) {
+  .wj-enter-sheet { animation: none; }
+  .wj-press:active,
+  :where(.wj-root, [data-wj-touch='on']) :is(button, [role='button'], .wj-btn):active {
+    transform: none;
+    filter: brightness(0.94);
+  }
+}

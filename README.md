@@ -74,6 +74,7 @@ Full reasoning: [docs/01-principles.md](docs/01-principles.md).
 | [13 · White-label](docs/13-white-label.md) | Per-business accent, and its guardrails |
 | [14 · Governance](docs/14-governance.md) | Changing things without breaking things |
 | [15 · Adoption](docs/15-adoption.md) | Getting this into `web/` without a rewrite |
+| [16 · Touch](docs/16-touch.md) | The phone axis — why it is not a third register |
 
 ---
 
