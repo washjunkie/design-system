@@ -619,6 +619,16 @@ function runAudit() {
       check(`${theme} ${tone}-fg on ${tone}-subtle`, contrast(s[`${tone}-fg`], s[`${tone}-subtle`]), 4.5);
       check(`${theme} ink on ${tone}-solid`, contrast(bestInk(s[`${tone}-solid`]), s[`${tone}-solid`]), 4.5);
     }
+    /* The categorical scale, held to the identical bar. It is the same four
+       step indices as a tone, so this can only fail if the ladder moves — which
+       is exactly the failure the ramp audit exists to catch early, and exactly
+       the one that went unnoticed the last time these numbers were transcribed
+       by hand rather than generated. */
+    for (let n = 1; n <= T.CATEGORY_FAMILIES.length; n++) {
+      const c = `category-${n}`;
+      check(`${theme} ${c}-fg on ${c}-subtle`, contrast(s[`${c}-fg`], s[`${c}-subtle`]), 4.5);
+      check(`${theme} ink on ${c}-solid`, contrast(bestInk(s[`${c}-solid`]), s[`${c}-solid`]), 4.5);
+    }
     check(`${theme} border-default on surface-default`, contrast(s['border-default'], s['surface-default']), 1.3);
     /* WCAG 2.2 non-text contrast. A focus ring nobody can find is the same as
        no focus ring, and it is the failure keyboard users hit first. */

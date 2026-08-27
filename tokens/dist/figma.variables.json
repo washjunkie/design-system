@@ -677,6 +677,138 @@
           ]
         },
         {
+          "name": "palette/iris/1",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#fdfcff",
+            "Dark": "#08050e"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/iris/2",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#f9f6ff",
+            "Dark": "#100a1b"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/iris/3",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#f2ecff",
+            "Dark": "#1c102d"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/iris/4",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ebe2ff",
+            "Dark": "#25153c"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/iris/5",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#e4d7ff",
+            "Dark": "#2e1b4a"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/iris/6",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#dac8ff",
+            "Dark": "#3b245c"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/iris/7",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ceb6fa",
+            "Dark": "#4e3276"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/iris/8",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#b99aef",
+            "Dark": "#6a489d"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/iris/9",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#7e53bc",
+            "Dark": "#7e53bc"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/iris/10",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#7146ad",
+            "Dark": "#8e65cd"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/iris/11",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#5f3b92",
+            "Dark": "#c0a3f5"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
+          "name": "palette/iris/12",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#211236",
+            "Dark": "#f0e9ff"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ]
+        },
+        {
           "name": "palette/slate/1",
           "type": "COLOR",
           "valuesByMode": {
@@ -1306,6 +1438,342 @@
           "valuesByMode": {
             "Light": "#1c509a",
             "Dark": "#86b6fd"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/1/subtle",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#daf6f7",
+            "Dark": "#001c1e"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/1/border",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#8bd3d6",
+            "Dark": "#004e51"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/1/solid",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#007e84",
+            "Dark": "#007e84"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/1/fg",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#005f63",
+            "Dark": "#6ac5ca"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/2/subtle",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffecd6",
+            "Dark": "#241300"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/2/border",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#eaba7f",
+            "Dark": "#5e3b00"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/2/solid",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#976200",
+            "Dark": "#976200"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/2/fg",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#724800",
+            "Dark": "#e1a85d"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/3/subtle",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#e6f0ff",
+            "Dark": "#061730"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/3/border",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#a0c6ff",
+            "Dark": "#19427d"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/3/solid",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#2d6cc7",
+            "Dark": "#2d6cc7"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/3/fg",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#1c509a",
+            "Dark": "#86b6fd"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/4/subtle",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#dff7e6",
+            "Dark": "#021d0d"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/4/border",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#99d4ad",
+            "Dark": "#00522c"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/4/solid",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#00844a",
+            "Dark": "#00844a"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/4/fg",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#006336",
+            "Dark": "#7ec798"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/5/subtle",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffeae7",
+            "Dark": "#2e0907"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/5/border",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ffaba1",
+            "Dark": "#781f1b"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/5/solid",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#bf3631",
+            "Dark": "#bf3631"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/5/fg",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#94221f",
+            "Dark": "#fc9287"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/6/subtle",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#f2ecff",
+            "Dark": "#1c102d"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/6/border",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#ceb6fa",
+            "Dark": "#4e3276"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/6/solid",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#7e53bc",
+            "Dark": "#7e53bc"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/6/fg",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#5f3b92",
+            "Dark": "#c0a3f5"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/7/subtle",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#edf0f2",
+            "Dark": "#15181a"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/7/border",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#bfc5ca",
+            "Dark": "#3f4449"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/7/solid",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#687078",
+            "Dark": "#687078"
+          },
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "description": "Semantic role. Bind fills and strokes to this, never to a palette step."
+        },
+        {
+          "name": "semantic/category/7/fg",
+          "type": "COLOR",
+          "valuesByMode": {
+            "Light": "#4d535a",
+            "Dark": "#afb5bc"
           },
           "scopes": [
             "ALL_SCOPES"

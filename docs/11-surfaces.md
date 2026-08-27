@@ -1,6 +1,6 @@
 # Surfaces
 
-How the one system expresses itself on each of the five. Platform context lives
+How the one system expresses itself on each surface. Platform context lives
 in the [vault](https://github.com/washjunkie/wiki) — `Platform.md`
 and `Surfaces.md` are canonical for what each surface *is*; this page is only
 about how it *looks and behaves*.
@@ -15,6 +15,7 @@ about how it *looks and behaves*.
 | Customer App | consumer | comfortable | bottom `TabBar` (`pane`) | 2 tiers |
 | Driver App | consumer | comfortable | none — one screen | 1 tier |
 | Agent Console | operator | comfortable | left rail (`pane`) | 2 tiers |
+| Platform Admin | operator | either | left rail | **none** |
 | Marketing / public | consumer | comfortable | top bar (`veil` → `pane`) | unbounded |
 
 ---
@@ -74,6 +75,26 @@ on a tablet in a shop.
 - Long multi-step forms — one column, visible progress, autosave, resumable.
 - Neutral chrome throughout. An agent works across many businesses; tinting the
   console to whichever one they last opened would be actively confusing.
+
+## Platform Admin — `admin/`
+
+**Live, on tokens + bridge since 2026-08-27.** The super-admin back office:
+tables, queues and decisions that move money. Same shape as the Service Provider
+Console — five prototype stylesheets that predate this system, re-pointed at the
+token layer by [`wj-bridge.css`](../css/wj-bridge.css) rather than rewritten.
+
+- `data-wj-register="operator"`, density switchable, indigo accent so it never
+  reads as the operator console at a glance.
+- **No glass, and that is a choice, not a gap.** It is a back office of dense
+  tables; a tier behind a data grid buys nothing and costs legibility. It
+  vendors `wj-tokens.css` and `wj-bridge.css` and nothing else.
+- ⚠️ **It writes `data-wj-theme` and `data-wj-density` alongside its own
+  `data-theme` / `data-density`, resolved and never unset.** The bridge mirrors
+  only `color-scheme`; a console left in light mode on a dark-mode machine would
+  otherwise render light chrome over a dark palette.
+- Status colour is the [categorical scale](03-color.md#category--colour-that-labels-a-kind-not-a-state)
+  for identity facets and the semantic tones for states. Nothing here mixes its
+  own tint: it did, for a year, and the amber pill ink sat at 2.35:1 in dark.
 
 ## Marketing / public
 

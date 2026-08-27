@@ -505,6 +505,105 @@
           "$value": "#ffe6e3"
         }
       },
+      "iris": {
+        "1": {
+          "$type": "color",
+          "$value": "#fdfcff"
+        },
+        "2": {
+          "$type": "color",
+          "$value": "#f9f6ff"
+        },
+        "3": {
+          "$type": "color",
+          "$value": "#f2ecff"
+        },
+        "4": {
+          "$type": "color",
+          "$value": "#ebe2ff"
+        },
+        "5": {
+          "$type": "color",
+          "$value": "#e4d7ff"
+        },
+        "6": {
+          "$type": "color",
+          "$value": "#dac8ff"
+        },
+        "7": {
+          "$type": "color",
+          "$value": "#ceb6fa"
+        },
+        "8": {
+          "$type": "color",
+          "$value": "#b99aef"
+        },
+        "9": {
+          "$type": "color",
+          "$value": "#7e53bc"
+        },
+        "10": {
+          "$type": "color",
+          "$value": "#7146ad"
+        },
+        "11": {
+          "$type": "color",
+          "$value": "#5f3b92"
+        },
+        "12": {
+          "$type": "color",
+          "$value": "#211236"
+        },
+        "$description": "Iris — 12-step ramp, hue 300°",
+        "1-dark": {
+          "$type": "color",
+          "$value": "#08050e"
+        },
+        "2-dark": {
+          "$type": "color",
+          "$value": "#100a1b"
+        },
+        "3-dark": {
+          "$type": "color",
+          "$value": "#1c102d"
+        },
+        "4-dark": {
+          "$type": "color",
+          "$value": "#25153c"
+        },
+        "5-dark": {
+          "$type": "color",
+          "$value": "#2e1b4a"
+        },
+        "6-dark": {
+          "$type": "color",
+          "$value": "#3b245c"
+        },
+        "7-dark": {
+          "$type": "color",
+          "$value": "#4e3276"
+        },
+        "8-dark": {
+          "$type": "color",
+          "$value": "#6a489d"
+        },
+        "9-dark": {
+          "$type": "color",
+          "$value": "#7e53bc"
+        },
+        "10-dark": {
+          "$type": "color",
+          "$value": "#8e65cd"
+        },
+        "11-dark": {
+          "$type": "color",
+          "$value": "#c0a3f5"
+        },
+        "12-dark": {
+          "$type": "color",
+          "$value": "#f0e9ff"
+        }
+      },
       "slate": {
         "1": {
           "$type": "color",
@@ -815,6 +914,146 @@
         "$type": "color",
         "$value": "#1c509a",
         "$description": "light: #1c509a · dark: #86b6fd"
+      },
+      "category-1-subtle": {
+        "$type": "color",
+        "$value": "#daf6f7",
+        "$description": "light: #daf6f7 · dark: #001c1e"
+      },
+      "category-1-border": {
+        "$type": "color",
+        "$value": "#8bd3d6",
+        "$description": "light: #8bd3d6 · dark: #004e51"
+      },
+      "category-1-solid": {
+        "$type": "color",
+        "$value": "#007e84",
+        "$description": "light: #007e84 · dark: #007e84"
+      },
+      "category-1-fg": {
+        "$type": "color",
+        "$value": "#005f63",
+        "$description": "light: #005f63 · dark: #6ac5ca"
+      },
+      "category-2-subtle": {
+        "$type": "color",
+        "$value": "#ffecd6",
+        "$description": "light: #ffecd6 · dark: #241300"
+      },
+      "category-2-border": {
+        "$type": "color",
+        "$value": "#eaba7f",
+        "$description": "light: #eaba7f · dark: #5e3b00"
+      },
+      "category-2-solid": {
+        "$type": "color",
+        "$value": "#976200",
+        "$description": "light: #976200 · dark: #976200"
+      },
+      "category-2-fg": {
+        "$type": "color",
+        "$value": "#724800",
+        "$description": "light: #724800 · dark: #e1a85d"
+      },
+      "category-3-subtle": {
+        "$type": "color",
+        "$value": "#e6f0ff",
+        "$description": "light: #e6f0ff · dark: #061730"
+      },
+      "category-3-border": {
+        "$type": "color",
+        "$value": "#a0c6ff",
+        "$description": "light: #a0c6ff · dark: #19427d"
+      },
+      "category-3-solid": {
+        "$type": "color",
+        "$value": "#2d6cc7",
+        "$description": "light: #2d6cc7 · dark: #2d6cc7"
+      },
+      "category-3-fg": {
+        "$type": "color",
+        "$value": "#1c509a",
+        "$description": "light: #1c509a · dark: #86b6fd"
+      },
+      "category-4-subtle": {
+        "$type": "color",
+        "$value": "#dff7e6",
+        "$description": "light: #dff7e6 · dark: #021d0d"
+      },
+      "category-4-border": {
+        "$type": "color",
+        "$value": "#99d4ad",
+        "$description": "light: #99d4ad · dark: #00522c"
+      },
+      "category-4-solid": {
+        "$type": "color",
+        "$value": "#00844a",
+        "$description": "light: #00844a · dark: #00844a"
+      },
+      "category-4-fg": {
+        "$type": "color",
+        "$value": "#006336",
+        "$description": "light: #006336 · dark: #7ec798"
+      },
+      "category-5-subtle": {
+        "$type": "color",
+        "$value": "#ffeae7",
+        "$description": "light: #ffeae7 · dark: #2e0907"
+      },
+      "category-5-border": {
+        "$type": "color",
+        "$value": "#ffaba1",
+        "$description": "light: #ffaba1 · dark: #781f1b"
+      },
+      "category-5-solid": {
+        "$type": "color",
+        "$value": "#bf3631",
+        "$description": "light: #bf3631 · dark: #bf3631"
+      },
+      "category-5-fg": {
+        "$type": "color",
+        "$value": "#94221f",
+        "$description": "light: #94221f · dark: #fc9287"
+      },
+      "category-6-subtle": {
+        "$type": "color",
+        "$value": "#f2ecff",
+        "$description": "light: #f2ecff · dark: #1c102d"
+      },
+      "category-6-border": {
+        "$type": "color",
+        "$value": "#ceb6fa",
+        "$description": "light: #ceb6fa · dark: #4e3276"
+      },
+      "category-6-solid": {
+        "$type": "color",
+        "$value": "#7e53bc",
+        "$description": "light: #7e53bc · dark: #7e53bc"
+      },
+      "category-6-fg": {
+        "$type": "color",
+        "$value": "#5f3b92",
+        "$description": "light: #5f3b92 · dark: #c0a3f5"
+      },
+      "category-7-subtle": {
+        "$type": "color",
+        "$value": "#edf0f2",
+        "$description": "light: #edf0f2 · dark: #15181a"
+      },
+      "category-7-border": {
+        "$type": "color",
+        "$value": "#bfc5ca",
+        "$description": "light: #bfc5ca · dark: #3f4449"
+      },
+      "category-7-solid": {
+        "$type": "color",
+        "$value": "#687078",
+        "$description": "light: #687078 · dark: #687078"
+      },
+      "category-7-fg": {
+        "$type": "color",
+        "$value": "#4d535a",
+        "$description": "light: #4d535a · dark: #afb5bc"
       },
       "glass-tint": {
         "$type": "color",

@@ -47,6 +47,7 @@ anyone re-checking contrast.
 | **Sun** | 72° | Warm counterpoint. `warning`. |
 | **Moss** | 155° | `success`. |
 | **Ember** | 27° | `danger`. |
+| **Iris** | 300° | No semantic role. Exists so the categorical scale has a sixth chromatic hue. |
 | **Slate** | 250° | Neutral, cool-leaning so it sits with the brand rather than fighting it. |
 
 Neutrals carry a whisper of hue rather than none. A dead-grey UI looks cheap
@@ -114,6 +115,43 @@ outlines) · `border-strong` (hover, emphasis)
 Each of `accent`, `success`, `warning`, `danger`, `info` exposes
 `-subtle` (background), `-border`, `-solid` (fill), `-fg` (text on subtle).
 
+### Category — colour that labels a kind, not a state
+
+`category-1` … `category-7`, each exposing the same four roles. Use it whenever
+you need several colours that are simply **different from each other**: a chart
+with four series, a legend, the role chips on an identity row.
+
+| | Hue | |
+|---|---|---|
+| `category-1` | aqua | |
+| `category-2` | sun | |
+| `category-3` | tide | |
+| `category-4` | moss | |
+| `category-5` | ember | |
+| `category-6` | iris | |
+| `category-7` | slate | near-neutral — the "other" bucket, not a sixth colour |
+
+Ordered so **adjacent indices are far apart in hue** — a categorical palette is
+read by comparison, so putting aqua next to tide would defeat the point. Assign
+from 1 upward and the separation comes for free.
+
+⚠️ **This is what you reach for instead of bending a status colour.** `danger`
+for "the red one" is the rule below being broken, and before this scale existed
+it was the only way to get a sixth colour without hard-coding a hex. Both
+happened.
+
+ℹ️ Six of the seven are the semantic families, so a category can share a hue
+with a tone — `category-5` and `danger` are both ember. That only matters if a
+kind and a state appear in one column, which by construction they don't. **Iris
+was added for this scale**: the platform console has six identity facets and
+five semantic hues plus a neutral could dress only five of them, so the sixth
+lived as a hard-coded `oklch(52% 0.17 300)` in a product stylesheet, outside
+every check on this page.
+
+⚠️ **`category-7` is slate — near-neutral, and it is the "other" bucket rather
+than a seventh colour.** A grey chip in a row of coloured ones reads as
+*unclassified*. Do not hand it a real category because you ran out.
+
 ### Glass
 
 `glass-tint` · `glass-floor` · `glass-edge` · `glass-edge-low` ·
@@ -133,7 +171,8 @@ template. `tokens/dist/wj-tokens.ts` exports `resolve(role, theme)` for the
 places a CSS variable cannot be read.
 
 **Never use a raw ramp step in a component.** `--wj-aqua-9` in a component is a
-bug waiting for the next theme change.
+bug waiting for the next theme change. If you want a ramp because you need
+*several distinct colours*, that is what `category-1…6` is for.
 
 **Status is never colour alone.** Colour + dot + word, every time. See
 [Accessibility](12-accessibility.md).

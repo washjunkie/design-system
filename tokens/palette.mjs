@@ -82,6 +82,15 @@ export const FAMILIES = {
   moss: { hue: 155, chroma: 0.135, label: 'Moss' },
   /** Danger. */
   ember: { hue: 27, chroma: 0.175, label: 'Ember' },
+  /**
+   * Violet. Carries NO semantic role, and that is the point — it exists so the
+   * categorical scale has a sixth chromatic hue. The platform console has six
+   * identity facets (super-admin, owner, staff, customer, driver, agent) and
+   * the five semantic hues plus a neutral could only dress five of them; the
+   * sixth was hard-coded as `oklch(52% 0.17 300)` in a product stylesheet,
+   * outside every check here. Hue 300 is the widest gap the other five leave.
+   */
+  iris: { hue: 300, chroma: 0.16, label: 'Iris' },
   /** Neutral. Cool-leaning so it sits with the brand rather than fighting it. */
   slate: { hue: 250, chroma: 0.016, label: 'Slate' },
 };

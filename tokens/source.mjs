@@ -254,6 +254,49 @@ const L = palette.light;
 const D = palette.dark;
 
 /**
+ * The CATEGORICAL scale — colour that labels a kind, not a state.
+ *
+ * ⚠️ THIS EXISTS SO NOBODY REACHES FOR `danger` TO MEAN "the red one".
+ * `success`/`warning`/`danger`/`info` carry meaning, and docs/03-color.md is
+ * blunt about it: a red "Export" button teaches operators to ignore red. But
+ * products keep needing colour that means nothing except *this is a different
+ * kind from that one* — the five role chips on the platform console's identity
+ * table, a chart with four series, a legend. Before this scale the only way to
+ * get six distinguishable colours was to misuse the four tones or hard-code a
+ * hex, and both happened.
+ *
+ * Ordered so ADJACENT indices are far apart in hue. A categorical palette is
+ * read by comparison — two categories side by side — so aqua(200) next to
+ * tide(258) would be the one arrangement that defeats the point.
+ *
+ * ℹ️ The hues are the existing six families rather than six new ones. The
+ * families are chosen and audited; inventing a parallel set to avoid a category
+ * sharing a hue with a tone would double the primitive layer to fix a collision
+ * that only matters if the two ever appear in one column. They don't — a state
+ * and a kind are different columns by construction.
+ *
+ * ℹ️ Generated rather than written out, unlike the roles below. The mapping is
+ * still inspectable — it is this array, plus the same four step indices every
+ * tone uses — and 48 hand-copied lines is where a step index goes wrong once
+ * and nobody sees it.
+ */
+export const CATEGORY_FAMILIES = ['aqua', 'sun', 'tide', 'moss', 'ember', 'iris', 'slate'];
+
+const categoryRoles = (P) =>
+  Object.fromEntries(
+    CATEGORY_FAMILIES.flatMap((family, i) => {
+      const r = P[family];
+      const n = i + 1;
+      return [
+        [`category-${n}-subtle`, r[2]],
+        [`category-${n}-border`, r[6]],
+        [`category-${n}-solid`, r[8]],
+        [`category-${n}-fg`, r[10]],
+      ];
+    })
+  );
+
+/**
  * Role → palette step. Written once per theme so the mapping is inspectable:
  * you can read down this list and know exactly what every surface in the
  * product is made of.
@@ -306,6 +349,9 @@ export const semantic = {
     'info-border': L.tide[6],
     'info-solid': L.tide[8],
     'info-fg': L.tide[10],
+
+    /* `category-1` … `category-6`. See CATEGORY_FAMILIES above. */
+    ...categoryRoles(L),
 
     /** The tone glass takes on when it has no content to sample. */
     'glass-tint': '#ffffff',
@@ -366,6 +412,8 @@ export const semantic = {
     'info-border': D.tide[6],
     'info-solid': D.tide[8],
     'info-fg': D.tide[10],
+
+    ...categoryRoles(D),
 
     'glass-tint': D.slate[3],
     'glass-floor': D.slate[1],
