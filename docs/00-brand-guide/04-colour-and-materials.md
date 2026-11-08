@@ -168,7 +168,7 @@ thread, not rayon** — these are uniforms in a laundry business, washed hot and
 bleached, and rayon has the better sheen and loses it.
 
 Physical minimums are derived, not guessed. The embroidery floors are **lock-up 23mm,
-mark 22mm** at 40wt polyester, from the satin-column limit in [Identity
+mark 23mm** at 40wt polyester, from the satin-column limit in [Identity
 system](03-identity-system.md#minimum-sizes-for-physical-reproduction) — which is why
 the mark carries a chest badge and the lock-up cannot. Screen minimums in
 [Brand](../02-brand.md#minimum-sizes) do not transfer: a screen fails by pixel grid, a
@@ -225,8 +225,8 @@ rule follows from that.
 
 The receipt carries the **name set in type only** — `Powered by Wash Junkie`, in
 the footer — and never artwork. Decided: [03 · the artefact grant](03-identity-system.md#the-artefact-grant--decided).
-The binding reason is measured, not deferential: at the thermal mark's **5.5mm**
-floor its keep-clear box is **16.1 × 10.5mm**, a third of a 58mm roll's 48mm
+The binding reason is measured, not deferential: at the thermal mark's **6mm**
+floor its keep-clear box is **17.5 × 11.4mm**, a third of a 58mm roll's 48mm
 print width, competing with the order reference — and 06's tag rule already
 settles that contest in the reference's favour.
 

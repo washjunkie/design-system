@@ -43,14 +43,14 @@ the artwork or the distance changes:
    adopted, not a standard and not something we have measured — which is why
    step 3 produces starting numbers and the site test produces the answer.
 3. **Apply the same stroke target to our artwork** — thinnest sustained strokes
-   `0.082 × height` (lock-up) and `0.135 × height` (mark)
+   `0.080 × height` (lock-up) and `0.122 × height` (mark)
    ([geometry](03-identity-system.md#the-geometry-that-governs-reproduction)).
 
 | | Stroke ratio | Height rule | 10m | 20m | 30m | 50m |
 |---|---|---|---|---|---|---|
-| **Lock-up** | 0.082 × H | **H = D / 66** | 150mm | 305mm | 455mm | 760mm |
-| — its width | — | 5.804 × H | 870mm | 1,770mm | 2,640mm | 4,410mm |
-| **Mark** | 0.135 × H | **H = D / 108** | 95mm | 185mm | 280mm | 465mm |
+| **Lock-up** | 0.080 × H | **H = D / 64** | 155mm | 310mm | 470mm | 780mm |
+| — its width | — | 5.804 × H | 900mm | 1,800mm | 2,730mm | 4,530mm |
+| **Mark** | 0.122 × H | **H = D / 98** | 100mm | 205mm | 305mm | 510mm |
 | **Set type** (Inter) | 0.15 × cap | **cap = D / 120** | 85mm | 165mm | 250mm | 415mm |
 
 Heights are the rule's own output rounded to the nearest 5mm; widths are then
@@ -58,7 +58,7 @@ Heights are the rule's own output rounded to the nearest 5mm; widths are then
 rule rather than interpolating the table.
 
 Read the width row, because it is where the argument ends: a lock-up legible at
-30m is **2.64m wide** — longer, on most panel vans, than the unbroken flat run
+30m is **2.73m wide** — longer, on most panel vans, than the unbroken flat run
 between the wheel arch and the shut-lines. Measure the actual vehicle before
 promising anyone a distance.
 
@@ -171,7 +171,7 @@ that applies once that is answered.
 | Element | Read at | Carries | Notes |
 |---|---|---|---|
 | **Fascia** | Kerb to fascia — measure it per site | The provider's name; our mark as endorsement | Pavement width and approach angle differ at every address, so height is derived per site from the table above, never standardised |
-| **Window vinyl** | 2–5m | Services, hours, the mark | Cut-vinyl floors: lock-up 23mm, mark 22mm. Below that, **print and cut** ([floors](03-identity-system.md#minimum-sizes-for-physical-reproduction)) |
+| **Window vinyl** | 2–5m | Services, hours, the mark | Cut-vinyl floors: lock-up 23mm, mark 23mm. Below that, **print and cut** ([floors](03-identity-system.md#minimum-sizes-for-physical-reproduction)) |
 | **A-board** | 2–4m, at an angle, while walking | One offer, one line, type cap ≥ 25mm | Identical on both faces — you cannot know which way someone walks. Weight the base, or the brand spends the afternoon lying in a puddle |
 | **Opening-hours plate** | 0.5–1m, at the door | Days, hours, today's exception | Type cap ≥ 10mm (the 1m row, rounded up). Hours in the **outlet's own timezone**, never a numeric date ([Verbal identity](02-verbal-identity.md)). Leave a slot for a handwritten note — a plate that cannot say "closed today" gets one taped over it, and the taped note is what the customer photographs |
 | **Second-surface vinyl** | — | Artwork produced **mirrored**, so it reads correctly from the street | A production instruction, not a design variant: the finished shopfront is not mirrored. Write it on the artwork, or someone will "fix" it and the window reads backwards from outside |
@@ -267,7 +267,7 @@ by it.
 
 | Rule | Derivation |
 |---|---|
-| **Mark, not lock-up** | Thermal floors are mark 5.5mm (44 × 89 dots), lock-up 6mm (48 × 278 dots). The lock-up fits a 48mm width with its clear space, barely — but its thin strokes need every dot, so the mark is the default until a test on the real printer says otherwise |
+| **Mark, not lock-up** | Thermal floors are mark 6mm (48 × 97 dots), lock-up 6mm (48 × 278 dots). The lock-up fits a 48mm width with its clear space, barely — but its thin strokes need every dot, so the mark is the default until a test on the real printer says otherwise |
 | **3mm cap height minimum** for anything a customer reads | Reading distance ≈ 350mm, so `cap = D / 120` gives 2.9mm. At 3mm the stroke is `0.15 × cap` = 0.45mm ≈ 3.6 dots, comfortably over the 2-dot survival floor ([03](03-identity-system.md#minimum-sizes-for-physical-reproduction)) |
 | **2mm cap is the absolute floor**, secondary lines only | At 2mm the stroke is 2.4 dots. One dot of head bleed and it closes |
 | **The reference is the largest thing after the total** | It is what a customer quotes on the phone and what a Wash House operator types back in. Everything else on the docket is recoverable from it |
@@ -304,7 +304,7 @@ ours to touch.
 | **Care label** | The garment's manufacturer | The garment's life | **Never ours.** Do not add to, cover, replace or re-sew a care label — it is the maker's statement about the garment, and altering it moves liability onto whoever altered it |
 
 This is where the mark hits its floor: **mark 4.5mm** applied in any medium and
-5.5mm on thermal. The mark's keep-clear box is `2.920H × 1.9H`
+6mm on thermal. The mark's keep-clear box is `2.920H × 1.9H`
 ([03](03-identity-system.md#clear-space-and-screen-minimums)) — the mark is 2.020
 × as wide as it is tall and clear space adds `0.45H` on each of four sides — so a
 5mm mark claims **14.6 × 9.5mm** before anything else is on the tag. It is a

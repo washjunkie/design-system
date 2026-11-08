@@ -78,8 +78,8 @@ They are the only numbers needed to derive a floor for a process not listed here
 
 | | Thinnest sustained ink stroke | Tightest true separation |
 |---|---|---|
-| **Lock-up** | **0.082 × height** | **0.044 × height** |
-| **Mark** | **0.135 × height** | **0.046 × height** |
+| **Lock-up** | **0.080 × height** | **0.045 × height** |
+| **Mark** | **0.122 × height** | **0.037 × height** |
 
 - **Stroke terminals taper to a point** — as fine as 0.037 × height on the
   lock-up. Tips are expected to blunt in any physical process; they are not the
@@ -133,13 +133,13 @@ re-run the arithmetic. The person running the machine outranks a brand guide.
 | Process | What actually limits it | Feature: ink / gap | Lock-up | Mark |
 |---|---|---|---|---|
 | **Offset litho** | Dot gain closes counters — worse on uncoated, worse again in a reversed knockout | 0.10 / 0.15mm | 3.4 → **5mm** | 3.3 → **4.5mm** |
-| **Digital print** (toner or inkjet, ≥600dpi) | Toner scatter and inkjet bleed at the edge of a solid | 0.08 / 0.12mm | 2.7 → **5mm** | 2.6 → **4.5mm** |
-| **Thermal receipt** (203dpi) | 1 dot = 0.125mm, 1-bit, and heat bleeds into neighbouring dots — a feature needs 2 dots to survive | 0.25 / 0.25mm | 5.7 → **6mm** (48 × 278 dots) | 5.4 → **5.5mm** (44 × 89 dots) |
-| **Laser engraving** | Kerf plus the heat-affected zone either side; output is 1-bit, with no tone to fall back on | 0.20 / 0.30mm | 6.8 → **7mm** | 6.5 → **6.5mm** |
-| **Screen print**, textile | Mesh aperture sets the smallest opening emulsion can hold; ink then spreads into the weave | 0.30 / 0.50mm | 11.4 → **12mm** | 10.9 → **11mm** |
-| **Embroidery**, 40wt polyester | A satin column below the minimum stops being a satin — it becomes a run, and frays. Tapers cannot be stitched at all | 1.20 / 1.00mm | 22.7 → **23mm** | 21.7 → **22mm** |
-| **Vinyl cut**, cast film, hand-weeded | Weeding tears a waste sliver narrower than the web width, and small islands lift with the waste | 1.00 / 1.00mm | 22.7 → **23mm** | 21.7 → **22mm** |
-| **Debossing / blind emboss** | No ink at all: the signal is the shadow off the die shoulder, the shoulder needs draft so every feature narrows at the surface, and fibre springback then fills the counters | 1.00 / 1.20mm | 27.3 → **28mm** | 26.1 → **27mm** |
+| **Digital print** (toner or inkjet, ≥600dpi) | Toner scatter and inkjet bleed at the edge of a solid | 0.08 / 0.12mm | 2.7 → **5mm** | 2.7 → **4.5mm** |
+| **Thermal receipt** (203dpi) | 1 dot = 0.125mm, 1-bit, and heat bleeds into neighbouring dots — a feature needs 2 dots to survive | 0.25 / 0.25mm | 5.7 → **6mm** (48 × 278 dots) | 5.6 → **6mm** (48 × 97 dots) |
+| **Laser engraving** | Kerf plus the heat-affected zone either side; output is 1-bit, with no tone to fall back on | 0.20 / 0.30mm | 6.8 → **7mm** | 6.7 → **7mm** |
+| **Screen print**, textile | Mesh aperture sets the smallest opening emulsion can hold; ink then spreads into the weave | 0.30 / 0.50mm | 11.4 → **12mm** | 11.1 → **12mm** |
+| **Embroidery**, 40wt polyester | A satin column below the minimum stops being a satin — it becomes a run, and frays. Tapers cannot be stitched at all | 1.20 / 1.00mm | 22.7 → **23mm** | 22.2 → **23mm** |
+| **Vinyl cut**, cast film, hand-weeded | Weeding tears a waste sliver narrower than the web width, and small islands lift with the waste | 1.00 / 1.00mm | 22.7 → **23mm** | 22.2 → **23mm** |
+| **Debossing / blind emboss** | No ink at all: the signal is the shadow off the die shoulder, the shoulder needs draft so every feature narrows at the surface, and fibre springback then fills the counters | 1.00 / 1.20mm | 27.3 → **28mm** | 26.7 → **27mm** |
 
 Four consequences worth naming before someone hits them:
 
@@ -414,19 +414,32 @@ vector to get there. Two production notes:
 
 Those three mask figures are read off the platforms' own icon guidance, not
 measured here. **Re-check them when a platform revises its icon spec** — the
-0.25 rule below is only as current as the tightest of the three.
+0.30 rule below is only as current as the tightest of the three.
 
 One number satisfies all three:
 
-> **Mark height = 0.25 × the icon side**, centred. At 2.020 : 1 that is 0.505 ×
-> the side wide and 0.564 across the diagonal, clearing Android's 0.61 circle —
-> the tightest of the three. The geometric ceiling is 0.27; past it the mark
-> starts to intersect an OEM mask.
+> **Mark height = 0.34 × the icon side**, centred. At 2.020 : 1 that is 0.687 ×
+> the side wide. The leveled mark keeps its ink inside the maskable allowance
+> (radius **0.40 × the side**); `tokens/icons.mjs` exits non-zero if a redraw
+> does not.
 
 **Field choice matters more here than anywhere.** The instinctive app icon is a
 brand-teal square with a white mark, which is the 2.26:1 case at exactly the size
 where it gets one glance. Use an **ink mark on paper**, or a **white mark on ink
 or accent teal**.
+
+**What ships.** White mark on accent teal `#007e84` — the reversed default, and
+the only field that still reads when the tile sits on a white tab or a black one.
+Built by `node tokens/icons.mjs` from `assets/wj-mark.svg`, and copied into every
+surface's `src/app/`.
+
+| Asset | Construction |
+|---|---|
+| Tab — `favicon.svg`, and `favicon.ico` at 16 / 32 / 48 | Mark height **0.40 × the side**, rounded square of radius **0.22 × the side**. The browser shows the whole tile, and 0.34 × 16px is under the droplet's floor. The rasters are drawn at their own size, with the mark's origin on the pixel grid |
+| Home screen — `apple-icon.png` (180), `icon-192.png`, `icon-512.png` | Mark height **0.34 × the side**, full-bleed, square corners, no alpha. iOS rounds once. The mark's ink stays inside the maskable allowance of **0.40 × the side**, measured by the script, which exits non-zero if a redraw crosses it |
+
+The 0.40 figure is the tab only. Do not carry it onto a masked icon, and do not
+shrink the tab back to 0.34 to make the two files match.
 
 ## The mark as a graphic device
 
@@ -485,7 +498,7 @@ equivalent in the medium.
 | 2 | **Spot-colour match for the teal** | Read a candidate off a physical Pantone Solid Coated book under D50, then `node ../../tokens/print.mjs '#2cbec5' '<candidate>'`. See [04](04-colour-and-materials.md) |
 | 3 | **Thread match** (Madeira Polyneon or equivalent) | Matched against the signed spot under D50, on the actual garment colour. No code is guessed here |
 | 4 | **Cast vinyl film** (3M or Avery) | Matched against the signed spot on the actual substrate, with a stated weathering expectation |
-| 5 | **Hand-tuned 16 / 32 / 48px favicon rasters** | Produce, then add to the asset index in [08](08-usage-and-legal.md) |
+| 5 | ~~**Hand-tuned 16 / 32 / 48px favicon rasters**~~ | **Closed.** `tokens/icons.mjs` draws them at native size. See [the table above](#favicon-and-app-icon) |
 | 6 | **Embroidery digitisation** — the stitch file, and whether tapers are truncated or thickened | With the digitiser, at the size the garment actually needs |
 | 7 | **A deep-teal `#007e84` mark variant** for distance work on light fields | Proposal above. Needs sign-off and artwork |
 | 8 | ~~Whether the platform mark appears on provider artefacts~~ — **the relative size is still unset** | Presence: **closed**, see [the artefact grant](#the-artefact-grant--decided). The size a provider's mark and ours sit at against each other remains open, and is set per artefact by the optical-matching method above |

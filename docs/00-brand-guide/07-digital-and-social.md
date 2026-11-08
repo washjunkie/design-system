@@ -21,16 +21,16 @@ material switches itself off under `prefers-reduced-transparency`
 **The avatar is the mark, never the lock-up** — every avatar slot is square and
 cropped to a circle, and 5.804 : 1 does not fit in one
 ([Identity system](03-identity-system.md#favicon-and-app-icon)). That crop is
-looser than an app icon's mask and one number covers both: the mark's keep-clear
-box is 2.920H × 1.9H, diagonal **3.4834 × H**, so it fits the inscribed circle
-while H ≤ **0.287 × the side**. Use **mark height = 0.25 × the avatar side,
-centred** — the app-icon number, with the clear-space box landing at 0.871 of the
-circle's diameter. One asset, both slots.
+looser than an app icon's mask. The mark's keep-clear box is 2.920H × 1.9H,
+diagonal **3.4834 × H**, so it fits the inscribed circle while H ≤ **0.287 ×
+the side**. Use **mark height = 0.25 × the avatar side, centred** — under that
+ceiling, with the clear-space box landing at 0.871 of the circle's diameter.
+Home-screen icons go to **0.34 × the side** ([Identity system](03-identity-system.md#favicon-and-app-icon)); avatars stay at 0.25 so the keep-clear box still clears the crop.
 
 Two ceilings, so they don't get confused: **0.287** is the clear-space box
-against the avatar's full inscribed circle; the identity system's **0.27** is the
-tighter frame — the mark's own bounding box against Android's 0.61 circle. 0.25
-clears both, which is why one asset serves both slots.
+against the avatar's full inscribed circle; the home-screen icon's maskable
+check is ink radius ≤ **0.40 × the side**. Avatar 0.25 clears the crop;
+app-icon 0.34 is a separate construction.
 
 **The field matters more than the mark**, because the disc sits directly on the
 platform's feed background with nothing of ours between (`tokens/color.mjs`):
@@ -219,26 +219,24 @@ marketing send must not be able to take password resets down with it.
 
 **Icon** — the safe-zone geometry is
 [Identity system](03-identity-system.md#favicon-and-app-icon) and is not
-re-derived here: mark height **0.25 × the icon side**, centred, covering iOS's
+re-derived here: mark height **0.34 × the icon side**, centred, covering iOS's
 superellipse, Android's 0.61 circle and PWA `maskable`'s 0.8 circle at once.
-Three live checks against what actually ships.
+Two live checks against what actually ships.
 
-`public/icon-512.png` is a **brand-teal rounded square with a white mark on a
-white plate** — the 2.26:1 case the identity system names explicitly. Measured off
-the file: the mark is **0.385 × the side tall** and its ink reaches a circle of
-**0.850 × the side**, against `maskable`'s 0.80 — so a launcher mask clips it.
-`src/app/manifest.ts` declares that one file for both `any` and `maskable`.
-Second, the corners are **pre-rounded at ~0.18 × the side over white**, in
-`icon-512`, `icon-192` and `src/app/apple-icon.png` alike; iOS applies its own
-superellipse on top, and rounding twice leaves the pale halo the identity system
-warns about.
+`public/icon-512.png` is a **white mark on accent teal, full-bleed, square
+corners**, mark height **0.34 × the side**. The script that builds it
+(`tokens/icons.mjs`) measures the ink and refuses a radius past **0.40 × the
+side**; the current file sits at **0.28**. `icon-192.png` and `apple-icon.png`
+are the same construction. `manifest.ts` points `any` and `maskable` at the 512.
+The tab favicon is a separate, slightly larger optical size — see
+[Identity system](03-identity-system.md#favicon-and-app-icon).
 
-> **Method**, so these can be re-measured when the icons are rebuilt: threshold
-> the PNG on the white ink, discard the four corner components left outside the
-> rounding, take the bounding box of the rest and the maximum radius of ink from
-> the centre.
+> **Method**, so this can be re-measured when the icons are rebuilt: threshold
+> the PNG on the white ink (red channel above 180) and take the maximum radius
+> of that ink from the centre. `node tokens/icons.mjs` already does it and
+> exits non-zero past 0.40 × the side.
 
-Third, the manifest's `theme_color` is brand teal, making it a **field** the OS
+The manifest's `theme_color` is brand teal, making it a **field** the OS
 paints status-bar glyphs on, and white glyphs on it would be 2.26:1. Its relative
 luminance is **0.414** (`tokens/color.mjs`) — mid-scale, which is exactly where
 different OS versions make different choices about glyph colour. **TO SPECIFY:**
@@ -324,7 +322,7 @@ for titles, Inter for body, JetBrains Mono for anything in a column
 
 | | Item | Method / blocked on |
 |---|---|---|
-| 1 | **`public/icon-512.png` is a white mark on brand teal at 0.385 × the side** — ink reaching a 0.850 circle — and is declared `maskable`. `icon-192` and `apple-icon.png` match it, and all three carry pre-rounded corners over white | Rebuild at 0.25 × side on an approved field ([Identity system](03-identity-system.md#favicon-and-app-icon)); re-check the ink circle against `maskable`'s 0.8; ship full-bleed with square corners so iOS rounds once |
+| 1 | ~~**`public/icon-512.png` was a white mark on brand teal at 0.385 × the side**~~ | **Closed.** Rebuilt by `tokens/icons.mjs`: white on accent teal, 0.34 × side, square, full-bleed. Ink stays inside the 0.40 maskable allowance |
 | 2 | **No Open Graph image or metadata exists** | Produce one static default; add `openGraph` to `src/app/layout.tsx` |
 | 3 | **Per-platform cover, story and reel chrome** | Mask the live UI, record as proportions of frame height, re-measure each season |
 | 4 | **Store character limits and listing copy** | Blocked on [strategy #1](01-strategy.md#open-decisions); limits read on submission day |

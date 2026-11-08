@@ -193,8 +193,7 @@ becomes four thousand bags.
 | `web/public/mark.svg` | The mark | Byte-identical copy of `wj-mark.svg` today |
 | `web/public/wordmark.png` | 640 × 110 raster of the lock-up | **Opaque white plate — zero transparent pixels.** Right for the email's white card, wrong on any dark surface. Consumed by `api/src/services/mail/templates.ts` |
 | `web/public/mark.png` | 512 × 253 raster of the mark | Also an opaque white plate. No consumer found in the codebase |
-| `web/public/icon-192.png` · `icon-512.png` | PWA icons — white mark on a brand-teal rounded square, on a white plate | The 2.26:1 field, and `icon-512.png` is declared `maskable` in `web/src/app/manifest.ts`. Rebuild pending: [07 #1](07-digital-and-social.md#open-decisions-and-to-specify) |
-| `web/src/app/icon.svg` · `apple-icon.png` | 128 × 128 favicon and 180 × 180 iOS icon, same construction, corner radius baked in | Same field problem; the baked radius is the double-rounding case in [03](03-identity-system.md#favicon-and-app-icon) |
+| [`assets/icons/`](../../assets/icons/) | **The icon set.** `favicon.svg`, `favicon.ico` (16 / 32 / 48), `apple-icon.png`, `icon-192.png`, `icon-512.png`, plus `app-icon.svg` as the unmasked master | Built by `node tokens/icons.mjs`. White mark on `#007e84`. Tab mark is 0.40 × side on a rounded square; home-screen mark is 0.34 × side, square, no alpha. Copied into every surface's `src/app/`, and the two PWA sizes into `web/public/` |
 | [`packages/react/src/logo.tsx`](../../packages/react/src/logo.tsx) + `logo-paths.ts` | The React bindings — `currentColor`, height-driven, no `width` prop | The screen source of truth ([Brand](../02-brand.md)) |
 | `web/src/components/wj/logo.tsx` | A second inline copy of the same paths | Two copies of drawn artwork in one repo will drift. Consolidation is an adoption task ([15](../15-adoption.md)) |
 
@@ -207,7 +206,6 @@ Do not describe any of this to a supplier as available.
 | **Vector EPS or PDF** | Nothing — a conversion job | Sign shops, wrap shops and embroiderers whose software will not take SVG |
 | **Standalone mono (ink) and reversed (white) files** | Nothing | Any supplier. On screen `currentColor` makes one file serve every colour; a supplier opening the raw file just sees teal |
 | **CMYK and spot versions** | The spot match — [03 #2](03-identity-system.md#open-decisions-and-to-specify) · [04 · spot colour](04-colour-and-materials.md#spot-colour) | Every printer. No code is guessed anywhere in this guide |
-| **Hand-tuned 16 / 32 / 48px favicon rasters** | Nothing — [03 #5](03-identity-system.md#open-decisions-and-to-specify) | The browser tab strip |
 | **1-bit bitmaps at each thermal device's own resolution** | Confirmed print widths in dots — [06 #8](06-physical-applications.md#open-decisions-and-to-specify) | Receipt printers |
 | **Embroidery stitch file and vinyl cut file** | The digitiser and the film — [03 #6 and #4](03-identity-system.md#open-decisions-and-to-specify) | Uniforms, livery |
 | **An Open Graph image** | Nothing — [07 #2](07-digital-and-social.md#open-decisions-and-to-specify) | Every shared link |

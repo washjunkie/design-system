@@ -83,7 +83,7 @@
     filter: grayscale(1) contrast(2000%);
   }
   .receipt .r-mark { display: grid; place-items: center; margin-bottom: 2mm; }
-  .receipt .r-mark svg { height: 5.5mm; width: auto; color: #000; }
+  .receipt .r-mark svg { height: 6mm; width: auto; color: #000; }
   .receipt hr { border: none; border-top: 1px dashed #000; margin: 2mm 0; }
   .receipt .r-row { display: flex; justify-content: space-between; gap: 2mm; }
   .receipt .r-total { font-weight: 500; font-size: 9pt; }
@@ -214,8 +214,8 @@
     <div class="scroller"><table class="wj-table" style="background:var(--wj-surface-raised);border:1px solid var(--wj-border-subtle);border-radius:var(--wj-radius-lg)">
       <thead><tr><th>Artwork</th><th>Ratio</th><th>Thinnest sustained stroke</th><th>Tightest true separation</th></tr></thead>
       <tbody>
-        <tr><td>Lock-up</td><td class="wj-mono">325.06 : 56.01 → 5.804 × H</td><td class="wj-mono">0.082 × height</td><td class="wj-mono">0.044 × height</td></tr>
-        <tr><td>Mark</td><td class="wj-mono">100.78 : 49.9 → 2.020 × H</td><td class="wj-mono">0.135 × height</td><td class="wj-mono">0.046 × height</td></tr>
+        <tr><td>Lock-up</td><td class="wj-mono">325.06 : 56.01 → 5.804 × H</td><td class="wj-mono">0.080 × height</td><td class="wj-mono">0.045 × height</td></tr>
+        <tr><td>Mark</td><td class="wj-mono">100.78 : 49.9 → 2.020 × H</td><td class="wj-mono">0.122 × height</td><td class="wj-mono">0.037 × height</td></tr>
       </tbody>
     </table></div>
     <p class="note" style="margin-top:var(--wj-space-5)">
@@ -290,9 +290,9 @@
     <div class="scroller"><table class="wj-table" style="background:var(--wj-surface-raised);border:1px solid var(--wj-border-subtle);border-radius:var(--wj-radius-lg)">
       <thead><tr><th>Artwork</th><th>Height rule</th><th data-align="end">10m</th><th data-align="end">20m</th><th data-align="end">30m</th><th data-align="end">50m</th></tr></thead>
       <tbody>
-        <tr><td>Lock-up</td><td class="wj-mono">H = D / 66</td><td data-numeric="true">150mm</td><td data-numeric="true">305mm</td><td data-numeric="true">455mm</td><td data-numeric="true">760mm</td></tr>
+        <tr><td>Lock-up</td><td class="wj-mono">H = D / 64</td><td data-numeric="true">155mm</td><td data-numeric="true">310mm</td><td data-numeric="true">470mm</td><td data-numeric="true">780mm</td></tr>
         <tr><td class="wj-muted">— its width</td><td class="wj-mono">5.804 × H</td><td data-numeric="true">870mm</td><td data-numeric="true">1,770mm</td><td data-numeric="true"><strong>2,640mm</strong></td><td data-numeric="true">4,410mm</td></tr>
-        <tr><td>Mark</td><td class="wj-mono">H = D / 108</td><td data-numeric="true">95mm</td><td data-numeric="true">185mm</td><td data-numeric="true">280mm</td><td data-numeric="true">465mm</td></tr>
+        <tr><td>Mark</td><td class="wj-mono">H = D / 98</td><td data-numeric="true">100mm</td><td data-numeric="true">205mm</td><td data-numeric="true">305mm</td><td data-numeric="true">510mm</td></tr>
         <tr><td>Set type (Inter)</td><td class="wj-mono">cap = D / 120</td><td data-numeric="true">85mm</td><td data-numeric="true">165mm</td><td data-numeric="true">250mm</td><td data-numeric="true">415mm</td></tr>
       </tbody>
     </table></div>
@@ -424,13 +424,13 @@
       <ul class="wj-body" style="max-width:46ch;color:var(--wj-fg-muted);margin:0">
         <li><strong>3mm cap height minimum</strong> for anything a customer reads. Reading distance ≈ 350mm, so <code>cap = D / 120</code> gives 2.9mm. At 3mm the stroke is 0.45mm ≈ 3.6 dots, comfortably over the 2-dot survival floor.</li>
         <li><strong>2mm is the absolute floor</strong>, secondary lines only. At 2mm the stroke is 2.4 dots — one dot of head bleed and it closes.</li>
-        <li>Thermal floors: mark <strong>5.5mm</strong> (44 × 89 dots), lock-up <strong>6mm</strong> (48 × 278 dots).</li>
+        <li>Thermal floors: mark <strong>6mm</strong> (48 × 97 dots), lock-up <strong>6mm</strong> (48 × 278 dots).</li>
         <li><strong>The reference is the largest thing after the total.</strong> Seven-character Crockford base32 — digits plus A–Z with <code>I</code>, <code>L</code>, <code>O</code>, <code>U</code> removed. Crockford keeps <code>5</code>/<code>S</code> and <code>2</code>/<code>Z</code>, so the face does the rest — set it in JetBrains Mono.</li>
         <li>Money uses the ISO code (<code>NGN 1,200</code>), not the symbol — the ₦ glyph is missing from the fonts that ship with most receipt and PDF pipelines.</li>
         <li>Artwork ships as a <strong>1-bit bitmap at the device's own resolution</strong>, never a scaled greyscale.</li>
         <li>Thermal paper fades. It is a receipt, not a record.</li>
         <li><strong>No platform mark on this document — the business leads.</strong> Not deference: at the thermal
-          mark's 5.5mm floor its keep-clear box is <strong>16.1 × 10.5mm</strong>, a third of a 58mm roll's 48mm print
+          mark's 6mm floor its keep-clear box is <strong>17.5 × 11.4mm</strong>, a third of a 58mm roll's 48mm print
           width, competing with the order reference — and the reference outranks the mark. Wash Junkie appears as
           <em>one line of type in the footer</em>, which is also the only form the shipping code should ever render.</li>
       </ul>
@@ -734,11 +734,11 @@ $('#approved').innerHTML = [
 const FLOORS = [
   ['Offset litho', '0.10 / 0.15mm', 5, 4.5, 'Applied floor — the screen floors at 96dpi, rounded up'],
   ['Digital print ≥600dpi', '0.08 / 0.12mm', 5, 4.5, 'Toner or inkjet'],
-  ['Thermal receipt 203dpi', '0.25 / 0.25mm', 6, 5.5, '48 × 278 dots · 44 × 89 dots'],
-  ['Laser engraving', '0.20 / 0.30mm', 7, 6.5, ''],
-  ['Screen print, textile', '0.30 / 0.50mm', 12, 11, ''],
-  ['Embroidery, 40wt poly', '1.20 / 1.00mm', 23, 22, 'Below 23mm, embroider the mark'],
-  ['Vinyl cut, hand-weeded', '1.00 / 1.00mm', 23, 22, 'Below 23mm, print and cut'],
+  ['Thermal receipt 203dpi', '0.25 / 0.25mm', 6, 6, '48 × 278 dots · 48 × 97 dots'],
+  ['Laser engraving', '0.20 / 0.30mm', 7, 7, ''],
+  ['Screen print, textile', '0.30 / 0.50mm', 12, 12, ''],
+  ['Embroidery, 40wt poly', '1.20 / 1.00mm', 23, 23, 'Below 23mm, embroider the mark'],
+  ['Vinyl cut, hand-weeded', '1.00 / 1.00mm', 23, 23, 'Below 23mm, print and cut'],
   ['Deboss / blind emboss', '1.00 / 1.20mm', 28, 27, 'Deboss the mark, not the lock-up'],
 ];
 $('#floors-rows').innerHTML = FLOORS.map(([p, f, l, m, n]) =>
